@@ -2,20 +2,19 @@
 
 Generated from `queue.json` by `python bench/queue.py`; edit the JSON, not this file.
 
-27 open items; API cost if all ran: about $1.05.
+26 open items; API cost if all ran: about $1.05.
 
-## Can run now (17)
+## Can run now (16)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q02 | Evidence model: how external and internal evidence combine | high | free | 0 | Write docs/evidence-model.md (owner agreed 2026-10-29) |
 | q05 | Start-packet authority as a Gnomon gate rule | high | free | 0 | Design the standing/<resident> frame and resume change in Gnomon; owner decides whether to build |
 | q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Fix in order: #52 (gate-assigned time), #53 (handoff forks), #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51 |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | Pick the first (the honest map is best evidenced); build as a phone-friendly artifact with one-tap feedback stored as verdicts |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
-| q04 | Door: allow more free Workers AI models on /ai | medium | free | 0 | Add a short allowlist of free text models (reviewed before deploy, careful-live-changes), so tests reach 6-10 models |
+| q04 | Door: allow more free Workers AI models on /ai | medium | free | 0 | Add the chosen free text models to the /ai allowlist (reviewed before deploy); check each model's neuron price first |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
 | q15 | Longer multi-step tasks with hidden graders | medium | free | 0 | Build 6-10 tasks of several dependent steps each, graded by tests |
 | q16 | Cost and speed fields on stat cards | medium | free | 0 | Add fixed cost per call, marginal cost, setup, where it runs and measured speed to cards.py; fill from bench/ledger.jsonl and S1 |
@@ -30,7 +29,7 @@ Generated from `queue.json` by `python bench/queue.py`; edit the JSON, not this 
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-register; run the 24 pilot tasks on the free Workers AI models; compare public rankings with ours (Haiku and Sonnet already measured in T2) (after q02, q04) |
+| q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-register: about 10 free Workers AI models (gpt-oss 120B/20B, Qwen 2.5 Coder 32B, Qwen3 30B, Mistral Small 24B, Llama 4 Scout, Nemotron 120B, Gemma 4, Llama 3.3 70B) plus Haiku and Sonnet from T2 on the 24 pilot tasks; gather their public coding-benchmark ranks first; spread runs over days to stay inside 10,000 free neurons a day (after q04) |
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
 
 ## Needs the owner (5)
