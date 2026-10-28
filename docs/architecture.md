@@ -195,6 +195,18 @@ work. The owner's question: can boot be near zero?
 - **No model at all:** calculators, test runners, scripts and the clock
   itself boot for nothing.
 
+**Measured (T2, `bench/boot/RESULTS.md`, audited in `bench/boot/AUDIT.md`,
+2026-10-28):** through the door, boot was **1,486 tokens** (1.9% of the
+harness's ~79,000), and from the second call on, 1,480 of them were read
+from cache, on both Haiku and Sonnet. One-shot runs with no tools passed
+43/48 (Haiku) and 47/48 (Sonnet) of the pilot's tasks; all failures hit
+the door's 4,096-token cap (five of Haiku's were empty, probably unasked-for
+thinking). A cached Haiku-then-Sonnet cascade passed 24/24 at $0.0034 per
+pass, a quarter of Sonnet alone (escalating on the hidden grader, so an
+upper bound on what visible checks would catch). Against the pilot harness
+the realistic saving per pass is about 25 to 33%, resting on an assumed
+pilot output size. Thin boot holds; whether it holds on long work is T1.
+
 **Cost per resident-month of start-up alone** (prices from `plan.py`,
 hourly runs, 720 a month, uncached):
 
@@ -247,7 +259,7 @@ view that stays until the record shows the thing resolved.
 | | Test | Status |
 |---|---|---|
 | T1 | Shapes (a), (b), (c) on the same multi-step tasks, fixed in advance; dollars at actual cache use, pass rate, redone work. The pilot's tasks are too small. | needs longer tasks |
-| T2 | Boot share per engine: input, output, cache-read, cache-write tokens per run (the pilot logged totals only). | cheap; needs logging |
+| T2 | Boot share per engine: input, output, cache-read, cache-write tokens per run (the pilot logged totals only). | **done** (door): boot 1,486, cache holds; `bench/boot` |
 | T3 | Interruption: inject mid-task changes into multi-step pilot tasks, with and without stop-at-safe-point and handoff. InterruptBench found harm from in-place interruption rare, which weakens the premise. | cheap |
 | T4 | Two engines, one world: Claude Code over stdio and an API run through the door against one log; a third resumes either. | Claude app blocked on remote MCP |
 | T5 | Grant enforcement: writes outside the grant, after release, past the deadline, future-dated, and straight to the file or library. | **fails today** (probes) |
@@ -256,7 +268,7 @@ view that stays until the record shows the thing resolved.
 | T8 | Resume adequacy: does a work-order-driven packet hold what resumed work needs? (push_scale: 54-96% of questions at 2,000 tokens with the question known) | cheap |
 | T9 | Free latency and usage per run on Pro (pilot median 15 s even for trivial tasks). | cheap |
 | T10 | Cost per resident-month from logged usage, and the share of free-clock wake-ups that needed a model. | needs a running world |
-| T11 | Runaway: a run that ignores its budget is stopped by an engine-side cap (`max_tokens`, Managed Agents per-run budget). | cheap |
+| T11 | Runaway: a run that ignores its budget is stopped by an engine-side cap (`max_tokens`, Managed Agents per-run budget). | **done**: door refuses over-cap, stops at 4,096 |
 | T12 | The self: one character across many runs against one long session; how often each drifts from its identity and stated lessons. | cheap |
 
 ## Blocking before anything runs unattended

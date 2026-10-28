@@ -64,9 +64,14 @@ view like a city builder, plain underneath with any theme on top.
 ## Open, in rough order
 
 1. **Architecture** (`docs/architecture.md`, revision 2, after
-   `docs/architecture-review-1.md`). Next: the cheap tests T2 (log the
-   token split per run), T8, T9, T11, T12; then T1 (shapes against each
-   other, needs longer tasks). Owner ideas folded in: a standing self per
+   `docs/architecture-review-1.md`). **T2 and T11 done** (`bench/boot`,
+   audited): boot 1,486 tokens, caching holds, cached Haiku-then-Sonnet
+   cascade 24/24 at a quarter of Sonnet's price. Next, from the audit:
+   log thinking tokens per call; rerun Haiku's hard tasks with thinking
+   off and with a capped budget; recover the pilot's real output tokens.
+   Then T8, T9, T12, and T1 (shapes against each other, longer tasks).
+   Owner suggestion: the Batch API (half price, up to 24 h) for the free
+   clock's non-urgent work; the door passes only `/v1/messages` today. Owner ideas folded in: a standing self per
    resident, a free clock (Cloudflare cron) apart from the costed worker,
    a thin boot through the door.
 2. **Gnomon blockers before anything runs unattended** (probed and

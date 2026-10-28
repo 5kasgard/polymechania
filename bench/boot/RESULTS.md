@@ -30,19 +30,52 @@ The pilot's range is API-equivalent (it ran on a subscription): all input
 priced as cache reads at the low end, all as uncached input at the high
 end, output fixed at 1,000 tokens per run before running. The door's arm B
 costs **0.75x to 0.11x** the pilot per pass on Haiku and **0.67x to
-0.07x** on Sonnet: cheaper at either end of the bracket.
+0.07x** on Sonnet: cheaper at either end of the bracket. The low end (pilot
+input read from cache) is the realistic one, so the honest headline is
+**about 25 to 33% cheaper per pass**, not 9 to 14 times. That margin rests
+on the assumed 1,000 output tokens per pilot run: below about 320 (Haiku)
+or 410 (Sonnet) it would vanish (`AUDIT.md`).
 
 Median time per call: about 8 s on both models (the pilot's sub-agents:
-median about 15 s).
+median 20.4 s on Haiku, 11.5 s on Sonnet).
 
-## What the failures were
+## What the failures were (corrected after `AUDIT.md`)
 
-All six failures (Haiku: regex, sudoku and approx in A; regex and approx
-in B. Sonnet: regex in A) stopped at the door's **4,096-token output cap**
-mid-answer, so the code was cut off. No call that finished its answer
-failed a grader. That cap was set for E1, not for this; a run budget is a
-separate dial (spec section 7), and the same calls with a higher cap, or a
-retry on `max_tokens`, would be the next measurement.
+All six failures stopped at the door's **4,096-token output cap**, and no
+call that finished its answer failed a grader. But they are two kinds:
+
+- **Haiku, five of them** (regex and approx in both arms; sudoku in A):
+  the saved code is **empty**. Haiku never began its answer; the likely
+  cause is extended thinking it was not asked for. T11 shows 1,721
+  thinking tokens on a request that set no `thinking` field, and the
+  runner did not log thinking per call, so this is the likely cause,
+  not a measured one.
+- **Sonnet, one** (regex, arm A): 3.6 KB of real code cut off mid-answer.
+
+So the first draft of this file was wrong to call them all truncated
+answers. The 4,096 cap is the door's hard limit (set for E1); raising it
+means changing the door.
+
+## The cascade, priced from these same calls
+
+Haiku first; Sonnet only where Haiku's answer failed its exact check
+(A paired with A, B with B, as pre-registered):
+
+| | Pass | $ total | $ per pass |
+|---|---|---|---|
+| Cascade, A | 23/24 | $0.1121 | $0.00488 |
+| Cascade, B (cached) | **24/24** | $0.0818 | **$0.00341** |
+| Sonnet alone, B | 24/24 | $0.2908 | $0.01211 |
+
+The cached cascade matched Sonnet alone on these 24 tasks at about a
+quarter of the price. This is the planner's escalation (spec section 2)
+measured for the first time; the pilot had no task that needed it.
+Caveat: it escalated on the *hidden* grader, which a real run would not
+have; with only the worker's visible checks (the spec's examples, a
+`max_tokens` stop, an empty answer) some failures would slip through.
+Five of the six here would still have been caught, because the answer was
+empty or cut off; that is a property of these failures, not a general
+result. Priced after the run, by the pairing rule fixed in amendment 1.
 
 ## T11, the runaway check
 
@@ -51,14 +84,22 @@ retry on `max_tokens`, would be the next measurement.
 - A request for a 10,000-word essay with `max_tokens` 4,096: stopped with
   `stop_reason` `max_tokens` at exactly 4,096 output tokens (of which
   1,721 were thinking). Holds: the worst case of one call is 4,096 output
-  tokens plus its input, about $0.0022 on Haiku and $0.045 on Sonnet.
+  tokens plus its input, about $0.0022 on Haiku (tested) and $0.044 on Sonnet (arithmetic, not tested).
 
 ## What this does and does not show
 
+Independently audited: `AUDIT.md` (every number and grade reproduced).
+
 - **Shows:** a run can start for about 1,500 tokens instead of about
-  80,000, the whole start packet caches after the first call, and on these
-  24 tasks one-shot runs with no tools passed nearly as often as tool-using
-  sub-agents, at lower cost per pass.
+  80,000; the whole start packet caches after the first call; one-shot
+  runs with no tools passed 43/48 (Haiku) and 47/48 (Sonnet), and a cached
+  Haiku-then-Sonnet cascade passed 24/24 at about a quarter of Sonnet's
+  price.
+- **Weaker than it looks:** arms A and B send the same prompt, so this is
+  about 24 independent tasks, not 48; Haiku failed regex and approx in
+  both arms, a consistent gap on hard tasks rather than chance; the self
+  was written knowing the tasks; thinking appears to have been on by
+  default.
 - **Does not show:** long, vague, multi-step work (T1), where losing tools
   could matter more; a self grown by a resident (this one was written for
   the test, by someone who knew the tasks, which may raise pass rates);
