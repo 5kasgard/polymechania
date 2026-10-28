@@ -322,3 +322,24 @@ used and that is reported, as is any Sonnet ceiling.
 **H. Smaller fixes** (review 2.11, 3.1, 3.3). Malformed output is wrong on
 both sides and never shown to the reviewer. D1's family rule is called a
 precaution. `evidence.md` reconciled with D5.
+
+### Amendment 2 (2026-10-28, before any data): a $5 budget
+
+The owner can spend $5 on E1, set as the workspace's monthly spend limit, so
+the plan is cut to fit, by the prices in `plan.TIERS` (Haiku $0.10 in and
+$0.50 out per million tokens; Sonnet $2 and $10).
+
+- **Batching.** Workers, the reviewer and the judges answer 25 items per
+  request, with the instructions sent once per request.
+- **W2 working** is capped at 60 words.
+- **Sonnet runs only where they decide something:** W1 honest, designed,
+  −D3, −D5 and the two declining runs; W2 honest, designed and −D5. Haiku
+  runs every cell of section 7 and amendment 1.
+- **Estimated spend:** Haiku about $0.35 in all; Sonnet about $0.22 per W1
+  run and $0.29 per W2 run, about $2.60; W2 calibration about $0.25; a
+  reserve of about $1.50 for the final round. Workers AI (reviewer, judges)
+  runs on the free daily allocation, spread over days if needed.
+- **Order:** all Haiku runs first, then Sonnet runs in the order above. If
+  the spend limit stops a run, it and every later run are reported as not
+  run; nothing is rerun to make up for them, and hypotheses whose runs are
+  missing are reported as untested.
