@@ -1,0 +1,230 @@
+[
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "regex",
+  "input": 410,
+  "cache_read": 0,
+  "cache_write": 1479,
+  "output": 2508,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 9.6,
+  "gap": null,
+  "usd": 0.00148,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "sudoku",
+  "input": 182,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 1019,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 4.4,
+  "gap": 9.6,
+  "usd": 0.000542,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "linsolve",
+  "input": 233,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 527,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 3.0,
+  "gap": 4.4,
+  "usd": 0.000302,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "utf8",
+  "input": 266,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 739,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 5.5,
+  "gap": 3.0,
+  "usd": 0.000411,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "csv",
+  "input": 255,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 659,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 3.3,
+  "gap": 5.5,
+  "usd": 0.00037,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "lattice",
+  "input": 221,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 663,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 3.6,
+  "gap": 3.3,
+  "usd": 0.000368,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "maxflow",
+  "input": 201,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 627,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 3.1,
+  "gap": 3.6,
+  "usd": 0.000348,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "approx",
+  "input": 133,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 1960,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 9.8,
+  "gap": 3.1,
+  "usd": 0.001008,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "edit",
+  "input": 224,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 565,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 2.9,
+  "gap": 9.8,
+  "usd": 0.00032,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "easter",
+  "input": 89,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 277,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 2.0,
+  "gap": 2.9,
+  "usd": 0.000162,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "duration",
+  "input": 303,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 871,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 3.9,
+  "gap": 2.1,
+  "usd": 0.000481,
+  "grade": "PASS",
+  "empty": false
+ },
+ {
+  "arm": "D",
+  "set": "hard",
+  "task": "window",
+  "input": 123,
+  "cache_read": 1479,
+  "cache_write": 0,
+  "output": 298,
+  "thinking": 0,
+  "blocks": [
+   "text"
+  ],
+  "stop": "end_turn",
+  "secs": 2.2,
+  "gap": 3.9,
+  "usd": 0.000176,
+  "grade": "PASS",
+  "empty": false
+ }
+]
