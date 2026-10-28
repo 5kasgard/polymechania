@@ -90,29 +90,10 @@ free; Actions has 4 CPUs but pays only for long jobs; Codespaces not
 reachable from these sessions); `docs/routing.md` (reviewed by Haiku and
 Llama); `bench/verify.py` (exact half of every audit, free); CI green again.
 
-1. **Start-packet rule (from T12b):** spec who may write what into a
-   resident's start packet (owner changes the self; another writer's
-   request applies to its own order unless the owner makes it standing),
-   as a Gnomon gate rule; test with a Claude resident (cheap Haiku, or
-   free Gemma first).
-2. **Runners send calls at once** (S1): rework `bench/boot/run.py` and the
-   T12b runner to run calls concurrently (after the first cache write).
-3. **Gnomon blockers before anything runs unattended:** #52 (future-dated
-   write locks the log), #53 (handoff forks), #54 (leases with fencing),
-   #49 (no revocation), #50 (gate only on MCP); remote MCP for Free.
-4. **Language as a routing row** and the free Rust-against-Python test
-   (Gemma writing the pilot tasks in each; needs Rust graders).
-5. **Demos, Test Kitchen style** (`docs/vision.md`): one small web demo
-   per hypothesis (the honest map, one guide, the intake, notifications),
-   with one-tap feedback that becomes human verdicts in the record.
-6. T1 (run shapes on long multi-step work; needs longer tasks), T8, T9.
-7. Cheapest vision tests (`docs/vision-review-1.md`): card sort, menu
-   picture, notification volume.
-8. E1 (can cards be gamed), when the owner chooses.
-9. Cost and speed fields on cards; budgeting to plan limits.
-10. Waitlist test for Free and Paid; Batch API (half price) for the free
-    clock's non-urgent work (the door passes only `/v1/messages`).
-11. Rename "world" files to "themes" in the code.
+**The open list now lives in one place: `queue.json`** (rendered as
+`docs/queue.md` by `python bench/queue.py`; CI checks it). Every open item,
+with its status, blocker, cost, who it needs and next step. Update it when
+you start or finish something; do not keep a second list here.
 
 **Note for sessions:** on 2026-10-29 a duplicate run of the same session
 worked in this folder at the same time (same session id; it committed

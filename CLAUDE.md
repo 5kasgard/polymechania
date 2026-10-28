@@ -1,6 +1,8 @@
 # Working in Polymechania (read first, every session)
 
-1. **Start from the record:** read `HANDOFF.md`, then `docs/vision.md`.
+1. **Start from the record:** read `HANDOFF.md`, then `docs/vision.md`, then
+   `docs/queue.md` (the one queue of open work; edit `queue.json` and run
+   `python bench/queue.py` when you start or finish something).
 2. **Never impose a design.** Every decision is a hypothesis; taste and
    adjust with numbers from this project and outside research.
 3. **Route your own work** by `docs/routing.md` section 4: published
@@ -17,8 +19,10 @@
 5. **Budget:** see `HANDOFF.md` ("Budget"). API credit is scarce; every
    pre-registration states its API cost bound.
 6. **Judge your own work with separate agents.** When Claude did the work,
-   at least one judge is not Claude (Workers AI's Llama or Gemma through
-   the door is free); a Claude judge, at the cheapest tier that does the
-   job, may be one of several.
+   at least one judge is not Claude. **Default judges and reviewers are
+   free:** Gemma 4 26B and Llama 3.3 70B through the door's `/ai` (in
+   T12b a Haiku judge cost 293k Pro tokens for 72 one-digit scores; Gemma
+   gave the most useful reviews twice). Add a Claude judge only when a
+   test needs a third family, at the cheapest tier.
 7. Keep replies short and plain (the owner reads on a phone). Keep the
    owner's real name out of the repositories.

@@ -1,0 +1,395 @@
+{
+ "about": "The one queue of open work for Polymechania (and its Gnomon blockers). Source of truth: edit this file, then run `python bench/queue.py` to render docs/queue.md. Fields: id, title, kind (test|build|fix|doc|infra|decision), status (open|in-progress|blocked|waiting-owner|scheduled|parked|done), needs (free|api|pro|owner|people), cost (API $ estimate, 0 if free), value (high|medium|low: how much it could change a decision), blocked_by (ids), next (the next concrete step), refs.",
+ "updated": "2026-10-29",
+ "items": [
+  {
+   "id": "q01",
+   "title": "T12c: Llama judge and audit",
+   "kind": "test",
+   "status": "scheduled",
+   "needs": "free",
+   "cost": 0,
+   "value": "low",
+   "next": "Runs itself at 10:10 Brisbane (scheduled task), after the Workers AI free allowance resets; fills the pending cells in RESULTS_C.md",
+   "refs": [
+    "bench/self/RESULTS_C.md"
+   ]
+  },
+  {
+   "id": "q02",
+   "title": "Evidence model: how external and internal evidence combine",
+   "kind": "doc",
+   "status": "in-progress",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "next": "Write docs/evidence-model.md (owner agreed 2026-10-29)",
+   "refs": []
+  },
+  {
+   "id": "q03",
+   "title": "E-ext: do public benchmarks predict our own results?",
+   "kind": "test",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "blocked_by": [
+    "q02",
+    "q04"
+   ],
+   "next": "Pre-register; run the 24 pilot tasks on the free Workers AI models; compare public rankings with ours (Haiku and Sonnet already measured in T2)",
+   "refs": []
+  },
+  {
+   "id": "q04",
+   "title": "Door: allow more free Workers AI models on /ai",
+   "kind": "infra",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Add a short allowlist of free text models (reviewed before deploy, careful-live-changes), so tests reach 6-10 models",
+   "refs": [
+    "bench/cards/door"
+   ]
+  },
+  {
+   "id": "q05",
+   "title": "Start-packet authority as a Gnomon gate rule",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "next": "Design the standing/<resident> frame and resume change in Gnomon; owner decides whether to build",
+   "refs": [
+    "gnomon#55",
+    "bench/self/RESULTS_D.md"
+   ]
+  },
+  {
+   "id": "q06",
+   "title": "Gnomon blockers before anything runs unattended",
+   "kind": "fix",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "next": "Fix in order: #52 (gate-assigned time), #53 (handoff forks), #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51",
+   "refs": [
+    "gnomon#52",
+    "gnomon#53",
+    "gnomon#49",
+    "gnomon#54",
+    "gnomon#50",
+    "gnomon#48",
+    "gnomon#51"
+   ]
+  },
+  {
+   "id": "q07",
+   "title": "Gnomon PR #47 (teams of models move to Polymechania)",
+   "kind": "decision",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "medium",
+   "next": "Owner reviews and merges or closes",
+   "refs": [
+    "gnomon#47"
+   ]
+  },
+  {
+   "id": "q08",
+   "title": "Delete the merged branch door-effort",
+   "kind": "infra",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "low",
+   "next": "Owner deletes it on GitHub (sessions cannot)",
+   "refs": []
+  },
+  {
+   "id": "q09",
+   "title": "Run bench/verify.py in CI",
+   "kind": "infra",
+   "status": "done",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Done 2026-10-29: CI runs bench/verify.py and bench/queue.py --check",
+   "refs": [
+    "bench/verify.py",
+    ".github/workflows/ci.yml"
+   ]
+  },
+  {
+   "id": "q10",
+   "title": "Language as a routing row; Rust against Python test",
+   "kind": "test",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages",
+   "refs": [
+    "docs/routing.md"
+   ]
+  },
+  {
+   "id": "q11",
+   "title": "First Test Kitchen demo: one small web demo per hypothesis",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "next": "Pick the first (the honest map is best evidenced); build as a phone-friendly artifact with one-tap feedback stored as verdicts",
+   "refs": [
+    "docs/vision.md"
+   ]
+  },
+  {
+   "id": "q12",
+   "title": "Cascade with visible checks only",
+   "kind": "test",
+   "status": "open",
+   "needs": "api",
+   "cost": 0.05,
+   "value": "medium",
+   "next": "T2's cascade escalated on hidden graders; rerun escalating only on what a run can see (spec examples, empty or cut-off answers)",
+   "refs": [
+    "bench/boot/RESULTS.md"
+   ]
+  },
+  {
+   "id": "q13",
+   "title": "E1: can stat cards be gamed?",
+   "kind": "test",
+   "status": "open",
+   "needs": "api",
+   "cost": 1.0,
+   "value": "high",
+   "next": "Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend",
+   "refs": [
+    "prereg/cards-v2.md"
+   ]
+  },
+  {
+   "id": "q14",
+   "title": "T1: run shapes on long multi-step work",
+   "kind": "test",
+   "status": "parked",
+   "needs": "pro",
+   "cost": 0,
+   "value": "medium",
+   "blocked_by": [
+    "q15"
+   ],
+   "next": "Needs a set of longer tasks with hidden graders first; T12b-d already showed the start packet matters more than run length",
+   "refs": [
+    "docs/architecture.md"
+   ]
+  },
+  {
+   "id": "q15",
+   "title": "Longer multi-step tasks with hidden graders",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Build 6-10 tasks of several dependent steps each, graded by tests",
+   "refs": []
+  },
+  {
+   "id": "q16",
+   "title": "Cost and speed fields on stat cards",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Add fixed cost per call, marginal cost, setup, where it runs and measured speed to cards.py; fill from bench/ledger.jsonl and S1",
+   "refs": [
+    "polymechania/cards.py",
+    "bench/speed/RESULTS.md"
+   ]
+  },
+  {
+   "id": "q17",
+   "title": "The free clock (Cloudflare cron) and the scheduler",
+   "kind": "build",
+   "status": "blocked",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "blocked_by": [
+    "q06"
+   ],
+   "next": "Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs",
+   "refs": [
+    "docs/architecture.md"
+   ]
+  },
+  {
+   "id": "q18",
+   "title": "Free version engine: remote MCP for Gnomon",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "next": "Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in",
+   "refs": [
+    "gnomon spec 16"
+   ]
+  },
+  {
+   "id": "q19",
+   "title": "Batch API through the door (half price, non-urgent work)",
+   "kind": "infra",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "low",
+   "next": "Allow /v1/messages/batches with the same checks per request; review before deploy",
+   "refs": [
+    "bench/cards/door"
+   ]
+  },
+  {
+   "id": "q20",
+   "title": "Vision cheap tests: card sort, menu picture, notification volume",
+   "kind": "test",
+   "status": "open",
+   "needs": "people",
+   "cost": 0,
+   "value": "medium",
+   "next": "Notification volume can run now from logs; card sort and menu need 5 people",
+   "refs": [
+    "docs/vision-review-1.md"
+   ]
+  },
+  {
+   "id": "q21",
+   "title": "Waitlist test for Free and Paid",
+   "kind": "test",
+   "status": "open",
+   "needs": "owner",
+   "cost": 0,
+   "value": "high",
+   "next": "A one-page site with a button per version; owner decides when to share it",
+   "refs": [
+    "docs/vision.md"
+   ]
+  },
+  {
+   "id": "q22",
+   "title": "Legal check of the business model",
+   "kind": "decision",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "high",
+   "next": "Before anyone pays: a lawyer on reselling and the commercial terms",
+   "refs": [
+    "docs/vision.md"
+   ]
+  },
+  {
+   "id": "q23",
+   "title": "Choose a licence",
+   "kind": "decision",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "low",
+   "next": "README says not yet chosen",
+   "refs": [
+    "README.md"
+   ]
+  },
+  {
+   "id": "q24",
+   "title": "Track Workers AI neurons per day",
+   "kind": "infra",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "low",
+   "next": "Log neurons per call to the ledger and stop runs that would cross the free 10,000 a day",
+   "refs": [
+    "bench/ledger.jsonl"
+   ]
+  },
+  {
+   "id": "q25",
+   "title": "Route judging to free models by default",
+   "kind": "fix",
+   "status": "done",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Done 2026-10-29: CLAUDE.md makes Gemma and Llama the default judges and reviewers",
+   "refs": [
+    "bench/ledger.jsonl"
+   ]
+  },
+  {
+   "id": "q26",
+   "title": "Rename 'world' files to 'themes' in the code",
+   "kind": "fix",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "low",
+   "next": "worlds.py, cli and tests; keep old names working once",
+   "refs": [
+    "polymechania/worlds.py"
+   ]
+  },
+  {
+   "id": "q27",
+   "title": "Two more skills: 'the picture is shaped by what is underneath' and 'plain core, any theme on top'",
+   "kind": "doc",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "low",
+   "next": "Propose when the owner wants them",
+   "refs": []
+  },
+  {
+   "id": "q28",
+   "title": "T8, T9, T10 (resume adequacy, Free latency, cost per resident-month)",
+   "kind": "test",
+   "status": "parked",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "blocked_by": [
+    "q17"
+   ],
+   "next": "Need a running world; T8 can use push_scale data meanwhile",
+   "refs": [
+    "docs/architecture.md"
+   ]
+  },
+  {
+   "id": "q29",
+   "title": "Door credentials live only in one session's scratch folder",
+   "kind": "infra",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "low",
+   "next": "Fine for now (re-issue per HANDOFF); revisit when a scheduler needs standing access",
+   "refs": [
+    "HANDOFF.md"
+   ]
+  }
+ ]
+}
