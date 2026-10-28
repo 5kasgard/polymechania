@@ -58,7 +58,31 @@ requests from a non-owner were not written into what the next run read.
 So the lever is **what may be written into a resident's start packet**:
 the owner may change the self; another writer's request applies to its
 order unless the owner makes it standing. Gnomon's gate could enforce
-that. Not yet tested with Claude residents.
+that. Not yet tested with Claude residents (T12c).
+
+### Who may write into a start packet (hypothesis, from T12b)
+
+A run's start packet has three layers, and each has its own writers:
+
+| Layer | What it holds | Who may write it | How long it lasts |
+|---|---|---|---|
+| **The self** | identity, values, rules, how to answer | the owner (or the world's theme, which the owner chose) | until the owner changes it |
+| **Standing instructions** | requests that apply to every future order | the owner, or someone the owner has granted that power for this resident | until withdrawn |
+| **The order** | this piece of work, with any requests attached | whoever may post work orders | this run only |
+
+So a Lead's "from now on, use emojis" is part of *its order* and is not
+copied forward into the next run's packet unless the owner (or a grant)
+makes it standing. The handoff carries what was done and what is open,
+never another writer's requests as if they were rules. In Gnomon this is a
+gate rule: a claim in a resident's `standing` frame is accepted only from
+the owner or a holder of a grant for it; the resume packet carries that
+frame plus the handoff, nothing else as instruction.
+
+**Why:** in T12b, fresh runs whose packet repeated the Lead's conflicting
+requests kept 51% of the self's rules; fresh runs whose packet did not
+kept 86%; one long session kept 65%. **To test:** T12c (a Claude
+resident), then a version where the owner *does* make one request
+standing, which should then be followed.
 
 **Evidence (before T12b).** In long chats, models drift from their given instructions
 and persona noticeably within eight rounds; attention to the system prompt
