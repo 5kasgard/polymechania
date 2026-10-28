@@ -139,11 +139,11 @@
    "id": "q11",
    "title": "First Test Kitchen demo: one small web demo per hypothesis",
    "kind": "build",
-   "status": "open",
+   "status": "in-progress",
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Pick the first (the honest map is best evidenced); build as a phone-friendly artifact with one-tap feedback stored as verdicts",
+   "next": "First demo published 2026-10-29 (the border: bench/demo/border.html, built from a real log by bench/demo/world.py; artifact claude.ai/artifact/CJiMroxXEK2QHunS7C2vkZ). Next: owner tries it; read feedback/ and the map-vs-table check answers as verdicts; then the next demo",
    "refs": [
     "docs/vision.md"
    ]
@@ -396,7 +396,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "docs/security.md written (hypothesis); next: put the border, gates and alarms in the first Test Kitchen demo, and turn each threat into a probe that must pass",
+   "next": "docs/security.md (hypothesis) and the first border demo are done; next: turn each threat into a probe that must pass, and record refused crossings (q32)",
    "refs": [
     "docs/security.md"
    ]
@@ -412,6 +412,20 @@
    "next": "Owner reviews and merges; CI and tests in the PR",
    "refs": [
     "gnomon#56"
+   ]
+  },
+  {
+   "id": "q32",
+   "title": "Record refused crossings in Gnomon (the watchtower)",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "Gnomon refuses bad writes but keeps no record of them, so a live border cannot show alarms; propose a bounded refusal log (outside the hash chain, or as owner-only events) as a Gnomon issue",
+   "refs": [
+    "docs/security.md",
+    "bench/demo/world.json"
    ]
   }
  ]

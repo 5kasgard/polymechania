@@ -1,0 +1,176 @@
+{
+ "built": "2026-10-28T12:00:00Z",
+ "source": "a real Gnomon log built by bench/demo/world.py; verify ok: True",
+ "regions": [
+  {
+   "id": "capital",
+   "about": "where you and your guides live: the record, the rules, the library",
+   "residents": [
+    "guide",
+    "librarian"
+   ],
+   "isolated_from_residents": false
+  },
+  {
+   "id": "workshop",
+   "about": "code work: orders, results, tests",
+   "residents": [
+    "engineer",
+    "researcher",
+    "tests"
+   ],
+   "isolated_from_residents": false
+  },
+  {
+   "id": "observatory",
+   "about": "research: reading, notes, sources",
+   "residents": [
+    "librarian",
+    "researcher"
+   ],
+   "isolated_from_residents": false
+  },
+  {
+   "id": "holdout",
+   "about": "an experiment whose workers must not see the answers",
+   "residents": [
+    "examiner"
+   ],
+   "isolated_from_residents": true
+  }
+ ],
+ "residents": [
+  {
+   "id": "engineer",
+   "name": "Engineer",
+   "kind": "model",
+   "model": "claude-haiku-5-5",
+   "regions": [
+    "workshop"
+   ]
+  },
+  {
+   "id": "examiner",
+   "name": "Examiner",
+   "kind": "model",
+   "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+   "regions": [
+    "holdout"
+   ]
+  },
+  {
+   "id": "guide",
+   "name": "Guide",
+   "kind": "model",
+   "model": "claude-haiku-5-5",
+   "regions": [
+    "capital"
+   ]
+  },
+  {
+   "id": "librarian",
+   "name": "Librarian",
+   "kind": "model",
+   "model": "@cf/google/gemma-4-26b-a4b-it",
+   "regions": [
+    "capital",
+    "observatory"
+   ]
+  },
+  {
+   "id": "researcher",
+   "name": "Researcher",
+   "kind": "model",
+   "model": "claude-sonnet-5-5",
+   "regions": [
+    "observatory",
+    "workshop"
+   ]
+  },
+  {
+   "id": "tests",
+   "name": "Test runner",
+   "kind": "tool",
+   "model": "pytest-like-1",
+   "regions": [
+    "workshop"
+   ]
+  }
+ ],
+ "roads": [
+  {
+   "from": "capital",
+   "to": "observatory",
+   "who": [
+    "librarian"
+   ]
+  },
+  {
+   "from": "workshop",
+   "to": "observatory",
+   "who": [
+    "researcher"
+   ]
+  }
+ ],
+ "gates": [
+  {
+   "id": "door-claude",
+   "to": "Claude models (Anthropic API)",
+   "through": "the door",
+   "allows": [
+    "claude-haiku-5-5",
+    "claude-sonnet-5-5"
+   ],
+   "rules": [
+    "text only",
+    "at most 4,096 output tokens",
+    "no tools, files or streaming",
+    "effort low, medium or high only"
+   ]
+  },
+  {
+   "id": "door-ai",
+   "to": "open models (Cloudflare Workers AI)",
+   "through": "the door",
+   "allows": [
+    "@cf/google/gemma-4-26b-a4b-it",
+    "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "@cf/qwen/qwen3.8-27b",
+    "@cf/nvidia/nemotron-3-120b-a12b",
+    "@cf/openai/gpt-oss-120b",
+    "@cf/meta/llama-4-scout-17b-16e-instruct",
+    "@cf/meta/llama-3.1-8b-instruct-fp8-fast"
+   ],
+   "rules": [
+    "text only",
+    "at most 4,096 output tokens",
+    "temperature 0"
+   ]
+  }
+ ],
+ "refused": [
+  {
+   "who": "examiner",
+   "region": "workshop",
+   "what": "The examiner tries to read the workshop's results",
+   "outcome": "refused",
+   "code": "E_COMPARTMENT"
+  },
+  {
+   "who": "engineer",
+   "region": "holdout",
+   "what": "The engineer tries to write into the holdout",
+   "outcome": "refused",
+   "code": "E_COMPARTMENT"
+  },
+  {
+   "who": "guide",
+   "region": "workshop",
+   "what": "The guide tries to post a result in the workshop",
+   "outcome": "refused",
+   "code": "E_COMPARTMENT"
+  }
+ ],
+ "refusals_recorded_by_gnomon": false
+}
