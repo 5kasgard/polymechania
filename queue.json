@@ -30,25 +30,23 @@
    "id": "q03",
    "title": "E-ext: do public benchmarks predict our own results?",
    "kind": "test",
-   "status": "open",
+   "status": "scheduled",
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "blocked_by": [
-    "q04"
-   ],
-   "next": "Pre-register: about 10 free Workers AI models (gpt-oss 120B/20B, Qwen 2.5 Coder 32B, Qwen3 30B, Mistral Small 24B, Llama 4 Scout, Nemotron 120B, Gemma 4, Llama 3.3 70B) plus Haiku and Sonnet from T2 on the 24 pilot tasks; gather their public coding-benchmark ranks first; spread runs over days to stay inside 10,000 free neurons a day",
+   "blocked_by": [],
+   "next": "Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited",
    "refs": []
   },
   {
    "id": "q04",
    "title": "Door: allow more free Workers AI models on /ai",
    "kind": "infra",
-   "status": "open",
+   "status": "done",
    "needs": "free",
    "cost": 0,
    "value": "medium",
-   "next": "Add the chosen free text models to the /ai allowlist (reviewed before deploy); check each model's neuron price first",
+   "next": "Done 2026-10-29: five free models on /ai, opt-in default thinking; reviewed, deployed hash-verified, probed live",
    "refs": [
     "bench/cards/door"
    ]
@@ -306,9 +304,9 @@
    "needs": "owner",
    "cost": 0,
    "value": "low",
-   "next": "README says not yet chosen",
+   "next": "Owner says one word (split, apache, fsl or agpl-dual); recommendation 'split' in docs/licensing.md (not legal advice)",
    "refs": [
-    "README.md"
+    "docs/licensing.md"
    ]
   },
   {
@@ -352,13 +350,13 @@
   },
   {
    "id": "q27",
-   "title": "Two more skills: 'the picture is shaped by what is underneath' and 'plain core, any theme on top'",
+   "title": "More skills from this work",
    "kind": "doc",
    "status": "waiting-owner",
    "needs": "owner",
    "cost": 0,
    "value": "low",
-   "next": "Propose when the owner wants them",
+   "next": "Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes",
    "refs": []
   },
   {
@@ -388,6 +386,19 @@
    "next": "Fine for now (re-issue per HANDOFF); revisit when a scheduler needs standing access",
    "refs": [
     "HANDOFF.md"
+   ]
+  },
+  {
+   "id": "q30",
+   "title": "The border: security as a world's edge",
+   "kind": "doc",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "high",
+   "next": "docs/security.md written (hypothesis); next: put the border, gates and alarms in the first Test Kitchen demo, and turn each threat into a probe that must pass",
+   "refs": [
+    "docs/security.md"
    ]
   }
  ]

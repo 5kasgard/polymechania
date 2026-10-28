@@ -13,8 +13,8 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | Pick the first (the honest map is best evidenced); build as a phone-friendly artifact with one-tap feedback stored as verdicts |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
+| q30 | The border: security as a world's edge | high | free | 0 | docs/security.md written (hypothesis); next: put the border, gates and alarms in the first Test Kitchen demo, and turn each threat into a probe that must pass |
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
-| q04 | Door: allow more free Workers AI models on /ai | medium | free | 0 | Add the chosen free text models to the /ai allowlist (reviewed before deploy); check each model's neuron price first |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
 | q15 | Longer multi-step tasks with hidden graders | medium | free | 0 | Build 6-10 tasks of several dependent steps each, graded by tests |
 | q16 | Cost and speed fields on stat cards | medium | free | 0 | Add fixed cost per call, marginal cost, setup, where it runs and measured speed to cards.py; fill from bench/ledger.jsonl and S1 |
@@ -25,11 +25,10 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q26 | Rename 'world' files to 'themes' in the code | low | free | 0 | worlds.py, cli and tests; keep old names working once |
 | q29 | Door credentials live only in one session's scratch folder | low | free | 0 | Fine for now (re-issue per HANDOFF); revisit when a scheduler needs standing access |
 
-## Waiting on a blocker (2)
+## Waiting on a blocker (1)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-register: about 10 free Workers AI models (gpt-oss 120B/20B, Qwen 2.5 Coder 32B, Qwen3 30B, Mistral Small 24B, Llama 4 Scout, Nemotron 120B, Gemma 4, Llama 3.3 70B) plus Haiku and Sonnet from T2 on the 24 pilot tasks; gather their public coding-benchmark ranks first; spread runs over days to stay inside 10,000 free neurons a day (after q04) |
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
 
 ## Needs the owner (5)
@@ -39,13 +38,14 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q22 | Legal check of the business model | high | owner | 0 | Before anyone pays: a lawyer on reselling and the commercial terms |
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Owner reviews and merges or closes |
 | q08 | Delete the merged branch door-effort | low | owner | 0 | Owner deletes it on GitHub (sessions cannot) |
-| q23 | Choose a licence | low | owner | 0 | README says not yet chosen |
-| q27 | Two more skills: 'the picture is shaped by what is underneath' and 'plain core, any theme on top' | low | owner | 0 | Propose when the owner wants them |
+| q23 | Choose a licence | low | owner | 0 | Owner says one word (split, apache, fsl or agpl-dual); recommendation 'split' in docs/licensing.md (not legal advice) |
+| q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 
-## Scheduled (1)
+## Scheduled (2)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
+| q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited |
 | q01 | T12c: Llama judge and audit | low | free | 0 | Runs itself at 10:10 Brisbane (scheduled task), after the Workers AI free allowance resets; fills the pending cells in RESULTS_C.md |
 
 ## Parked (2)
