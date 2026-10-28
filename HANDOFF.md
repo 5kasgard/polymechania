@@ -79,7 +79,7 @@ Rules for every session: `CLAUDE.md` (routing, unbiased testing, budget).
 Owner's saved skills (any chat): route-and-test, taste-and-adjust,
 session-handoff, careful-live-changes.
 
-**Done 2026-10-28/29 (all audited, records in `bench/`):** T2 thin boot
+**Done 2026-10-28/29 (all audited, records in `bench/`):** T12c (`bench/self/RESULTS_C.md`: T12b holds with a Claude Haiku resident, +33 points, $0.03; Llama judge scheduled after the free reset); T2 thin boot
 (1,486 tokens; caching holds; cached Haiku-then-Sonnet cascade 24/24 at a
 quarter of Sonnet's price); T2b/T2c (set thinking explicitly; off for Haiku
 on this work); T11 runaway caps hold; T12b (`bench/self/RESULTS_B.md`: a
