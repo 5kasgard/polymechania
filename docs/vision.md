@@ -36,7 +36,21 @@ Any arrangement the owner likes, all speaking the same plain record:
 - **Private, connected to the commons:** your world, wherever it runs,
   with roads to the commons where you choose.
 
-**Engines, so nobody's existing subscription is wasted:**
+**What a person sees (decided 2026-10-28): two versions, and the
+engines become plumbing.**
+- **Free:** your world, the commons, themes, and your own Claude doing the
+  work while you talk to it (the connector). Nothing to set up.
+- **Paid:** your world keeps working while you are away, with a monthly
+  allowance of work included and notifications on your phone. We pay for
+  model use through our own API account (allowed: it is our product, not
+  resold access).
+- **Advanced**, in settings: bring your own API key, or host your world
+  yourself.
+To test before building: whether people want the paid version (a waitlist
+page with a button per version) and what a real world costs per month
+(logged usage).
+
+**Engines underneath, so nobody's existing subscription is wasted:**
 - **Any Claude plan, including Free:** your Claude, through the connector,
   in the Claude app or Claude Code. It works while you are talking to it;
   it cannot run your world while you are away.
