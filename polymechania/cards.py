@@ -2,17 +2,22 @@
 
 A card is computed from judged results and never typed in. Two ways of
 computing it are kept side by side, because the experiment in
-`prereg/cards-v1.md` compares them:
+`prereg/cards-v2.md` compares the designed rules with versions missing one
+part each:
 
-* `naive`, built to be gameable (the positive control): it counts checks
-  the worker could see, reviews by the worker's own group, and is ranked by
-  stated confidence;
 * `designed`, the mechanism under test (D1-D7 in the pre-registration):
-  only blind verdicts from outside the worker's group, on checks the worker
-  never saw; random audits override; stated confidence is scored for
-  calibration and never used to assign work; a true "this task is broken"
-  report is neutral and a false one is a failure; copies of one model are
-  one witness.
+  only blind verdicts from outside the worker's model family, on checks
+  the worker never saw; the success rate is corrected by uniform random
+  audits; stated confidence is scored for calibration and never used to
+  assign work; copies of one model are one witness;
+* `naive`, which counts what a worker can fake: visible checks, its own
+  group's reviews, and its stated confidence.
+
+"This item is broken" is an answer like any other: right when the item is
+broken, wrong when it is not. Its routine verdict comes from the judge of
+reports, and audits check it against the truth, so a report is corrected by
+audits exactly as an answer is. Declining an item is not an answer: it is
+left out of the success rate and shown as coverage.
 
 Nothing here talks to a model or the record: results come in as plain
 data, so the same function serves the experiment and, later, the record.
@@ -56,7 +61,8 @@ class Result:
     kind: str
     verdicts: tuple = ()
     confidence: Optional[float] = None  # the worker's stated chance it is right
-    broken: Optional[bool] = None  # None: not reported broken; True/False: reported, and the report checked
+    broken: Optional[bool] = None  # None: not reported broken; True/False: reported, and the judge found it true/false
+    declined: bool = False  # the worker declined the item
     visible_pass: Optional[bool] = None  # did it pass the checks it could see
     tokens: int = 0
     cost_usd: float = 0.0
@@ -134,11 +140,12 @@ def brier(pairs: Iterable[tuple]) -> Optional[float]:
 # ------------------------------------------------------------- outcomes
 
 def routine_outcome(r: Result) -> Optional[bool]:
-    """The designed rules without audits (D1, D2, D5, D7)."""
-    if r.broken is True:
+    """The designed rules without audits (D1, D2, D5, D7). A "broken"
+    report's routine verdict is the judge's."""
+    if r.declined:
         return None
-    if r.broken is False:
-        return False
+    if r.broken is not None:
+        return r.broken
     by_group: dict = {}
     for v in r.verdicts:
         if v.audit or v.by_group == r.group or not v.hidden or not v.blind:
@@ -152,8 +159,10 @@ def routine_outcome(r: Result) -> Optional[bool]:
 
 
 def audit_outcome(r: Result) -> Optional[bool]:
-    """What a random audit found, if this result was audited (by a group other than the worker's)."""
-    if r.broken is not None:
+    """What a random audit found, if this result was audited (by a group
+    other than the worker's). For a "broken" report, the audit says whether
+    the item really was broken."""
+    if r.declined:
         return None
     audits = [v for v in r.verdicts if v.audit and v.by_group != r.group]
     return audits[-1].outcome == PASS if audits else None
@@ -163,12 +172,13 @@ def estimate(results: Iterable[Result], audit_rate: float) -> Optional[float]:
     """The audit-corrected success rate: the routine rate plus, for each
     audited result, (audit - routine) / audit_rate, over all counted results.
     Unbiased whatever the routine verdicts get wrong, provided audits are
-    uniform at `audit_rate` and tell the truth. Results with no routine
-    verdict count as failures for the routine part, so withholding one
-    cannot help."""
+    uniform at `audit_rate`, cover "broken" reports like answers, and tell
+    the truth. Results with no routine verdict count as failures for the
+    routine part, so withholding one cannot help. Declined items are left
+    out (see `coverage`)."""
     if not 0 < audit_rate <= 1:
         raise ValueError("audit_rate must be above 0 and at most 1")
-    rows = [r for r in results if r.broken is not True]
+    rows = [r for r in results if not r.declined]
     if not rows:
         return None
     total = 0.0
@@ -183,35 +193,19 @@ def estimate(results: Iterable[Result], audit_rate: float) -> Optional[float]:
 
 
 def designed_outcome(r: Result) -> Optional[bool]:
-    """Success, failure, or nothing to count, under the designed rules.
-
-    D5: a true "broken" report counts for nothing; a false one is a failure.
-    D3: an audit's verdict replaces every other.
-    D1, D2, D7: otherwise only blind verdicts, on hidden checks, from groups
-    other than the worker's, one vote per group, majority wins, a tie counts
-    for nothing."""
-    if r.broken is True:
-        return None
-    if r.broken is False:
-        return False
-    audits = [v for v in r.verdicts if v.audit and v.by_group != r.group]
-    if audits:
-        return audits[-1].outcome == PASS
-    by_group: dict = {}
-    for v in r.verdicts:
-        if v.by_group == r.group or not v.hidden or not v.blind:
-            continue
-        by_group[v.by_group] = v.outcome  # one vote per group: its latest
-    yes = sum(1 for o in by_group.values() if o == PASS)
-    no = len(by_group) - yes
-    if yes == no:
-        return None
-    return yes > no
-
+    """One result under the designed rules: an audit's verdict if it was
+    audited, otherwise the routine verdict."""
+    au = audit_outcome(r)
+    return au if au is not None else routine_outcome(r)
 
 def naive_outcome(r: Result) -> Optional[bool]:
     """The gameable version: passing the visible checks is success, and any
-    verdict counts, the worker's own group's included; "broken" is ignored."""
+    verdict counts, the worker's own group's included; a "broken" report
+    always counts as right."""
+    if r.declined:
+        return None
+    if r.broken is not None:
+        return True
     if r.visible_pass is not None:
         return r.visible_pass
     votes = [v.outcome == PASS for v in r.verdicts]
@@ -237,6 +231,8 @@ class Card:
     gap: Optional[float] = None  # visible pass rate minus judged success rate, on the same results
     broken_true: int = 0
     broken_false: int = 0
+    declined: int = 0
+    coverage: Optional[float] = None  # share of items not declined
     results: int = 0
     tokens: float = 0.0  # per result
     cost_usd: float = 0.0
@@ -246,8 +242,8 @@ class Card:
 
     def as_dict(self) -> dict:
         d = {k: getattr(self, k) for k in ("worker", "kind", "rule", "judged", "successes", "broken_true",
-                                            "broken_false", "results")}
-        for k in ("mean", "low", "high", "estimate", "brier", "stated", "gap", "tokens", "cost_usd", "ms"):
+                                            "broken_false", "declined", "results")}
+        for k in ("mean", "low", "high", "estimate", "coverage", "brier", "stated", "gap", "tokens", "cost_usd", "ms"):
             v = getattr(self, k)
             d[k] = None if v is None else round(v, 6)
         return d
@@ -276,6 +272,9 @@ def card(results: Iterable[Result], worker: str, kind: str, rule: str = "designe
         c.gap = sum(1 for v, _ in both if v) / len(both) - sum(1 for _, o in both if o) / len(both)
     c.broken_true = sum(1 for r in mine if r.broken is True)
     c.broken_false = sum(1 for r in mine if r.broken is False)
+    c.declined = sum(1 for r in mine if r.declined)
+    if mine:
+        c.coverage = 1 - c.declined / len(mine)
     if rule == "designed" and audit_rate:
         c.estimate = estimate(mine, audit_rate)
     if mine:

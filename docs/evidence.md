@@ -87,8 +87,10 @@ decisions.
   writing-style fingerprint. On real text and code, models recognise their
   own output (Panickssery et al. 2024), so blinding alone does not remove
   self-preference. (Chae et al. 2026, arXiv 2608.18091)
-  - *Suggests:* review blind, and count a reviewer as outside only if it is
-    from another model family.
+  - *Suggests,* as a precaution (the cited work shows a model recognising its
+    own output; recognition across a family is an extrapolation): review
+    blind, and count a reviewer as outside only if it is from another model
+    family.
 
 ## Routing: most of the gain is the task type, and noise is large
 
@@ -118,8 +120,11 @@ decisions.
   verdicts only from outside the worker's group (Gnomon's gate). Supported
   by the self-preference and trace-tampering findings above.
 - Hidden tests graded the pilot. Supported by SpecBench.
-- Reporting a part undone is never counted against a worker. Supported by
-  the escalation-channel study.
+- Reporting a part undone honestly is never counted against a worker.
+  Supported by the escalation-channel study for a single agent; among
+  competing workers a false report must cost something, so in the cards
+  mechanism a "broken" report is scored as an answer: right if the item
+  really is broken, wrong if not.
 
 ## Classic theory used
 

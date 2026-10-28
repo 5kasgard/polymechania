@@ -1,17 +1,17 @@
-one card's error (SD over audit draws), in points
-    n disagree q=0.1  q=0.2  q=0.5 
-  100     0.05    6.7    3.5    1.4
-  100      0.2   13.6    8.2    5.2
-  400     0.05    3.6    1.7    1.0
-  400      0.2    7.3    4.8    2.1
- 1000     0.05    2.1    1.4    0.7
- 1000      0.2    4.5    2.8    1.4
-
-smallest true inflation difference detected with 80% power (one-sided 5%),
-when inflation per item is a 0/1 event with rate f, two arms of n items:
-  n=200  f=0.05 ->  5.4 points
-  n=200  f=0.1  ->  7.5 points
-  n=400  f=0.05 ->  3.8 points
-  n=400  f=0.1  ->  5.3 points
-  n=800  f=0.05 ->  2.7 points
-  n=800  f=0.1  ->  3.7 points
+     mech    n     d     f built-in measured H1a fires bound<=5
+ no-audit  400  0.05   0.0      0.0     -0.1        0%      94%
+ no-audit  400  0.05  0.15      5.2      5.0        0%       6%
+ no-audit  400  0.05   0.3     10.5      9.6       46%       0%
+ no-audit  400  0.05  0.45     15.8     15.0       98%       0%
+ no-audit  400   0.2   0.0      0.0     -0.3        0%      57%
+ no-audit  400   0.2  0.15      5.2      4.0        3%       6%
+ no-audit  400   0.2   0.3     10.5      8.7       38%       0%
+ no-audit  400   0.2  0.45     15.8     12.5       76%       0%
+ designed  400  0.05   0.0      0.0      0.0        0%     100%
+ designed  400  0.05  0.15      0.0      0.0        0%     100%
+ designed  400  0.05   0.3      0.0      0.0        0%     100%
+ designed  400  0.05  0.45      0.0      0.0        0%     100%
+ designed  400   0.2   0.0      0.0      0.0        0%     100%
+ designed  400   0.2  0.15      0.0      0.0        0%     100%
+ designed  400   0.2   0.3      0.0      0.0        0%     100%
+ designed  400   0.2  0.45      0.0      0.0        0%     100%
