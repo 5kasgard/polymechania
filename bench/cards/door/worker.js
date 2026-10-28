@@ -16,7 +16,9 @@ const CLAUDE = new Set(["claude-haiku-5-5", "claude-sonnet-5-5"]);
 const WORKERS_AI = new Set(["@cf/google/gemma-4-26b-a4b-it", "@cf/meta/llama-3.3-70b-instruct-fp8-fast"]);
 const MAX_TOKENS = 4096;
 const MAX_BODY = 256 * 1024;
-const FIELDS = new Set(["model", "max_tokens", "system", "messages", "temperature", "stop_sequences", "thinking"]);
+const FIELDS = new Set(["model", "max_tokens", "system", "messages", "temperature", "stop_sequences", "thinking", "output_config"]);
+// Effort levels the door passes: xhigh and max need far more than MAX_TOKENS, so they are refused.
+const EFFORT = new Set(["low", "medium", "high"]);
 
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { "content-type": "application/json", "x-door": "1" } });
@@ -45,9 +47,16 @@ function checkClaude(body) {
   }
   if (body.thinking !== undefined) {
     const t = body.thinking;
-    if (!t || !["enabled", "disabled"].includes(t.type)) return "bad thinking";
+    if (!t || !["enabled", "disabled", "adaptive", "between_tools"].includes(t.type)) return "bad thinking";
+    for (const k of Object.keys(t)) if (!["type", "budget_tokens"].includes(k)) return `thinking field not allowed: ${k}`;
     if (t.type === "enabled" && !(Number.isInteger(t.budget_tokens) && t.budget_tokens < body.max_tokens))
       return "thinking budget must be below max_tokens";
+  }
+  if (body.output_config !== undefined) {
+    const o = body.output_config;
+    if (!o || typeof o !== "object" || Array.isArray(o)) return "bad output_config";
+    for (const k of Object.keys(o)) if (k !== "effort") return `output_config field not allowed: ${k}`;
+    if (!EFFORT.has(o.effort)) return "effort must be low, medium or high";
   }
   return null;
 }
