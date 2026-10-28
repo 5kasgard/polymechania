@@ -1,0 +1,12 @@
+{
+ "one at a time": {
+  "wall_s": 174.9,
+  "median_call_s": 5.6,
+  "neurons": 188.7
+ },
+ "8 at once": {
+  "wall_s": 19.6,
+  "median_call_s": 6.0,
+  "neurons": 188.2
+ }
+}
