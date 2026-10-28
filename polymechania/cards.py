@@ -46,9 +46,13 @@ class Verdict:
 
 @dataclass(frozen=True)
 class Result:
-    """One result by one worker, with everything said and judged about it."""
+    """One result by one worker, with everything said and judged about it.
+
+    `group` is the worker's group for independence: for models, the model
+    family (every Claude tier is one group, since models recognise their own
+    family's output); for tools and people, the party that runs them."""
     worker: str
-    group: str  # the worker's group: copies of one model share one
+    group: str
     kind: str
     verdicts: tuple = ()
     confidence: Optional[float] = None  # the worker's stated chance it is right
@@ -129,6 +133,55 @@ def brier(pairs: Iterable[tuple]) -> Optional[float]:
 
 # ------------------------------------------------------------- outcomes
 
+def routine_outcome(r: Result) -> Optional[bool]:
+    """The designed rules without audits (D1, D2, D5, D7)."""
+    if r.broken is True:
+        return None
+    if r.broken is False:
+        return False
+    by_group: dict = {}
+    for v in r.verdicts:
+        if v.audit or v.by_group == r.group or not v.hidden or not v.blind:
+            continue
+        by_group[v.by_group] = v.outcome
+    yes = sum(1 for o in by_group.values() if o == PASS)
+    no = len(by_group) - yes
+    if yes == no:
+        return None
+    return yes > no
+
+
+def audit_outcome(r: Result) -> Optional[bool]:
+    """What a random audit found, if this result was audited (by a group other than the worker's)."""
+    if r.broken is not None:
+        return None
+    audits = [v for v in r.verdicts if v.audit and v.by_group != r.group]
+    return audits[-1].outcome == PASS if audits else None
+
+
+def estimate(results: Iterable[Result], audit_rate: float) -> Optional[float]:
+    """The audit-corrected success rate: the routine rate plus, for each
+    audited result, (audit - routine) / audit_rate, over all counted results.
+    Unbiased whatever the routine verdicts get wrong, provided audits are
+    uniform at `audit_rate` and tell the truth. Results with no routine
+    verdict count as failures for the routine part, so withholding one
+    cannot help."""
+    if not 0 < audit_rate <= 1:
+        raise ValueError("audit_rate must be above 0 and at most 1")
+    rows = [r for r in results if r.broken is not True]
+    if not rows:
+        return None
+    total = 0.0
+    for r in rows:
+        ro = routine_outcome(r)
+        base = 1.0 if ro else 0.0
+        total += base
+        au = audit_outcome(r)
+        if au is not None:
+            total += ((1.0 if au else 0.0) - base) / audit_rate
+    return total / len(rows)
+
+
 def designed_outcome(r: Result) -> Optional[bool]:
     """Success, failure, or nothing to count, under the designed rules.
 
@@ -188,20 +241,23 @@ class Card:
     tokens: float = 0.0  # per result
     cost_usd: float = 0.0
     ms: float = 0.0
+    estimate: Optional[float] = None  # audit-corrected success rate (unbiased; can stray outside 0-1)
     extra: dict = field(default_factory=dict)
 
     def as_dict(self) -> dict:
         d = {k: getattr(self, k) for k in ("worker", "kind", "rule", "judged", "successes", "broken_true",
                                             "broken_false", "results")}
-        for k in ("mean", "low", "high", "brier", "stated", "gap", "tokens", "cost_usd", "ms"):
+        for k in ("mean", "low", "high", "estimate", "brier", "stated", "gap", "tokens", "cost_usd", "ms"):
             v = getattr(self, k)
             d[k] = None if v is None else round(v, 6)
         return d
 
 
 def card(results: Iterable[Result], worker: str, kind: str, rule: str = "designed",
-         prior: tuple = (1.0, 1.0)) -> Card:
-    """The card for `worker` on `kind`, from `results`, under `rule`."""
+         prior: tuple = (1.0, 1.0), audit_rate: Optional[float] = None) -> Card:
+    """The card for `worker` on `kind`, from `results`, under `rule`. With
+    `audit_rate` (designed rule), the card also carries the audit-corrected
+    estimate, which is what work is assigned by."""
     if rule not in ("designed", "naive"):
         raise ValueError("rule must be designed or naive")
     mine = [r for r in results if r.worker == worker and r.kind == kind]
@@ -220,6 +276,8 @@ def card(results: Iterable[Result], worker: str, kind: str, rule: str = "designe
         c.gap = sum(1 for v, _ in both if v) / len(both) - sum(1 for _, o in both if o) / len(both)
     c.broken_true = sum(1 for r in mine if r.broken is True)
     c.broken_false = sum(1 for r in mine if r.broken is False)
+    if rule == "designed" and audit_rate:
+        c.estimate = estimate(mine, audit_rate)
     if mine:
         c.tokens = sum(r.tokens for r in mine) / len(mine)
         c.cost_usd = sum(r.cost_usd for r in mine) / len(mine)
@@ -233,7 +291,9 @@ def rank(cards: Iterable[Card], rule: str = "designed") -> list:
     used (D4). Naive: by stated confidence, then success."""
     cards = list(cards)
     if rule == "designed":
-        return sorted(cards, key=lambda c: (-c.mean, c.cost_usd, c.worker))
+        def judged(c):
+            return c.estimate if c.estimate is not None else c.mean
+        return sorted(cards, key=lambda c: (-judged(c), c.cost_usd, c.worker))
     return sorted(cards, key=lambda c: (-(c.stated if c.stated is not None else 0.0), -c.mean, c.worker))
 
 

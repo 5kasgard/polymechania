@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import _env  # noqa: E402,F401
 
 from polymechania.cards import (FAIL, PASS, Card, Result, Verdict, audited, beta_cdf, beta_quantile,  # noqa: E402
-                                brier, card, designed_outcome, naive_outcome, rank)
+                                brier, card, designed_outcome, estimate, naive_outcome, rank)
 
 OUT = "anthropic-reviewer"  # a judge outside the worker's group
 
@@ -116,6 +116,39 @@ class Cards(unittest.TestCase):
             r(confidence=1.5)
         with self.assertRaises(ValueError):
             card([], "w", "k", "lenient")
+
+
+class TheAuditCorrectedEstimate(unittest.TestCase):
+    def results(self, truths, routine_says, audit_rate, seed):
+        rng = random.Random(seed)
+        out = []
+        for i, (t, ro) in enumerate(zip(truths, routine_says)):
+            vs = [Verdict(PASS if ro else FAIL, OUT)]
+            if rng.random() < audit_rate:
+                vs.append(Verdict(PASS if t else FAIL, "auditor", audit=True))
+            out.append(Result("w", "g", "k", verdicts=tuple(vs)))
+        return out
+
+    def test_unbiased_even_when_every_failure_fools_the_routine_check(self):
+        rng = random.Random(5)
+        truths = [rng.random() < 0.6 for _ in range(300)]
+        fooled = [True] * 300  # the routine check passes everything
+        draws = [estimate(self.results(truths, fooled, 0.2, s), 0.2) for s in range(400)]
+        self.assertAlmostEqual(sum(draws) / len(draws), sum(truths) / 300, delta=0.01)
+        naive = sum(1 for _ in fooled) / 300
+        self.assertGreater(naive - sum(truths) / 300, 0.35)  # the routine rate alone is badly inflated
+
+    def test_a_true_broken_report_is_left_out_and_a_false_one_is_a_failure(self):
+        rs = [Result("w", "g", "k", verdicts=(Verdict(PASS, OUT),)) for _ in range(3)]
+        self.assertEqual(estimate(rs + [Result("w", "g", "k", broken=True)], 0.2), 1.0)
+        self.assertEqual(estimate(rs + [Result("w", "g", "k", broken=False)], 0.2), 0.75)
+        with self.assertRaises(ValueError):
+            estimate(rs, 0)
+
+    def test_work_goes_by_the_estimate(self):
+        a = Card("a", "k", "designed", mean=0.9, estimate=0.5)
+        b = Card("b", "k", "designed", mean=0.6, estimate=0.7)
+        self.assertEqual(rank([a, b])[0].worker, "b")
 
 
 class Audits(unittest.TestCase):

@@ -177,4 +177,8 @@ paced to them; if the limits stop a run, it resumes, it is not dropped.
 
 ## Amendments
 
-(none yet)
+1. **2026-10-28, before any data: superseded by `cards-v2.md`.** An
+   independent review (`review-v1.md`) found 24 problems, five of them
+   blocking. v2 narrows to E1, fixes each finding (its section 10), and
+   withdraws E2-E4 for re-registration after E1. Nothing below this line in
+   v1 was run.
