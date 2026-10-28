@@ -41,7 +41,7 @@ COST_BOUND = 0.10
 
 
 def haiku(messages: list) -> tuple[str, dict, str]:
-    body = {"model": "claude-haiku-5-5", "max_tokens": 4096, "temperature": 0,
+    body = {"model": "claude-haiku-5-5", "max_tokens": 4096,  # temperature refused for Haiku 5.5 (amendment 2)
             "thinking": {"type": "disabled"},
             "system": [{"type": "text", "text": (BOOT / "self.md").read_text(), "cache_control": {"type": "ephemeral"}}],
             "messages": messages}

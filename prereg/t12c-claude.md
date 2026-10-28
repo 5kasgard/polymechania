@@ -56,3 +56,13 @@ model.
   errors would surface as failed calls, which `bench/parallel.py`
   re-raises rather than drops.
 - Llama's review found no rule broken; it is kept as received.
+
+## Amendment 2 (2026-10-29, before any data)
+
+The API refused `temperature` for Claude Haiku 5.5 ("`temperature` is
+deprecated for this model"; three calls refused, nothing charged, no
+replies). So amendment 1's fix is impossible: Haiku runs at its own
+sampling default, while T12b's Gemma ran at temperature 0. This is a
+**known difference from T12b** that could explain a different result
+(run-to-run variation, which one attempt per order cannot measure), and
+is reported with the results. Everything else stands.
