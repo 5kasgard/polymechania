@@ -73,6 +73,25 @@ part of that saving can be the margin while the price still beats doing it
 the expensive way. To be checked with real usage, and with a lawyer before
 anyone pays.
 
+**How money and model use flow (hypothesis, 2026-10-28, from the
+[commercial terms](https://www.anthropic.com/legal/commercial-terms)):**
+- **One API account, ours.** We pay Anthropic for model use and sell
+  Polymechania with a monthly allowance of work included (allowed: A.1
+  lets a product power features for its own users).
+- **Top-ups in our own units** (more runs, bigger budgets for residents),
+  never sold as "Claude credits" or raw API access, which would read as
+  resale (D.4a).
+- **Not possible:** buying or operating a Claude subscription for a user,
+  or routing work through their login (`docs/engines.md`).
+- **What we take on:** all activity under our account, users' compliance
+  with the usage policy, and indemnity for their misuse (D.2, D.5, K.2).
+  So every user needs hard spend caps and can be cut off alone; the
+  leases and budgets in `docs/architecture.md` are that mechanism.
+- **Advanced:** the user's own API key, paid to Anthropic directly, no
+  cost or risk to us.
+- **What sets the price:** cost per resident-month from logged usage
+  (architecture T10) and the waitlist test.
+
 ## Scene 1: opening it
 
 You open Polymechania. It loads, the way a game does, and you land on a
