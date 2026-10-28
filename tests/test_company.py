@@ -10,12 +10,17 @@ import unittest
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent))
+sys.path.insert(0, str(HERE))
+from _env import needs_gnomon  # noqa: E402  (puts the repo, and Gnomon if found, on the path)
 
-from gnomon import GateError, Memory  # noqa: E402
-from gnomon.company import Company, Policy, check_preregistration, preregister  # noqa: E402
+try:
+    from gnomon import GateError, Memory
+    from polymechania.org import Company, Policy, check_preregistration, preregister
+except ImportError:  # an organisation keeps its books in Gnomon
+    pass
 
 
+@needs_gnomon
 class CompanyTest(unittest.TestCase):
     def setUp(self):
         self.dir = tempfile.TemporaryDirectory()
@@ -151,7 +156,7 @@ class CompanyTest(unittest.TestCase):
         self.assertTrue(any(h["writer"] == weak for h in handoffs.values()))
 
     def test_roles_from_agent_files_and_journals(self):
-        from gnomon.company import roles_from_agent_files
+        from polymechania.org import roles_from_agent_files
         d = Path(self.dir.name) / "agents"
         d.mkdir()
         (d / "code-reviewer.md").write_text("---\nname: code-reviewer\ndescription: Reviews code for quality.\n"

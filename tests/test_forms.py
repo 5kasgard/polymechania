@@ -9,9 +9,10 @@ import sys
 import unittest
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _env import needs_gnomon  # noqa: E402  (puts the repo, and Gnomon if found, on the path)
 
-from gnomon.forms import ALPHABET, SOURCES, Dials, Learner, Profile, amdahl, candidates, compose, reward, workers_for  # noqa: E402
+from polymechania.forms import ALPHABET, SOURCES, Dials, Learner, Profile, amdahl, candidates, compose, reward, workers_for  # noqa: E402
 
 
 def letters(d):
@@ -123,24 +124,6 @@ class FormsTest(unittest.TestCase):
         self.assertEqual(lr.choose(p, cands).word, best)
         again = Learner.from_dict(lr.to_dict())
         self.assertEqual(again.choose(p, cands).word, best)
-
-
-    def test_the_mcp_tool(self):
-        import tempfile
-        from gnomon import Memory
-        from gnomon.mcp import Server
-        with tempfile.TemporaryDirectory() as t:
-            log = str(Path(t) / "m.jsonl")
-            Memory(log).register("john", "john", party="john", kind="human", name="John", capabilities=["owner"],
-                                 compartments=["lab"], record_time="2026-01-01T00:00:00Z")
-            srv = Server(log, "john")
-            text, out = srv.tool("design_team", {"check": "exact", "families": 3, "effort": 0.8})
-            self.assertTrue(out["word"].startswith("P[") and "V" in out["word"], out["word"])
-            self.assertIn("Interaction Tax", " ".join(out["stages"][0]["sources"]))
-            for bad in ({"parallel": True}, {"effort": 3}, {"tier": "gpt"}, {"expert": "yes"}, {"repeats": 0}, {"nonsense": 1}):
-                msg = srv.handle({"jsonrpc": "2.0", "id": 3, "method": "tools/call",
-                                  "params": {"name": "design_team", "arguments": bad}})
-                self.assertTrue(msg.get("result", {}).get("isError") or "error" in msg, (bad, msg))
 
 
 if __name__ == "__main__":

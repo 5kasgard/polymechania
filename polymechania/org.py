@@ -2,7 +2,7 @@
 internal and external records, and personnel decisions taken from the
 record.
 
-`gnomon.firm` prices how to staff a piece of work. This module runs the
+`polymechania.plan` prices how to staff a piece of work. This module runs the
 organisation that does it, on Gnomon's own primitives:
 
 * **The constitution.** A company is founded with positions that keep
@@ -29,7 +29,7 @@ organisation that does it, on Gnomon's own primitives:
   say). A subcontractor is a writer of another party: its verdicts, unlike
   the company's own, count as independent.
 * **Personnel decisions from the record, with care.** Only results judged
-  by someone outside the worker's own group count (`firm.outcomes`);
+  by someone outside the worker's own group count (`plan.outcomes`);
   escalating, asking for help or saying a part could not be done is never
   counted against anyone, so being honest is never the costly choice. A
   review proposes probation, dismissal or promotion by stated thresholds,
@@ -45,9 +45,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
-from . import GateError, Memory, claim
-from . import firm as _firm
-from .session import instance_for
+from gnomon import GateError, Memory, claim
+from gnomon.session import instance_for
+
+from . import plan as _firm
 
 CONSTITUTION = [
     ("CEO", None, "Turns the client's goal into a plan, owns delivery and integration, within policy and budget."),

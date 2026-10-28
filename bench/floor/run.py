@@ -15,7 +15,7 @@ and two ways of combining them:
   floor    the cheap worker answers what it is confident about; the rest go to the LLM
 
 Every number is measured on items the worker never saw. Costs are per million items,
-from published prices (gnomon.firm.TIERS) and measured CPU time.
+from published prices (polymechania.plan.TIERS) and measured CPU time.
 
   python bench/floor/run.py
 """
@@ -39,8 +39,10 @@ from sklearn.pipeline import make_pipeline, make_union
 from sklearn.tree import DecisionTreeClassifier
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent.parent / "python"))
-from gnomon.firm import TIERS  # noqa: E402
+sys.path.insert(0, str(HERE.parent.parent))
+sys.path.insert(0, str(HERE.parent.parent / "tests"))
+import _env  # noqa: E402,F401  (Gnomon on the path, if found)
+from polymechania.plan import TIERS  # noqa: E402
 
 CPU_USD_PER_HOUR = 0.04  # one cloud vCPU, on demand (assumption, stated)
 BATCH = 25  # items per LLM request: batching to 100 cost under 2 points (arXiv 2604.03684)

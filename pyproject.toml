@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "polymechania"
+version = "0.1.0"
+description = "The right worker for every part of the work: models, solvers, scripts and checks, organised by price and track record."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+bench = ["numpy", "scikit-learn"]
+
+[project.scripts]
+mekh = "polymechania.cli:main"
+
+[tool.setuptools]
+packages = ["polymechania"]
+
+[tool.setuptools.package-data]
+polymechania = ["worlds/*.toml"]

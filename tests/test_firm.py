@@ -10,12 +10,16 @@ import unittest
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent))
+sys.path.insert(0, str(HERE))
+from _env import needs_gnomon  # noqa: E402  (puts the repo, and Gnomon if found, on the path)
 
-from gnomon import Memory, claim  # noqa: E402
-from gnomon import firm  # noqa: E402
-from gnomon.firm import ORDER, TIERS, Record, Task, decide, plan, price_choice, record_from  # noqa: E402
-from gnomon.mcp import Server  # noqa: E402
+from polymechania import plan as firm  # noqa: E402
+from polymechania.plan import ORDER, TIERS, Record, Task, decide, plan, price_choice, record_from  # noqa: E402
+
+try:
+    from gnomon import Memory, claim
+except ImportError:  # the record needs Gnomon; the arithmetic does not
+    Memory = claim = None
 
 
 class Prices(unittest.TestCase):
@@ -166,6 +170,7 @@ class Shapes(unittest.TestCase):
         self.assertAlmostEqual(b.spend, a.spend / 2)
 
 
+@needs_gnomon
 class FromTheRecord(unittest.TestCase):
     def setUp(self):
         self.dir = tempfile.TemporaryDirectory()
@@ -239,25 +244,6 @@ class FromTheRecord(unittest.TestCase):
                    compartments=["elsewhere"])
         self.done("staff", "Seen work.", ok=True)
         self.assertEqual(record_from(m, "outsider").counts, {})
-
-    def test_the_mcp_tool_plans_from_the_record(self):
-        for i in range(30):
-            self.done("staff", f"Task {i} done.", ok=False)
-        bad = srv_bad = None  # noqa: F841
-        srv = Server(self.log, "john")
-        text, out = srv.tool("plan_team", {"kind": "code", "input_tokens": 20000, "output_tokens": 3000,
-                                           "stakes_usd": 5, "check": "exact", "parts": 4, "step_usd": 0.05})
-        self.assertIn("one opus agent alone", text)
-        self.assertNotIn("haiku", out["each_part"]["workers"])
-        self.assertEqual(out["record"][0]["on_record"], 30)
-        for args in ({"stakes_usd": "abc"}, {"stakes_usd": [1]}, {"stakes_usd": True}, {"stakes_usd": -1000},
-                     {"step_usd": -5}, {"input_tokens": 10**400}, {"parts": 0}):
-            full = {"kind": "code", "input_tokens": 1, "output_tokens": 1, "stakes_usd": 1, **args}
-            msg = srv.handle({"jsonrpc": "2.0", "id": 7, "method": "tools/call",
-                              "params": {"name": "plan_team", "arguments": full}})
-            res = msg.get("result", {})
-            self.assertTrue(res.get("isError") or "error" in msg, (args, msg))
-            self.assertEqual(msg["id"], 7)
 
 
 if __name__ == "__main__":

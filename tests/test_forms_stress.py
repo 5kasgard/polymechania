@@ -1,4 +1,4 @@
-"""Stress tests for gnomon.forms: thousands of random profiles and dials
+"""Stress tests for polymechania.forms: thousands of random profiles and dials
 against the invariants every design must keep, and the learner in
 simulated worlds (stationary, noisy, and changing) measured by regret."""
 
@@ -10,9 +10,10 @@ import sys
 import unittest
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _env import needs_gnomon  # noqa: E402  (puts the repo, and Gnomon if found, on the path)
 
-from gnomon.forms import ALPHABET, SOURCES, TIERS, Dials, Learner, Profile, candidates, compose  # noqa: E402
+from polymechania.forms import ALPHABET, SOURCES, TIERS, Dials, Learner, Profile, candidates, compose  # noqa: E402
 
 DELIBERATIVE = {"Q", "B"}
 
@@ -100,7 +101,7 @@ def world(rng, n_types=4, n_arms=4, noise=0.1):
 
 
 def run(learner, profiles, payoff, noise, rounds, rng, switch_at=None):
-    from gnomon.forms import Design, Stage
+    from polymechania.forms import Design, Stage
     letters = "SPQR"
     arms = [Design([Stage(letters[i], 1, "arm", ())], 1.0, 1, 1) for i in range(len(payoff[0]))]
     regret = []

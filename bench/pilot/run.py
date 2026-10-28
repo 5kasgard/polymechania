@@ -26,9 +26,12 @@ import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent.parent / "python"))
+sys.path.insert(0, str(HERE.parent.parent))
+sys.path.insert(0, str(HERE.parent.parent / "tests"))
+import _env  # noqa: E402,F401  (Gnomon on the path, if found)
 
-from gnomon import Memory, claim, firm  # noqa: E402
+from gnomon import Memory, claim
+from polymechania import plan as firm  # noqa: E402
 
 
 def regrade(runs: list) -> list:
