@@ -24,8 +24,9 @@ code: `solutions/haiku/D/`. Cost: **$0.006**.
   the choice here is D against T2's default, outside the pre-registered
   rule.
 - As fixed in advance, 12 tasks with one attempt each show a direction,
-  not a result. Still, 12/12 against 10/12 is consistent with T2: Haiku's
-  failures there were output spent on thinking, not wrong code.
+  not a result. 12/12 against 10/12 is consistent with T2's failures
+  being output spent on thinking rather than wrong code, but does not
+  prove it.
 
 ## Deviation: arm E could not run
 
