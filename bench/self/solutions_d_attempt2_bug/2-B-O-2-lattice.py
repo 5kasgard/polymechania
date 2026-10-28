@@ -1,0 +1,1 @@
+# NOTE: The work order's specification is truncated to the single character "r". The required behaviour, signature and examples for 'lattice' are missing, so no implementation has been written. Please resend order 2 with the full specification.

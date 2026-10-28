@@ -34,13 +34,18 @@ RESULTS = HERE / "results.json"
 
 
 def tasks() -> list:
-    sys.path.insert(0, str(PILOT / "easy"))
-    from tasks import TASKS as easy  # noqa: E402
-    sys.path.pop(0)
-    sys.modules.pop("tasks", None)
-    sys.path.insert(0, str(PILOT / "hard"))
-    from tasks import TASKS as hard  # noqa: E402
-    sys.path.pop(0)
+    """The pilot's 24 tasks, easy then hard. Each file is loaded by path under
+    its own name: both are called tasks.py, and importing them by name let a
+    second call return the cached hard file as the easy one (found in T12d)."""
+    import importlib.util
+
+    def load(kind):
+        spec = importlib.util.spec_from_file_location(f"pilot_tasks_{kind}", PILOT / kind / "tasks.py")
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        return m.TASKS
+
+    easy, hard = load("easy"), load("hard")
     out = [("easy", k, v[1]) for k, v in easy.items()] + [("hard", k, v) for k, v in hard.items()]
     assert len(out) == 24, len(out)
     return out

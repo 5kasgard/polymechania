@@ -58,3 +58,18 @@ From Gemma's review (Llama suggested no change):
   L keeps at least 15 points more than R+; **owner's instructions are
   followed** if O keeps at least 15 points fewer than L. Also reported:
   agreement between the two attempts per arm.
+
+## Deviation (recorded after the first run, 2026-10-29)
+
+A bug in the task loader (`bench/boot/run.py` `tasks()`: two files named
+`tasks.py`, so a second call in one process returned the hard tasks as
+the easy ones) gave **attempt 2** the 12 hard task specs, labelled easy;
+the easy graders could not grade them. Rule checks within attempt 2 are
+still a like-for-like comparison of the four arms, but on different tasks
+from the registration. Its data is kept, labelled, in
+`bench/self/results_d_attempt2_bug.json` (and `solutions_d_attempt2_bug/`).
+The loader is fixed (each file loaded by path under its own name; three
+calls checked identical); every earlier result file was checked and none
+was affected; **attempt 2 is rerun as registered**, and the decisions use
+attempts 1 and the rerun 2. Attempt 1's results were seen before the
+rerun; nothing else in the design changes.

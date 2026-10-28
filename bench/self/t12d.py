@@ -43,9 +43,13 @@ def handoff(done, notes, heading):
 
 
 def run() -> None:
+    attempts = [int(a) for a in sys.argv[2:]] or [1, 2]  # `run 2` reruns one attempt
+    old = json.loads(OUT.read_text()) if OUT.exists() else []
+    old = [r for r in old if r["attempt"] not in attempts]
     calls = []
-    for attempt in (1, 2):
-        for seq, items in t12.sequences().items():
+    seqs = t12.sequences()  # once: tasks() is now safe to call again, but keep one source
+    for attempt in attempts:
+        for seq, items in seqs.items():
             done, notes = [], []
             for i, (s, name, spec) in enumerate(items, start=1):
                 order = t12.order_text(i, name, spec)
@@ -72,7 +76,7 @@ def run() -> None:
         p.write_text(t12b.code_and_prose(r["reply"])[0])
         g = t2.grade(r["set"], r["task"], p)
         r["grade"] = "PASS" if g == "PASS" else g
-    OUT.write_text(json.dumps(rows, indent=1) + "\n")
+    OUT.write_text(json.dumps(old + rows, indent=1) + "\n")
 
 
 def report() -> None:
