@@ -50,7 +50,17 @@ A self would hold (each part a hypothesis):
 A run's start packet is then: the self (small, stable, cacheable) + the
 work's handoff and what changed under it (Gnomon 13) + the work order.
 
-**Evidence.** In long chats, models drift from their given instructions
+**Measured (T12b, `bench/self/RESULTS_B.md`, 2026-10-29):** with Gemma 4
+26B as the resident, fresh runs did *not* keep the self better than one
+long session when the same instructions were in view (51% of rules kept
+against 65%, a direction). What kept it (86%) was that conflicting
+requests from a non-owner were not written into what the next run read.
+So the lever is **what may be written into a resident's start packet**:
+the owner may change the self; another writer's request applies to its
+order unless the owner makes it standing. Gnomon's gate could enforce
+that. Not yet tested with Claude residents.
+
+**Evidence (before T12b).** In long chats, models drift from their given instructions
 and persona noticeably within eight rounds; attention to the system prompt
 falls between turns ([Li et al. 2024](https://arxiv.org/html/2402.10962v4)).
 A fresh run that re-reads a fixed self may stay *more* like itself than one

@@ -315,6 +315,29 @@ invents a number.
 - The city mapping helps people see bottlenecks and risks sooner than a
   dashboard does.
 
+## Lessons from Google's AI Test Kitchen (hypotheses, 2026-10-29)
+
+Google's AI Test Kitchen (2022-23) let small groups try experimental AI
+before it was a product
+([Google, Aug 2022](https://blog.google/innovation-and-ai/products/join-us-in-the-ai-test-kitchen/);
+[The Verge](https://www.theverge.com/2022/5/11/23065072/google-ai-app-test-kitchen-future-io-2022);
+[TechCrunch, Aug 2023](https://techcrunch.com/2023/08/02/google-pulls-its-ai-test-kitchen-app-from-play-store-and-app-store/)).
+What it suggests here:
+- **Ship sketches, not the world.** A rotating set of small demos, each
+  testing one thing ("Imagine It", "List It", "Talk About It (Dogs
+  Edition)", which tested staying on topic when the user pulls away, as
+  T12b's pressure did). Here: one demo per hypothesis (the honest map, one
+  guide, the intake, the notification), before any whole world is built.
+- **Feedback on every reply, in one tap,** in fixed categories (theirs:
+  nice, offensive, off topic, untrue), not tied to the account. Here:
+  people's taps become verdicts in the record, a judge family no model
+  shares, which answers the judge-bias problem from outside.
+- **Small groups first,** red-teamed before release, with safety layers
+  stated as reducing risk, not removing it.
+- **Web first:** they dropped the phone apps after a year for the web,
+  which was easier to change. Here: demos as web pages (artifacts) that
+  work on a phone, before any app.
+
 ## Open questions
 
 - ~~Is a world one city, and a server a continent of cities?~~ One world
