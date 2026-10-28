@@ -1,0 +1,31 @@
+{
+ "where": "actions-ubuntu-latest",
+ "cpus": 4,
+ "python": "3.13.17",
+ "machine": "x86_64",
+ "jobs": 96,
+ "runs": {
+  "1": {
+   "seconds": [
+    22.86,
+    22.89,
+    22.83
+   ],
+   "median": 22.86,
+   "passes": [
+    90
+   ]
+  },
+  "4": {
+   "seconds": [
+    9.75,
+    10.13,
+    9.84
+   ],
+   "median": 9.84,
+   "passes": [
+    90
+   ]
+  }
+ }
+}
