@@ -74,6 +74,12 @@ view like a city builder, plain underneath with any theme on top.
    with no empty answers at half the cost; set thinking explicitly in
    every run. Capped thinking needs the door to allow
    `output_config.effort` (Haiku 5.5 refuses a fixed budget).
+   **T2c done** (audited): low effort did not stop empty answers with
+   thinking on; thinking off at default effort stays the setting (12/12).
+   All six empties so far came with thinking on; none in 24 calls with it
+   off. The door now passes `effort` low/medium/high and adaptive thinking
+   (reviewed, deployed 2026-10-29). Remote branch `door-effort` is merged
+   and can be deleted (this session could not).
    Owner suggestion: the Batch API (half price, up to 24 h) for the free
    clock's non-urgent work; the door passes only `/v1/messages` today. Owner ideas folded in: a standing self per
    resident, a free clock (Cloudflare cron) apart from the costed worker,

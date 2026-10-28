@@ -3,7 +3,8 @@
     DOOR_DIR=... python bench/boot/t2c.py [run|report]
 
 Reuses T2's runner: the same self, packet, cache breakpoints and graders;
-only the `thinking` field changes. Results go to t2b_results.json.
+only the `thinking` and `output_config` fields change. Results go to
+t2c_results.json.
 """
 
 from __future__ import annotations
