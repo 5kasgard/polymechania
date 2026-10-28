@@ -36,6 +36,8 @@ jobs:
         with:
           python-version: "3.12"
       - uses: dtolnay/rust-toolchain@stable
+      # test_cards checks the Beta maths against scipy; without it the test skips
+      - run: pip install scipy
       - run: bash scripts/build.sh
         working-directory: gnomon
       - run: python -m unittest discover -s tests -v
