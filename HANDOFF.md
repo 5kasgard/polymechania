@@ -64,7 +64,8 @@ view like a city builder, plain underneath with any theme on top.
 ## Budget (owner, 2026-10-29)
 
 About **$4.25 of API credit** is left (after about $0.72 spent on T2, T2b,
-T2c and T11). Spend it only on what only the API can measure (Claude's
+T2c and T11; nothing spent on the API since). Workers AI used about 7,700
+neurons of the 10,000 free on 2026-10-28 UTC. Spend it only on what only the API can measure (Claude's
 caching, Claude's own pass rates). Use first, in this order: published
 results; Cloudflare Workers AI through the door's `/ai` route (free
 allowance 10,000 neurons a day; Gemma 4 26B about 9k neurons per million
@@ -74,41 +75,49 @@ not inference. Every pre-registration states its API cost bound.
 
 ## Open, in rough order
 
-1. **Architecture** (`docs/architecture.md`, revision 2, after
-   `docs/architecture-review-1.md`). **T2 and T11 done** (`bench/boot`,
-   audited): boot 1,486 tokens, caching holds, cached Haiku-then-Sonnet
-   cascade 24/24 at a quarter of Sonnet's price. Next, from the audit:
-   log thinking tokens per call; rerun Haiku's hard tasks with thinking
-   off and with a capped budget; recover the pilot's real output tokens.
-   Then T8, T9, T12, and T1 (shapes against each other, longer tasks).
-   **T2b done** (audited): thinking disabled gave Haiku 12/12 hard tasks
-   with no empty answers at half the cost; set thinking explicitly in
-   every run. Capped thinking needs the door to allow
-   `output_config.effort` (Haiku 5.5 refuses a fixed budget).
-   **T2c done** (audited): low effort did not stop empty answers with
-   thinking on; thinking off at default effort stays the setting (12/12).
-   All six empties so far came with thinking on; none in 24 calls with it
-   off. The door now passes `effort` low/medium/high and adaptive thinking
-   (reviewed, deployed 2026-10-29). Remote branch `door-effort` is merged
-   and can be deleted (this session could not).
-   Owner suggestion: the Batch API (half price, up to 24 h) for the free
-   clock's non-urgent work; the door passes only `/v1/messages` today. Owner ideas folded in: a standing self per
-   resident, a free clock (Cloudflare cron) apart from the costed worker,
-   a thin boot through the door.
-2. **Gnomon blockers before anything runs unattended** (probed and
-   reproduced, filed 2026-10-28): future-dated write locks the log (#52),
-   handoff chains fork silently (#53), leases with fencing epochs (#54),
-   no revocation (#49), the gate only on the MCP path (#50); and remote
-   MCP for the Free version.
-3. Cheapest vision tests from `docs/vision-review-1.md`: the words card
-   sort, the menu as a picture, notification volume from logs.
-4. E1 (can cards be gamed), when the owner chooses: needs the Anthropic key
-   in the door (below) or the Pro-plan route with data held in the door
-   (amendment 3, not yet written).
-5. Cost fields on cards (fixed cost per call, marginal cost, setup, where it
-   runs) and budgeting to plan limits; replay pilot and floor data.
-6. Waitlist test for Free and Paid.
-7. Rename "world" files to "themes" in the code.
+Rules for every session: `CLAUDE.md` (routing, unbiased testing, budget).
+Owner's saved skills (any chat): route-and-test, taste-and-adjust,
+session-handoff, careful-live-changes.
+
+**Done 2026-10-28/29 (all audited, records in `bench/`):** T2 thin boot
+(1,486 tokens; caching holds; cached Haiku-then-Sonnet cascade 24/24 at a
+quarter of Sonnet's price); T2b/T2c (set thinking explicitly; off for Haiku
+on this work); T11 runaway caps hold; T12b (`bench/self/RESULTS_B.md`: a
+fresh context did not keep the resident in character; *not writing a
+non-owner's conflicting requests into its next start packet* did, +35
+points); S1 (`bench/speed/RESULTS.md`: 8 model calls at once 8.9x faster for
+free; Actions has 4 CPUs but pays only for long jobs; Codespaces not
+reachable from these sessions); `docs/routing.md` (reviewed by Haiku and
+Llama); `bench/verify.py` (exact half of every audit, free); CI green again.
+
+1. **Start-packet rule (from T12b):** spec who may write what into a
+   resident's start packet (owner changes the self; another writer's
+   request applies to its own order unless the owner makes it standing),
+   as a Gnomon gate rule; test with a Claude resident (cheap Haiku, or
+   free Gemma first).
+2. **Runners send calls at once** (S1): rework `bench/boot/run.py` and the
+   T12b runner to run calls concurrently (after the first cache write).
+3. **Gnomon blockers before anything runs unattended:** #52 (future-dated
+   write locks the log), #53 (handoff forks), #54 (leases with fencing),
+   #49 (no revocation), #50 (gate only on MCP); remote MCP for Free.
+4. **Language as a routing row** and the free Rust-against-Python test
+   (Gemma writing the pilot tasks in each; needs Rust graders).
+5. **Demos, Test Kitchen style** (`docs/vision.md`): one small web demo
+   per hypothesis (the honest map, one guide, the intake, notifications),
+   with one-tap feedback that becomes human verdicts in the record.
+6. T1 (run shapes on long multi-step work; needs longer tasks), T8, T9.
+7. Cheapest vision tests (`docs/vision-review-1.md`): card sort, menu
+   picture, notification volume.
+8. E1 (can cards be gamed), when the owner chooses.
+9. Cost and speed fields on cards; budgeting to plan limits.
+10. Waitlist test for Free and Paid; Batch API (half price) for the free
+    clock's non-urgent work (the door passes only `/v1/messages`).
+11. Rename "world" files to "themes" in the code.
+
+**Note for sessions:** on 2026-10-29 a duplicate run of the same session
+worked in this folder at the same time (same session id; it committed
+work this session was about to do). Before writing, check `git log` and
+`git status` for changes you did not make.
 
 ## Things left running or pending
 
