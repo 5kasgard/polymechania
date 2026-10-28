@@ -73,7 +73,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Fix in order: #52 (gate-assigned time), #53 (handoff forks), #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51",
+   "next": "#52 and #53 fixed in Gnomon PR #56 (awaiting the owner's merge; tests and reviews in the PR). Next in order: #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51",
    "refs": [
     "gnomon#52",
     "gnomon#53",
@@ -399,6 +399,19 @@
    "next": "docs/security.md written (hypothesis); next: put the border, gates and alarms in the first Test Kitchen demo, and turn each threat into a probe that must pass",
    "refs": [
     "docs/security.md"
+   ]
+  },
+  {
+   "id": "q31",
+   "title": "Merge Gnomon PR #56 (#52 future writes, #53 forks)",
+   "kind": "decision",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "high",
+   "next": "Owner reviews and merges; CI and tests in the PR",
+   "refs": [
+    "gnomon#56"
    ]
   }
  ]

@@ -2,14 +2,14 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-26 open items; API cost if all ran: about $1.05.
+27 open items; API cost if all ran: about $1.05.
 
 ## Can run now (16)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q05 | Start-packet authority as a Gnomon gate rule | high | free | 0 | Design the standing/<resident> frame and resume change in Gnomon; owner decides whether to build |
-| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Fix in order: #52 (gate-assigned time), #53 (handoff forks), #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51 |
+| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | #52 and #53 fixed in Gnomon PR #56 (awaiting the owner's merge; tests and reviews in the PR). Next in order: #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51 |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | Pick the first (the honest map is best evidenced); build as a phone-friendly artifact with one-tap feedback stored as verdicts |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
@@ -31,11 +31,12 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
 
-## Needs the owner (4)
+## Needs the owner (5)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q22 | Legal check of the business model | high | owner | 0 | Before anyone pays: a lawyer on reselling and the commercial terms |
+| q31 | Merge Gnomon PR #56 (#52 future writes, #53 forks) | high | owner | 0 | Owner reviews and merges; CI and tests in the PR |
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Owner reviews and merges or closes |
 | q08 | Delete the merged branch door-effort | low | owner | 0 | Owner deletes it on GitHub (sessions cannot) |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
