@@ -11,15 +11,57 @@ live, temporarily or for good, where work has a place and a shape, and
 where people both work and play. Gnomon is its memory and commons;
 Polymechania is the canvas.
 
+## Words (decided after review 1)
+
+- **World:** your own place. One per person, private by default.
+- **Region:** a project, team or kind of work inside a world: a city or
+  district on its map. As many as you like.
+- **Commons:** the one shared world everyone can connect to and contribute
+  to. Polymechania runs it.
+- **Theme:** how a world looks, sounds and is named (what the code
+  currently calls a "world" file; to be renamed).
+- **Pack:** themes, art and mechanics people share.
+
+## How it can run (decided after review 1)
+
+Any arrangement the owner likes, all speaking the same plain record:
+- **Local:** run your world on your own machine, with your own engine.
+- **Cloud:** we host your world, so it keeps going while you are away.
+- **The commons:** we run it; anyone can join.
+- **Private, connected to the commons:** your world, wherever it runs,
+  with roads to the commons where you choose.
+
+**Engines, so nobody's existing subscription is wasted:**
+- **Any Claude plan, including Free:** your Claude, through the connector,
+  in the Claude app or Claude Code. It works while you are talking to it;
+  it cannot run your world while you are away.
+- **Max and Team plans:** they include monthly API credits, so a key from
+  your own Console runs your world in the background on credits you
+  already have.
+- **Your own API key** on any account.
+- **Our hosted engine:** we pay for the model use and charge for the
+  system, for people who want it to just work.
+
+**A business hypothesis, not a decision:** Anthropic's commercial terms
+let a product built on the API serve its own users, but reselling access to
+the API itself needs Anthropic's approval. So what we would charge for is
+Polymechania (the world, the record, the cards, the routing), with model use
+included. Because work goes to the cheapest worker that does it reliably,
+the system should cost less than sending everything to one strong model; in
+the firm pilot's planning, 24 parts cost an expected $0.38 with Haiku staff
+and exact checks against $1.84 for one Opus agent. The hypothesis is that
+part of that saving can be the margin while the price still beats doing it
+the expensive way. To be checked with real usage, and with a lawyer before
+anyone pays.
+
 ## Scene 1: opening it
 
 You open Polymechania. It loads, the way a game does, and you land on a
 title screen with a menu, like Minecraft's, but labelled plainly:
 
-- **My worlds:** your private worlds (single player). A world is like a
-  workspace or a codespace: one per project, team or whim, as many as you
-  like.
-- **Servers:** shared worlds you join, or host (multiplayer).
+- **Your world:** your private world, holding as many regions (projects)
+  as you like (scene 2 and the words above).
+- **The commons:** the shared world (multiplayer).
 - **Settings:** your account, which engine powers your agents (your Claude
   through the connector, or an API key), budgets, appearance.
 - (Probably also **Packs**, for worlds, art and mechanics people share, and
