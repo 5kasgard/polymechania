@@ -88,9 +88,15 @@ view like a city builder, plain underneath with any theme on top.
 
 - **The door:** Cloudflare Worker `polymechania-door` (code in
   `bench/cards/door/`), behind Cloudflare Access (app `polymechania-door`,
-  service token expiring in 90 days) and a door token. The Anthropic key is
-  NOT set. Credentials are not in the repo; a new session must make its own
-  or the owner must re-issue them. Delete the Worker, Access app and token
+  service token expiring in 90 days) and a door token. **The Anthropic key
+  IS set** (2026-10-28, by the owner, in a Console workspace
+  `polymechania-e1` with a monthly spend limit); checked: `/health` reports
+  it set, one Haiku message went through (26 tokens), and a request with
+  tools was refused (400). The door's own credentials are not in the repo:
+  a new session issues fresh ones through the Cloudflare connector (a new
+  Access service token on the `polymechania-door` policy, and a new
+  `DOOR_TOKEN` secret uploaded with `keep_bindings` so the owner's key is
+  kept), then revokes the old service token. Delete the Worker, Access app and token
   if the door is abandoned.
 - **Gnomon PR #47** (teams of models move out) is open, awaiting the owner.
 - **Gnomon issues #48-#51** (side channels, no revocation, plain-text log
