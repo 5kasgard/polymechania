@@ -69,12 +69,11 @@ view like a city builder, plain underneath with any theme on top.
    other, needs longer tasks). Owner ideas folded in: a standing self per
    resident, a free clock (Cloudflare cron) apart from the costed worker,
    a thin boot through the door.
-2. **Gnomon blockers before anything runs unattended** (found by probes;
-   file as Gnomon issues, this session had no push access to Gnomon):
-   one future-dated write locks the whole log (`E_CLOCK`), so time must
-   come from the gate; no revocation (#49); handoff chains fork silently;
-   lease/release with fencing epochs as event kinds; the gate is only on
-   the MCP path (#50); remote MCP for the Free version.
+2. **Gnomon blockers before anything runs unattended** (probed and
+   reproduced, filed 2026-10-28): future-dated write locks the log (#52),
+   handoff chains fork silently (#53), leases with fencing epochs (#54),
+   no revocation (#49), the gate only on the MCP path (#50); and remote
+   MCP for the Free version.
 3. Cheapest vision tests from `docs/vision-review-1.md`: the words card
    sort, the menu as a picture, notification volume from logs.
 4. E1 (can cards be gamed), when the owner chooses: needs the Anthropic key

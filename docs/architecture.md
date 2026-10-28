@@ -130,7 +130,7 @@ Claims cannot do that.
   engine can lock a whole world. Time must come from the gate, not
   writers. New Gnomon issue needed.
 - **Handoff chains fork silently:** two runs that both follow one handoff
-  are both accepted, and `resume` shows only the newer branch.
+  are both accepted, and `resume` shows only the newer branch (#53).
 - **The gate is only on the MCP path:** `Memory.append(writer, ...)`
   takes the writer as an argument, so any engine that can reach the file
   can write as anyone (issue #50). A misbehaving engine is contained only
@@ -261,7 +261,7 @@ view that stays until the record shows the thing resolved.
 
 ## Blocking before anything runs unattended
 
-In Gnomon: revocation (#49), gate-assigned time (new), lease and release
-as event kinds with fencing epochs (new), a single-successor rule for
-handoff chains (new), file-level write protection or all access via MCP
+In Gnomon: revocation (#49), gate-assigned time (#52), lease and release
+as event kinds with fencing epochs (#54), a single-successor rule for
+handoff chains (#53), file-level write protection or all access via MCP
 (#50), and remote MCP for the Free version.
