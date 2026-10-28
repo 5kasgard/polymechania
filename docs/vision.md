@@ -185,6 +185,13 @@ properly: they leave a handoff of where they were (Gnomon's handoff and
 resume), talk with you, and pick the work back up after, or re-plan it if
 the chat changed what the work should be.
 
+*Hypothesis, `docs/architecture.md` (2026-10-28):* the "busy" reply is
+given by the scheduler from the live lease, not by the working resident,
+so a chat never enters a run's context; "urgent" stops the run at its next
+safe point with a handoff, and a new run picks up after the chat. The
+resident still reads as one person because every run starts from its
+standing self.
+
 **Getting your attention.** Residents first take a problem up the world's
 own chain: a worker to its manager, a manager to the planner. Only what the
 chain cannot settle reaches you. It arrives as a **notification that stays

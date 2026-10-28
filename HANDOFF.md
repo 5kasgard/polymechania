@@ -63,17 +63,27 @@ view like a city builder, plain underneath with any theme on top.
 
 ## Open, in rough order
 
-1. Write `docs/architecture.md` (the hypothesis above) and have a separate
-   agent attack it.
-2. Cheapest vision tests from `docs/vision-review-1.md`: the words card
+1. **Architecture** (`docs/architecture.md`, revision 2, after
+   `docs/architecture-review-1.md`). Next: the cheap tests T2 (log the
+   token split per run), T8, T9, T11, T12; then T1 (shapes against each
+   other, needs longer tasks). Owner ideas folded in: a standing self per
+   resident, a free clock (Cloudflare cron) apart from the costed worker,
+   a thin boot through the door.
+2. **Gnomon blockers before anything runs unattended** (found by probes;
+   file as Gnomon issues, this session had no push access to Gnomon):
+   one future-dated write locks the whole log (`E_CLOCK`), so time must
+   come from the gate; no revocation (#49); handoff chains fork silently;
+   lease/release with fencing epochs as event kinds; the gate is only on
+   the MCP path (#50); remote MCP for the Free version.
+3. Cheapest vision tests from `docs/vision-review-1.md`: the words card
    sort, the menu as a picture, notification volume from logs.
-3. E1 (can cards be gamed), when the owner chooses: needs the Anthropic key
+4. E1 (can cards be gamed), when the owner chooses: needs the Anthropic key
    in the door (below) or the Pro-plan route with data held in the door
    (amendment 3, not yet written).
-4. Cost fields on cards (fixed cost per call, marginal cost, setup, where it
+5. Cost fields on cards (fixed cost per call, marginal cost, setup, where it
    runs) and budgeting to plan limits; replay pilot and floor data.
-5. Waitlist test for Free and Paid.
-6. Rename "world" files to "themes" in the code.
+6. Waitlist test for Free and Paid.
+7. Rename "world" files to "themes" in the code.
 
 ## Things left running or pending
 
