@@ -277,7 +277,12 @@ The full rules are in the [spec](spec/polymechania-v0.1.md).
 - [ ] **The runtime:** a register of workers (calculators, test runners,
   solvers, provers, scripts, models), dispatch by the planner, every
   order, result and verdict in Gnomon.
+- [ ] **The budget sets the economy:** every worker reports its own token
+  usage, every account's limits and headroom are known, and the planner
+  prices scarcity, so work moves to whoever has room.
 - [ ] **The dashboard:** a running organisation, full screen in the terminal.
+- [ ] **Arrival:** an animated title for each world, panels coming together
+  in ASCII and Unicode art.
 - [ ] **The map:** Polymechania as a graphical world, every organisation a
   region drawn in its own style.
 - [ ] **Measured against one agent alone** on long, vague, multi-step work.

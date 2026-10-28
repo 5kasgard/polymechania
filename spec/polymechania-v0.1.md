@@ -280,6 +280,12 @@ Every view reads the same events. Three are planned:
 What a world may add to the map is the same as what it may add to the
 terminal: names, voice, look and story, never facts or rules.
 
+**Arrival.** Entering a world plays a short animated title in the
+terminal: panels sliding together into the world's art, built from ASCII
+and Unicode, in its colours. A world will be able to supply its own
+frames. Like everything else, the title only decorates: it shows nothing a
+view would not show plainly.
+
 ## 7. Next: the runtime
 
 v0.1 plans and designs; the host (Claude Code's subagents, the API) runs
@@ -294,6 +300,26 @@ the work. Next, Polymechania runs it itself:
   order, result and verdict written to Gnomon.
 - **Measurements against one agent alone** on longer, vaguer, multi-step
   work, where the pilot could not yet show when escalation pays.
+
+**The budget sets the economy.** Price per token is only half of cost.
+Every worker runs on an account with limits: tokens and requests per
+minute, usage windows, weekly caps, a plan's allowance. Those limits, not
+whether a model can do a part, decide how fast the organisation moves and
+what each tier is really worth right now. So:
+
+- **Every worker knows its own usage** (tokens in, out and cached, per
+  part and per session) and reports it with its result, into the record.
+- **Every account's limits are known** (read from the provider where it
+  says, stated by the owner where it does not), with how much of each
+  window is left.
+- **The planner prices scarcity.** A tier near its limit costs more than
+  its list price: its shadow price rises with the share of the window
+  used, so work shifts to tiers, accounts and tools with room, or waits
+  for the window when waiting is cheaper. Speed follows rate limits: how
+  many parts run at once is bounded by tokens per minute, not by Amdahl
+  alone.
+- **The owner sees it.** Spend, headroom and when each window resets are
+  part of every view.
 
 ## 8. Not yet in v0.1
 
