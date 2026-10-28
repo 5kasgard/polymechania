@@ -32,3 +32,16 @@ so bindings and secrets were kept; the live door then refused `effort`
 `max`, `output_config.format`, `budget_tokens` with `adaptive`, and
 `tools`. Deployed `worker.js` sha256
 `97d22c61bfe1937e5ecc1809b62c8a2c787147560745e4d92432206572d72963`.
+
+## Change of 2026-10-29 (b): more free models on /ai
+
+For E-ext (`prereg/eext-benchmarks.md`): five free Workers AI text models
+added to the `/ai` allowlist, and an opt-in `default_thinking: true` that
+skips the Gemma-only "thinking off" (any other value is refused).
+Temperature 0 and the 4,096-token cap still apply to every `/ai` call.
+Reviewed before deploy by Gemma 4 26B (`REVIEW-2026-10-29b.md`: deploy).
+Deployed by editing the live script (whose hash matched the last deploy,
+`97d22c…`) and uploading only when the result matched the reviewed file:
+sha256 `0632e72702216df699cace4fa298e090ad48a21d0613db9495b945b805936263`.
+Live probes: an unlisted model and `default_thinking: "x"` refused; a new
+model answered.

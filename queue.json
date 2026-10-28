@@ -1,5 +1,5 @@
 {
- "about": "The one queue of open work for Polymechania (and its Gnomon blockers). Source of truth: edit this file, then run `python bench/queue.py` to render docs/queue.md. Fields: id, title, kind (test|build|fix|doc|infra|decision), status (open|in-progress|blocked|waiting-owner|scheduled|parked|done), needs (free|api|pro|owner|people), cost (API $ estimate, 0 if free), value (high|medium|low: how much it could change a decision), blocked_by (ids), next (the next concrete step), refs.",
+ "about": "The one queue of open work for Polymechania (and its Gnomon blockers). Source of truth: edit this file, then run `python bench/workqueue.py` to render docs/queue.md. Fields: id, title, kind (test|build|fix|doc|infra|decision), status (open|in-progress|blocked|waiting-owner|scheduled|parked|done), needs (free|api|pro|owner|people), cost (API $ estimate, 0 if free), value (high|medium|low: how much it could change a decision), blocked_by (ids), next (the next concrete step), refs.",
  "updated": "2026-10-29",
  "items": [
   {
@@ -118,7 +118,7 @@
    "needs": "free",
    "cost": 0,
    "value": "medium",
-   "next": "Done 2026-10-29: CI runs bench/verify.py and bench/queue.py --check",
+   "next": "Done 2026-10-29: CI runs bench/verify.py and bench/workqueue.py --check",
    "refs": [
     "bench/verify.py",
     ".github/workflows/ci.yml"

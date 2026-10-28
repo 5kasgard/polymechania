@@ -2,7 +2,7 @@
 
 1. **Start from the record:** read `HANDOFF.md`, then `docs/vision.md`, then
    `docs/queue.md` (the one queue of open work; edit `queue.json` and run
-   `python bench/queue.py` when you start or finish something).
+   `python bench/workqueue.py` when you start or finish something).
 2. **Never impose a design.** Every decision is a hypothesis; taste and
    adjust with numbers from this project and outside research.
 3. **Route your own work** by `docs/routing.md` section 4: published

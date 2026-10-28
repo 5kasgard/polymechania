@@ -91,7 +91,7 @@ reachable from these sessions); `docs/routing.md` (reviewed by Haiku and
 Llama); `bench/verify.py` (exact half of every audit, free); CI green again.
 
 **The open list now lives in one place: `queue.json`** (rendered as
-`docs/queue.md` by `python bench/queue.py`; CI checks it). Every open item,
+`docs/queue.md` by `python bench/workqueue.py`; CI checks it). Every open item,
 with its status, blocker, cost, who it needs and next step. Update it when
 you start or finish something; do not keep a second list here.
 

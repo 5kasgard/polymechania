@@ -13,7 +13,12 @@
 // Every call needs the header x-door-token, a separate, revocable token.
 
 const CLAUDE = new Set(["claude-haiku-5-5", "claude-sonnet-5-5"]);
-const WORKERS_AI = new Set(["@cf/google/gemma-4-26b-a4b-it", "@cf/meta/llama-3.3-70b-instruct-fp8-fast"]);
+const WORKERS_AI = new Set([
+  "@cf/google/gemma-4-26b-a4b-it", "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  // E-ext (prereg/eext-benchmarks.md): free text models with a public Coding Index entry
+  "@cf/qwen/qwen3.8-27b", "@cf/nvidia/nemotron-3-120b-a12b", "@cf/openai/gpt-oss-120b",
+  "@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/meta/llama-3.1-8b-instruct-fp8-fast",
+]);
 const MAX_TOKENS = 4096;
 const MAX_BODY = 256 * 1024;
 const FIELDS = new Set(["model", "max_tokens", "system", "messages", "temperature", "stop_sequences", "thinking", "output_config"]);
@@ -103,7 +108,9 @@ export default {
         return json({ error: "messages must be text" }, 400);
       const max = Math.min(Number.isInteger(body.max_tokens) ? body.max_tokens : 512, MAX_TOKENS);
       const input = { messages: body.messages, max_tokens: max, temperature: 0 };
-      if (body.model.includes("gemma")) input.chat_template_kwargs = { enable_thinking: false };
+      if (body.default_thinking !== undefined && body.default_thinking !== true) return json({ error: "default_thinking must be true or absent" }, 400);
+      // Gemma's thinking is off unless a test asks for every model's own default
+      if (body.model.includes("gemma") && body.default_thinking !== true) input.chat_template_kwargs = { enable_thinking: false };
       try {
         const out = await env.AI.run(body.model, input);
         return json(out);

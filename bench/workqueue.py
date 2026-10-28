@@ -1,7 +1,7 @@
 """Render queue.json (the one queue of open work) as docs/queue.md, and check it.
 
-    python bench/queue.py           # render and check
-    python bench/queue.py --check   # check only (CI)
+    python bench/workqueue.py           # render and check
+    python bench/workqueue.py --check   # check only (CI)
 
 Order: what can run now first, by value, then cost; then what waits on the
 owner or people; then blocked, scheduled and parked items. Checks: unique
@@ -67,7 +67,7 @@ def render(q: dict) -> str:
         ("Parked", [i for i in items if i["status"] == "parked"]),
     ]
     out = [f"# The queue ({q['updated']})", "",
-           "Generated from `queue.json` by `python bench/queue.py`; edit the JSON, not this file.", ""]
+           "Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.", ""]
     total = sum(i.get("cost", 0) for i in items)
     out.append(f"{len(items)} open items; API cost if all ran: about ${total:.2f}.")
     out.append("")

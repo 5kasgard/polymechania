@@ -1,6 +1,6 @@
 # The queue (2026-10-29)
 
-Generated from `queue.json` by `python bench/queue.py`; edit the JSON, not this file.
+Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
 26 open items; API cost if all ran: about $1.05.
 

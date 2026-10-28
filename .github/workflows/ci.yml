@@ -45,7 +45,7 @@ jobs:
           GNOMON_PYTHON: ${{ github.workspace }}/gnomon/python
       # every recorded number and grade, recomputed (no network); and the queue
       - run: python bench/verify.py
-      - run: python bench/queue.py --check
+      - run: python bench/workqueue.py --check
       - name: no test was skipped
         run: |
           GNOMON_PYTHON=$PWD/gnomon/python python -m unittest discover -s tests 2>&1 | tee out.txt

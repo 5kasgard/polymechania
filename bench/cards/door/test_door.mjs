@@ -40,9 +40,19 @@ for (const good of [
   { ...ok, thinking: { type: "enabled", budget_tokens: 50 } },
 ]) { forwarded = null; assert.equal((await call("v1/messages", good)).status, 200, JSON.stringify(good));
      assert.deepEqual(JSON.parse(forwarded.init.body), good); }
-assert.equal((await call("ai", { model: "@cf/openai/gpt-oss-120b", messages: [{ role: "user", content: "x" }] })).status, 400);
+assert.equal((await call("ai", { model: "@cf/openai/gpt-oss-20b", messages: [{ role: "user", content: "x" }] })).status, 400);
 r = await call("ai", { model: "@cf/google/gemma-4-26b-a4b-it", messages: [{ role: "user", content: "x" }], max_tokens: 99999 });
 j = await r.json(); assert.equal(j.input.max_tokens, 4096); assert.equal(j.input.temperature, 0);
+r = await call("ai", { model: "@cf/google/gemma-4-26b-a4b-it", messages: [{ role: "user", content: "x" }] });
+j = await r.json(); assert.deepEqual(j.input.chat_template_kwargs, { enable_thinking: false });
+r = await call("ai", { model: "@cf/google/gemma-4-26b-a4b-it", messages: [{ role: "user", content: "x" }], default_thinking: true });
+j = await r.json(); assert.equal(j.input.chat_template_kwargs, undefined); assert.equal(j.input.temperature, 0);
+assert.equal((await call("ai", { model: "@cf/google/gemma-4-26b-a4b-it", messages: [{ role: "user", content: "x" }], default_thinking: "yes" })).status, 400);
+for (const m of ["@cf/qwen/qwen3.8-27b", "@cf/nvidia/nemotron-3-120b-a12b", "@cf/openai/gpt-oss-120b", "@cf/meta/llama-4-scout-17b-16e-instruct", "@cf/meta/llama-3.1-8b-instruct-fp8-fast"]) {
+  r = await call("ai", { model: m, messages: [{ role: "user", content: "x" }], max_tokens: 99999 });
+  j = await r.json(); assert.equal(j.model, m); assert.equal(j.input.max_tokens, 4096); assert.equal(j.input.temperature, 0);
+}
+assert.equal((await call("ai", { model: "@cf/zai-org/glm-5.3", messages: [{ role: "user", content: "x" }] })).status, 400);
 assert.equal((await call("nowhere", ok)).status, 404);
 const noKey = await door.fetch(new Request("https://d/v1/messages", { method: "POST", headers: { "x-door-token": "t0k" }, body: JSON.stringify(ok) }), { ...env, ANTHROPIC_API_KEY: undefined });
 assert.equal(noKey.status, 503);
