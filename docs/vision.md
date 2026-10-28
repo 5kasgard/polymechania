@@ -122,6 +122,15 @@ there, along with the town hall (the rules), the library, and the gates to
 the outside. You can walk up to a guide in the world, or talk to them from
 a panel, whichever suits the moment.
 
+**Tested (bench/map, bench/map-mine, compared in bench/map/COMPARISON.md):**
+"a region with no road is isolated" fails as written. It holds only if
+roads are drawn from real grants (never from intention), each road is
+labelled with who can cross it, the owner is shown as able to cross
+anywhere ("no one but you crosses", not "isolated"), hidden links are drawn
+dotted, and a plain permissions table is one tap away. Isolation is only as
+strong as Gnomon's gate: agents must reach the record through it, never
+the file.
+
 ## Scene 3: how you see it, and how things move
 
 **A god's-eye view.** You are not a character in the world. You look down on

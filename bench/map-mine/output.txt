@@ -1,0 +1,46 @@
+
+== personal world (constructed)
+regions: commons-link, private, work
+R1, roads by writer (who can carry):
+   commons-link - private: john (person, owner)
+   commons-link - work: john (person, owner)
+   private - work: john (person, owner), claude session 2
+   islands: none
+   hidden bridges: 0 by construction (every carrier draws its road); chained reach shown by following roads: 3 pair(s)
+R1 for agents only (people shown separately):
+   roads: private - work; islands for agents: commons-link
+R2, roads as declared by intention:
+   hidden bridges (content can travel, no road path drawn): 2 -> commons-link - private, private - work
+   misleading roads (drawn, no carrier): 0
+   roads that would mislead if unlabelled (most writers on either side cannot cross): 3
+
+== E1 experiment (constructed)
+regions: answers, items
+R1, roads by writer (who can carry):
+   answers - items: conductor
+   islands: none
+   hidden bridges: 0 by construction (every carrier draws its road); chained reach shown by following roads: 1 pair(s)
+R1 for agents only (people shown separately):
+   roads: answers - items; islands for agents: none
+R2, roads as declared by intention:
+   hidden bridges (content can travel, no road path drawn): 1 -> answers - items
+   misleading roads (drawn, no carrier): 0
+   roads that would mislead if unlabelled (most writers on either side cannot cross): 1
+
+== grants seen in Gnomon's tests (constructed from them)
+regions: acme, chat, lab, other, private
+R1, roads by writer (who can carry):
+   acme - other: acme liaison
+   chat - private: chat agent
+   lab - private: john (person, owner)
+   islands: none
+   hidden bridges: 0 by construction (every carrier draws its road); chained reach shown by following roads: 4 pair(s)
+R1 for agents only (people shown separately):
+   roads: chat - private, acme - other; islands for agents: lab
+R2, roads as declared by intention:
+   hidden bridges (content can travel, no road path drawn): 3 -> chat - lab, chat - private, lab - private
+   misleading roads (drawn, no carrier): 0
+   roads that would mislead if unlabelled (most writers on either side cannot cross): 3
+
+Outside Gnomon's view in every scenario: readers of the log file (plain JSONL, all
+compartments), one program or person holding several writers' credentials, copy by hand.
