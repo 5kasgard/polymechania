@@ -60,7 +60,7 @@ def packet() -> str:
                operator="lead", capabilities=["write"], compartments=["firm"], record_time=t)
     m.register("lead", "tests", party="tests", kind="tool", model="pytest-like-1", operator="lead",
                capabilities=["verify"], compartments=["firm"], record_time=t)
-    done = ["slugify", "roman", "intervals", "lru", "topo", "wrap"]
+    done = [f"order {k}" for k in range(1, 7)]
     for i, name in enumerate(done):
         ts = f"2026-10-2{1 + i // 3}T1{i}:00:00Z"
         o = m.ask("lead", f"Implement '{name}' to its specification.", frame="firm/code", compartment="firm",
@@ -98,17 +98,20 @@ def call(body: dict) -> tuple[int, dict, float]:
         return e.code, json.loads(e.read() or b"{}"), time.time() - t0
 
 
-def request(model: str, arm: str, user: str, max_tokens: int = 4096) -> dict:
+def request(model: str, arm: str, pk: str, order: str, max_tokens: int = 4096) -> dict:
+    """System block = the self; user = [packet, order]. Arm B caches the self and the packet
+    (two breakpoints, amendment 1)."""
     sys_block = {"type": "text", "text": (HERE / "self.md").read_text()}
+    pk_block = {"type": "text", "text": pk + "\n\n---\n\n"}
     if arm == "B":
         sys_block["cache_control"] = {"type": "ephemeral"}
+        pk_block["cache_control"] = {"type": "ephemeral"}
     return {"model": MODELS[model], "max_tokens": max_tokens, "system": [sys_block],
-            "messages": [{"role": "user", "content": user}]}
+            "messages": [{"role": "user", "content": [pk_block, {"type": "text", "text": order}]}]}
 
 
-def user_message(pk: str, name: str, spec: str) -> str:
-    return (f"{pk}\n\n---\n\nWork order from the Lead: implement '{name}' to its specification.\n\n"
-            f"Specification:\n{spec}")
+def order_text(name: str, spec: str) -> str:
+    return f"Work order from the Lead: implement '{name}' to its specification.\n\nSpecification:\n{spec}"
 
 
 def code_of(reply: dict) -> str:
@@ -142,7 +145,7 @@ def calibrate() -> None:
     pk = packet()
     (HERE / "packet.txt").write_text(pk + "\n")
     for model in MODELS:
-        st, rep, _ = call(request(model, "A", pk + "\n\n---\n\nready", max_tokens=1))
+        st, rep, _ = call(request(model, "A", pk, "ready", max_tokens=1))
         assert st == 200, rep
         r["calibration"][model] = rep["usage"]
         print(model, "boot input tokens:", rep["usage"]["input_tokens"])
@@ -150,66 +153,98 @@ def calibrate() -> None:
 
 
 def run(model: str, arm: str) -> None:
+    """All 24 calls back to back, then grading (amendment 1: grading between calls could let the
+    5-minute cache lapse). Gaps between call starts are logged."""
     r = load()
     pk = (HERE / "packet.txt").read_text().rstrip("\n")
     outdir = HERE / "solutions" / model / arm
     outdir.mkdir(parents=True, exist_ok=True)
+    rows, last = [], None
     for s, name, spec in tasks():
         if any(x["model"] == model and x["arm"] == arm and x["task"] == name for x in r["runs"]):
             continue
-        st, rep, secs = call(request(model, arm, user_message(pk, name, spec)))
+        start = time.time()
+        st, rep, secs = call(request(model, arm, pk, order_text(name, spec)))
         if st != 200:
             print("refused", st, rep); sys.exit(1)
-        path = outdir / f"{name}.py"
-        path.write_text(code_of(rep))
-        g = grade(s, name, path)
+        (outdir / f"{name}.py").write_text(code_of(rep))
         u = rep["usage"]
-        row = {"model": model, "arm": arm, "set": s, "task": name, "grade": "PASS" if g == "PASS" else g,
-               "input": u.get("input_tokens", 0), "cache_read": u.get("cache_read_input_tokens", 0),
-               "cache_write": u.get("cache_creation_input_tokens", 0), "output": u.get("output_tokens", 0),
-               "stop": rep.get("stop_reason"), "secs": round(secs, 1), "usd": round(cost(model, u), 6)}
-        r["runs"].append(row)
-        save(r)
-        print(model, arm, name, row["grade"][:40], row["input"], row["cache_read"], row["cache_write"],
-              row["output"], f"${row['usd']:.5f}")
+        rows.append({"model": model, "arm": arm, "set": s, "task": name,
+                     "input": u.get("input_tokens", 0), "cache_read": u.get("cache_read_input_tokens", 0),
+                     "cache_write": u.get("cache_creation_input_tokens", 0), "output": u.get("output_tokens", 0),
+                     "stop": rep.get("stop_reason"), "secs": round(secs, 1),
+                     "gap": None if last is None else round(start - last, 1), "usd": round(cost(model, u), 6)})
+        last = start
+        x = rows[-1]
+        print(model, arm, name, x["input"], x["cache_read"], x["cache_write"], x["output"], f"${x['usd']:.5f}")
+    for x in rows:
+        g = grade(x["set"], x["task"], outdir / f"{x['task']}.py")
+        x["grade"] = "PASS" if g == "PASS" else g
+        print(x["task"], x["grade"][:60])
+    r["runs"] += rows
+    save(r)
 
 
 def t11() -> None:
     r = load()
-    st, rep, _ = call(request("haiku", "A", "Say ok.", max_tokens=5000))
+    pk = (HERE / "packet.txt").read_text().rstrip("\n")
+    st, rep, _ = call(request("haiku", "A", pk, "Say ok.", max_tokens=5000))
     r["t11"]["over_cap"] = {"status": st, "body": rep}
-    st, rep, _ = call(request("haiku", "A", "Write an essay of about 10,000 words on the history of clocks. "
-                                            "Do not stop early; keep writing until you reach the length.", 4096))
+    st, rep, _ = call(request("haiku", "A", pk, "Write an essay of about 10,000 words on the history of clocks. "
+                                                "Do not stop early; keep writing until you reach the length.", 4096))
     r["t11"]["long"] = {"status": st, "stop": rep.get("stop_reason"), "usage": rep.get("usage")}
     save(r)
     print(json.dumps(r["t11"], indent=1)[:1500])
+
+
+PILOT_OUT = 1000  # amendment 1: output tokens assumed per pilot run, fixed before running
 
 
 def report() -> None:
     import statistics as st
     r = load()
     pilot = json.loads((PILOT / "results.json").read_text())
-    print("calibration (boot input tokens):", {k: v["input_tokens"] for k, v in r["calibration"].items()})
     for model in MODELS:
-        boot = r["calibration"].get(model, {}).get("input_tokens")
+        cal = r["calibration"].get(model)
+        if not cal:
+            continue
+        boot = cal["input_tokens"]
+        print(f"\n{model}: boot {boot} input tokens ({boot / 79_000:.1%} of the pilot's ~79,000 fixed); "
+              f"thin boot holds: {boot <= 4000 and boot <= 0.05 * 79_000}")
+        both = []
         for arm in ("A", "B"):
             xs = [x for x in r["runs"] if x["model"] == model and x["arm"] == arm]
             if not xs:
                 continue
+            both += xs
             passed = sum(x["grade"] == "PASS" for x in xs)
             share = [boot / (x["input"] + x["cache_read"] + x["cache_write"] + x["output"]) for x in xs]
             usd = sum(x["usd"] for x in xs)
-            line = (f"{model:6} {arm}: {passed}/{len(xs)} pass; boot share median {st.median(share):.1%}; "
+            line = (f"  {arm}: {passed}/{len(xs)} pass; boot share median {st.median(share):.0%} (descriptive); "
                     f"${usd:.4f} total, ${usd / max(passed, 1):.5f} per pass")
             if arm == "B":
-                sys_tokens = xs[0]["cache_write"]
-                reads = [x["cache_read"] / sys_tokens for x in xs[1:]] if sys_tokens else [0]
-                line += f"; calls 2-24 read cache min {min(reads):.0%} of the system block ({sys_tokens} tokens)"
+                ok = [x["cache_read"] >= 0.9 * boot for x in xs[1:]]
+                gaps = [x["gap"] for x in xs if x["gap"] is not None]
+                line += (f"; calls 2-24 reading >=90% of the boot from cache: {sum(ok)}/{len(ok)} "
+                         f"(caching holds: {all(ok)}); largest gap {max(gaps) if gaps else 0:.0f} s")
             print(line)
+        if both:
+            pooled = sum(x["grade"] == "PASS" for x in both)
+            print(f"  pooled quality: {pooled}/{len(both)} (below 40/48 means a thin boot costs quality: "
+                  f"{pooled < 40 if len(both) == 48 else 'n/a'})")
         p = [x for x in pilot if x["tier"] == model]
-        pu = sum(x["tokens"] * PRICES[model][0] / 1e6 for x in p)
-        print(f"{model:6} pilot: {sum(x['result'] == 'PASS' for x in p)}/{len(p)} pass; "
-              f"${pu:.4f} total if all tokens were uncached input (upper bound), ${pu / len(p):.5f} per pass")
+        i, o, cr, _ = PRICES[model]
+        lo = sum(((x["tokens"] - PILOT_OUT) * cr + PILOT_OUT * o) / 1e6 for x in p)
+        hi = sum(((x["tokens"] - PILOT_OUT) * i + PILOT_OUT * o) / 1e6 for x in p)
+        n = sum(x["result"] == "PASS" for x in p)
+        print(f"  pilot: {n}/{len(p)} pass; API-equivalent per pass ${lo / n:.5f} (all input cached) to "
+              f"${hi / n:.5f} (none cached); it ran on a subscription")
+        xb = [x for x in r["runs"] if x["model"] == model and x["arm"] == "B"]
+        if xb:
+            pb = sum(x["usd"] for x in xb) / max(sum(x["grade"] == "PASS" for x in xb), 1)
+            print(f"  headline (arm B): door ${pb:.5f} per pass = {pb / (lo / n):.2f}x to {pb / (hi / n):.3f}x the pilot")
+    if r.get("t11"):
+        print("\nT11:", json.dumps(r["t11"])[:600])
 
 
 if __name__ == "__main__":

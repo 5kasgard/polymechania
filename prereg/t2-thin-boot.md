@@ -90,3 +90,42 @@ One attempt per task: pass rates have wide intervals (24 tasks). The
 pilot's tasks are short and exactly specified; long, vague work (T1) is
 where boot share and tool loss could look different. The self here is
 written for the test, not grown by a resident.
+
+## Amendment 1 (2026-10-28, after `prereg/t2-review-1.md`, before any run)
+
+All points of the independent review are taken. Where this amendment and
+the text above differ, this amendment rules.
+
+- **Thin boot holds** if boot is at most 4,000 tokens **and** at most 5%
+  of the pilot's fixed start-up (about 79,000 tokens; regression intercept
+  in `docs/architecture-review-1.md`). Boot share is reported as
+  description only: with a ~1,000-token boot and short tasks it is large
+  by construction, so it cannot decide anything.
+- **The pilot is priced as a bracket**, API-equivalent (it ran on a
+  subscription, so no money was spent this way): each run's output fixed
+  now at 1,000 tokens; the rest priced either all as cache reads (low) or
+  all as uncached input (high). The headline gives the ratio at both ends.
+- **Arms named for every decision.** Quality is pooled over A and B (48
+  calls per model; A and B send the same prompt, so this is two attempts
+  per task): "a thin boot costs quality" if fewer than 40 of 48 pass on
+  Haiku. Dollars per passed task: headline on arm B (the form that would
+  be deployed), A shown alongside. A cascade, if priced, pairs A with A
+  and B with B.
+- **Caching holds** if **each** of calls 2 to 24 in arm B reads at least
+  90% of the boot (the calibration's input tokens) from the cache. Arm B
+  now has two breakpoints: the self (system) and the resume packet (the
+  first user block), since both are identical across calls.
+- **Timing:** all 24 calls of an arm run back to back and are graded only
+  afterwards, so grading cannot let the 5-minute cache lapse. Gaps
+  between call starts are logged.
+- **Size correction:** the self is about 850 tokens, not 1,500 to 2,500;
+  with the packet the cached prefix is still above the 512-token minimum.
+- **Disclosure:** the self's lessons (recursion depth, tie rules, speed)
+  were written by someone who knew these 24 tasks, which may raise the
+  door's pass rate. The packet's history no longer names any task. Fixed
+  by hash before running:
+  - `bench/boot/self.md` sha256 `144012916a3c9ae8d13a6bfffb1ccc787aa12ba72d01293bf093f370907d11a8`
+  - `bench/boot/packet.txt` sha256 `27a78085d62b33fac879fc044c60741de6821803a7f2320b0c836bcf86d2a2af`
+- **T11:** if Haiku stops the long essay before 4,096 output tokens, the
+  result is inconclusive and is repeated once with a firmer prompt.
+- **Order:** calibration; Haiku A, Haiku B; Sonnet A, Sonnet B; T11.
