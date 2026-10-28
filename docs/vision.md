@@ -136,6 +136,41 @@ hour-long job both read at a glance), and the real duration is always one
 tap away. The picture shows order and progress; it never claims a speed it
 does not have.
 
+## Scene 5: giving work, and getting it back
+
+**One front door for work.** Work comes in through a single place, not by
+talking to each agent: people would tangle their own workflows otherwise.
+In plain terms it is the **intake**: you describe what you want to your
+guide, who offers what fits, whether to set it up and run it, walk you
+through it, or ask a question first. Whether that place looks like a notice
+board, a front desk, a temple scroll or a dock depends on the world; the
+intake underneath is the same everywhere. You can still talk to any
+resident directly, if you want to.
+
+**Results come back however the setup is shaped.** A delivery, a report, a
+file in a storehouse, a change already made in a connected tool: it depends
+on the work and the world. What is fixed is that every result is in the
+record, with its checks and verdicts, and you are told it is done.
+
+**Notifications are where most people will live day to day.** The world is
+where you go to see, understand, design and set things up; the everyday
+flow of "this is done", "this needs you" and "this is stuck" reaches you as
+notifications, on your phone or wherever you are, each one a link back to
+its place in the world.
+
+## A pattern across the scenes
+
+The core defines a few plain things, and worlds decide how each looks:
+
+| Plain, fixed | Shown however the world likes |
+|---|---|
+| The intake (one front door for work) | a board, a desk, a dock, a shrine |
+| Notifications (persist until resolved) | a bell, a messenger, a flag |
+| Results (in the record, with verdicts) | deliveries, storehouses, reports |
+| Connections and isolation (doors, compartments) | roads, bridges, islands, gates |
+| Messages and remote work | letters, pigeons, journeys |
+| Residents and their cards | characters with their stories |
+
 ## Why a city builder fits
 
 City builders are simulations of flows, people and services, which is what
@@ -174,6 +209,10 @@ invents a number.
   interrupted, without more problems slipping through.
 - A scaled clock with real durations on tap is read correctly; people do
   not come away thinking slow things are fast or the reverse.
+- One intake through the guide produces fewer tangled workflows than
+  assigning work agent by agent.
+- Most everyday use happens through notifications; the world view is
+  opened mainly to understand, design and fix.
 - Showing isolation as an island is enough for people to trust it, as
   long as the island really is isolated underneath (the door enforces it;
   the map only shows it).
@@ -193,9 +232,10 @@ invents a number.
   travels as a letter, real work elsewhere as a journey (scene 3).
 - ~~Attention and quiet times?~~ Notifications that persist until resolved,
   after the world's own chain; a calm world on your local time (scene 4).
-- How do you give your world work: tell a guide, pin it to a board, drop it
-  on a building?
-- What does finished work look like when it comes back to you?
+- ~~How do you give work?~~ One intake, through your guide; its look is
+  the world's (scene 5).
+- ~~What does finished work look like?~~ Shaped by the work and the world;
+  always in the record; announced by notification (scene 5).
 - What does a guide look like?
 - What resolution and palette for the pixel art?
 - What is in a brand-new world before you build anything?
