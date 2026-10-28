@@ -111,7 +111,10 @@ def run() -> None:
 
 def judge() -> None:
     batch = json.loads((BLIND / "batch.json").read_text())
+    only = sys.argv[2:]  # e.g. `judge gemma` when the free allowance is short
     for name, model in JUDGES.items():
+        if only and name not in only:
+            continue
         out = BLIND / f"{name}.json"
         scores = json.loads(out.read_text()) if out.exists() else {}
         todo = [b for b in batch if str(b["id"]) not in scores]

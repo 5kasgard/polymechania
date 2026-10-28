@@ -91,29 +91,40 @@ def boot() -> None:
                        lambda x: BOOT / "solutions" / "haiku" / x["arm"] / f"{x['task']}.py")
 
 
-def self_b() -> None:
-    """T12b: recompute every rule check from the saved replies and regrade."""
+def self_b(results="results_b.json", sols="solutions_b", label="T12b") -> None:
+    """T12b (and T12c): recompute every rule check from the saved replies and regrade."""
     import importlib.util
     spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "self" / "t12b.py")
     t = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(t)
-    rows = json.loads((ROOT / "bench" / "self" / "results_b.json").read_text())
+    rows = json.loads((ROOT / "bench" / "self" / results).read_text())
     rules = ("format", "stdlib", "no_print", "voice")
     for r in rows:
         c = t.checks(r["reply"])
         for k in rules:
-            check(f"T12b {r['seq']} {r['arm']} {r['i']} {k}", r[k], c[k])
-        check(f"T12b {r['seq']} {r['arm']} {r['i']} length", r["length"], len(r["reply"]))
-        p = ROOT / "bench" / "self" / "solutions_b" / f"{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
-        check(f"T12b {r['seq']} {r['arm']} {r['i']} code saved", p.read_text(), t.code_and_prose(r["reply"])[0])
+            check(f"{label} {r['seq']} {r['arm']} {r['i']} {k}", r[k], c[k])
+        check(f"{label} {r['seq']} {r['arm']} {r['i']} length", r["length"], len(r["reply"]))
+        p = ROOT / "bench" / "self" / sols / f"{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
+        check(f"{label} {r['seq']} {r['arm']} {r['i']} code saved", p.read_text(), t.code_and_prose(r["reply"])[0])
         g = grade(r["set"], r["task"], p)
-        check(f"T12b {r['seq']} {r['arm']} {r['i']} grade", "PASS" if r["grade"] == "PASS" else "FAIL", g)
+        check(f"{label} {r['seq']} {r['arm']} {r['i']} grade", "PASS" if r["grade"] == "PASS" else "FAIL", g)
     for arm in ("S", "R", "R+"):
         xs = [r for r in rows if r["arm"] == arm and r["i"] >= 3]
-        print(f"  T12b {arm}: kept 3-8 {sum(r[k] for r in xs for k in rules)}/{4 * len(xs)}")
+        print(f"  {label} {arm}: kept 3-8 {sum(r[k] for r in xs for k in rules)}/{4 * len(xs)}")
 
 
-SETS = {"boot": boot, "self": self_b}
+def self_c() -> None:
+    self_b("results_c.json", "solutions_c", "T12c")
+    rows = json.loads((ROOT / "bench" / "self" / "results_c.json").read_text())
+    for r in rows:
+        check(f"T12c {r['seq']} {r['arm']} {r['i']} usd", round(r["usd"], 6), round(usd("haiku", {
+            "input": r["usage"].get("input_tokens", 0), "output": r["usage"].get("output_tokens", 0),
+            "cache_read": r["usage"].get("cache_read_input_tokens", 0),
+            "cache_write": r["usage"].get("cache_creation_input_tokens", 0)}), 6), 2e-6)
+    print(f"  T12c total ${sum(r['usd'] for r in rows):.4f}")
+
+
+SETS = {"boot": boot, "self": self_b, "self_c": self_c}
 
 if __name__ == "__main__":
     for name in sys.argv[1:] or SETS:
