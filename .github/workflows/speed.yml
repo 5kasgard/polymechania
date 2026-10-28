@@ -1,0 +1,21 @@
+name: speed
+# S1 (prereg/s1-speed.md): time the grading job on a GitHub-hosted runner.
+# Run by hand only; free on public repositories.
+on:
+  workflow_dispatch:
+
+jobs:
+  grade-time:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python bench/speed/grade_time.py --out s1-actions.json
+        env:
+          S1_WHERE: actions-ubuntu-latest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: s1-actions
+          path: s1-actions.json
