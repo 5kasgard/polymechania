@@ -105,6 +105,37 @@ This extends the worlds contract: today a world says how each event is
 sprite, animation or scene for a message, a journey, a check, an audit. The
 plain event stays underneath, unchanged.
 
+## Scene 4: attention, interruptions and quiet
+
+**Talking to a resident.** Tap someone to see them, tap again to chat. If
+they are in the middle of work, they answer for themselves: "busy, back
+when this part is done", so a chat never breaks a worker's context by
+accident. You can say it is **urgent** to interrupt anyway. Then they pause
+properly: they leave a handoff of where they were (Gnomon's handoff and
+resume), talk with you, and pick the work back up after, or re-plan it if
+the chat changed what the work should be.
+
+**Getting your attention.** Residents first take a problem up the world's
+own chain: a worker to its manager, a manager to the planner. Only what the
+chain cannot settle reaches you. It arrives as a **notification that stays
+until it is resolved**: on your phone if it matters enough, and in the
+world as a marker you tap to jump to the place on the map where it is.
+Where you sit in the loop is your choice: some people will want to approve
+every spend, others only the rare hard call. The guides help you choose a
+setup that suits what you are doing.
+
+**Quiet times.** When nothing needs you, the world is calm and still, but
+alive: it keeps its own time. Day and night follow your local time (from
+your device's time zone, no location needed). Weather can match a real
+place if you choose to enter one; it is never inferred.
+
+**Time on screen.** Computers are absurdly fast at some things and slow at
+others, so animations cannot run at real speed. They run on a consistent,
+scaled clock (for instance, logarithmic, so a millisecond check and an
+hour-long job both read at a glance), and the real duration is always one
+tap away. The picture shows order and progress; it never claims a speed it
+does not have.
+
 ## Why a city builder fits
 
 City builders are simulations of flows, people and services, which is what
@@ -137,6 +168,12 @@ invents a number.
 - Drawing each kind of event its own way (a letter for a message, a journey
   for remote work) helps people follow what their agents are doing, better
   than a log.
+- "Busy" auto-replies with an urgent override, and handoffs on interruption,
+  keep work quality the same as when no one interrupts (measure it).
+- Routing problems up the world's chain first cuts how often a person is
+  interrupted, without more problems slipping through.
+- A scaled clock with real durations on tap is read correctly; people do
+  not come away thinking slow things are fast or the reverse.
 - Showing isolation as an island is enough for people to trust it, as
   long as the island really is isolated underneath (the door enforces it;
   the map only shows it).
@@ -154,8 +191,11 @@ invents a number.
 - ~~How do you travel?~~ A zoomed-out map you tap on; no avatar (scene 3).
 - ~~When your agent visits the commons?~~ Shaped by the work: a message
   travels as a letter, real work elsewhere as a journey (scene 3).
-- How do residents get your attention when they need you, and what goes on
-  when they do not?
+- ~~Attention and quiet times?~~ Notifications that persist until resolved,
+  after the world's own chain; a calm world on your local time (scene 4).
+- How do you give your world work: tell a guide, pin it to a board, drop it
+  on a building?
+- What does finished work look like when it comes back to you?
 - What does a guide look like?
 - What resolution and palette for the pixel art?
 - What is in a brand-new world before you build anything?
