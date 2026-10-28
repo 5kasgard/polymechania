@@ -105,3 +105,29 @@ Independently audited: `AUDIT.md` (every number and grade reproduced).
   the test, by someone who knew the tasks, which may raise pass rates);
   more than two attempts per task; caching across the gaps of a real
   schedule (calls here were seconds apart).
+
+## Addendum (2026-10-29, exploratory): the pilot's output, bounded
+
+The pilot logged one token total per run, so its output cannot be
+recovered exactly. A lower bound can: each sub-agent had to write its
+solution file as output. Using the highest characters-per-output-token
+seen on the door's own code replies (3.32, from T2b), the pilot's mean
+output was at least **593 tokens per run on Haiku and 398 on Sonnet**.
+The audit's break-even (recomputed: 317 and 408) then gives, at the
+pilot's low end (its start-up read from a warm cache):
+
+| | Pilot low end, per pass | Door, arm B, per pass | Door / pilot |
+|---|---|---|---|
+| Haiku | at most $0.00113 | $0.00100 | at least 12% cheaper |
+| Sonnet | at most $0.01201 | $0.01211 | about even |
+
+So **with a warm cache, the thin boot saves little per call**; the
+harness's 80,000-token start-up costs little when it is read from cache
+at 0.1x or 0.05x. The large saving (the high end, 9 to 14 times) is when
+that start-up is *not* cached, which is the case for runs more than five
+minutes apart (or an hour, with the long-lived cache): exactly the runs a
+schedule makes. So the thin boot matters most for spaced-out, scheduled
+work, and for the share of a plan's usage window each run consumes, not
+for back-to-back calls. The script for these numbers is not kept; they
+follow from `bench/pilot/results.json`, the pilot's solution files and
+`t2b_results.json`.

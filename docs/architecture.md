@@ -204,8 +204,11 @@ the door's 4,096-token cap (five of Haiku's were empty, probably unasked-for
 thinking). A cached Haiku-then-Sonnet cascade passed 24/24 at $0.0034 per
 pass, a quarter of Sonnet alone (escalating on the hidden grader, so an
 upper bound on what visible checks would catch). Against the pilot harness
-the realistic saving per pass is about 25 to 33%, resting on an assumed
-pilot output size. Thin boot holds; whether it holds on long work is T1.
+with a warm cache the saving per call is small (about 12% on Haiku, even
+on Sonnet, with the pilot's output bounded from its solution files); the
+large saving (9 to 14 times) is for runs too far apart to keep the
+harness's start-up cached, which is what scheduled runs are. Thin boot
+holds; whether it holds on long work is T1.
 
 **Cost per resident-month of start-up alone** (prices from `plan.py`,
 hourly runs, 720 a month, uncached):
