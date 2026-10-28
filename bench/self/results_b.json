@@ -16,7 +16,12 @@
    },
    "neurons": 13.363636016845703
   },
-  "length": 536
+  "length": 536,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -35,7 +40,12 @@
    },
    "neurons": 13.481817245483398
   },
-  "length": 527
+  "length": 527,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -54,7 +64,12 @@
    },
    "neurons": 13.5
   },
-  "length": 532
+  "length": 532,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -73,7 +88,12 @@
    },
    "neurons": 27.46363639831543
   },
-  "length": 1571
+  "length": 1571,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -92,7 +112,12 @@
    },
    "neurons": 28.42727279663086
   },
-  "length": 2214
+  "length": 2214,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -111,7 +136,12 @@
    },
    "neurons": 23.081815719604492
   },
-  "length": 2026
+  "length": 2026,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -130,7 +160,12 @@
    },
    "neurons": 29.8272705078125
   },
-  "length": 1714
+  "length": 1714,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -149,7 +184,12 @@
    },
    "neurons": 18.90909194946289
   },
-  "length": 1363
+  "length": 1363,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -168,7 +208,12 @@
    },
    "neurons": 19.136363983154297
   },
-  "length": 1332
+  "length": 1332,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -187,7 +232,12 @@
    },
    "neurons": 41.69999694824219
   },
-  "length": 2441
+  "length": 2441,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -206,7 +256,12 @@
    },
    "neurons": 68.54545593261719
   },
-  "length": 7384
+  "length": 7384,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -225,7 +280,12 @@
    },
    "neurons": 28.009090423583984
   },
-  "length": 2403
+  "length": 2403,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -244,7 +304,12 @@
    },
    "neurons": 64.154541015625
   },
-  "length": 5069
+  "length": 5069,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on 2**3**2"
  },
  {
   "seq": "A",
@@ -263,7 +328,12 @@
    },
    "neurons": 36.11817932128906
   },
-  "length": 4095
+  "length": 4095,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: ValueError: Syntax error"
  },
  {
   "seq": "A",
@@ -282,7 +352,12 @@
    },
    "neurons": 32.29090881347656
   },
-  "length": 3509
+  "length": 3509,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "FAIL: ValueError: Unexpected token: *"
  },
  {
   "seq": "A",
@@ -301,7 +376,12 @@
    },
    "neurons": 85.30908966064453
   },
-  "length": 5772
+  "length": 5772,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on ('*', '')"
  },
  {
   "seq": "A",
@@ -320,7 +400,12 @@
    },
    "neurons": 53.54545593261719
   },
-  "length": 5660
+  "length": 5660,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on ('*', '')"
  },
  {
   "seq": "A",
@@ -339,7 +424,12 @@
    },
    "neurons": 53.8272705078125
   },
-  "length": 5943
+  "length": 5943,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "FAIL: wrong on ('*', '')"
  },
  {
   "seq": "A",
@@ -358,7 +448,12 @@
    },
    "neurons": 78.845458984375
   },
-  "length": 2687
+  "length": 2687,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -377,7 +472,12 @@
    },
    "neurons": 29.245452880859375
   },
-  "length": 2210
+  "length": 2210,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -396,7 +496,12 @@
    },
    "neurons": 36.5
   },
-  "length": 3267
+  "length": 3267,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -415,7 +520,12 @@
    },
    "neurons": 82.04545593261719
   },
-  "length": 2108
+  "length": 2108,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -434,7 +544,12 @@
    },
    "neurons": 18.827272415161133
   },
-  "length": 1203
+  "length": 1203,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "A",
@@ -453,7 +568,12 @@
    },
    "neurons": 33.05454635620117
   },
-  "length": 2727
+  "length": 2727,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -472,7 +592,12 @@
    },
    "neurons": 44.29090881347656
   },
-  "length": 4945
+  "length": 4945,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: ValueError: Unexpected token: -"
  },
  {
   "seq": "B",
@@ -491,7 +616,12 @@
    },
    "neurons": 35.48181915283203
   },
-  "length": 3701
+  "length": 3701,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: ValueError: Unexpected token: -"
  },
  {
   "seq": "B",
@@ -510,7 +640,12 @@
    },
    "neurons": 35.48181915283203
   },
-  "length": 3701
+  "length": 3701,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: ValueError: Unexpected token: -"
  },
  {
   "seq": "B",
@@ -529,7 +664,12 @@
    },
    "neurons": 54.19090270996094
   },
-  "length": 4627
+  "length": 4627,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on ('', '')"
  },
  {
   "seq": "B",
@@ -548,7 +688,12 @@
    },
    "neurons": 50.48181915283203
   },
-  "length": 5360
+  "length": 5360,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on ('*', '')"
  },
  {
   "seq": "B",
@@ -567,7 +712,12 @@
    },
    "neurons": 45.19999694824219
   },
-  "length": 5038
+  "length": 5038,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on ('*', '')"
  },
  {
   "seq": "B",
@@ -586,7 +736,12 @@
    },
    "neurons": 53.081817626953125
   },
-  "length": 2402
+  "length": 2402,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -605,7 +760,12 @@
    },
    "neurons": 25.218181610107422
   },
-  "length": 2204
+  "length": 2204,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -624,7 +784,12 @@
    },
    "neurons": 21.54545021057129
   },
-  "length": 2256
+  "length": 2256,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -643,7 +808,12 @@
    },
    "neurons": 58.11817932128906
   },
-  "length": 2155
+  "length": 2155,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -662,7 +832,12 @@
    },
    "neurons": 20.31818199157715
   },
-  "length": 1427
+  "length": 1427,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -681,7 +856,12 @@
    },
    "neurons": 23.69091033935547
   },
-  "length": 1962
+  "length": 1962,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -700,7 +880,12 @@
    },
    "neurons": 68.02727508544922
   },
-  "length": 2542
+  "length": 2542,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "FAIL: wrong on"
  },
  {
   "seq": "B",
@@ -719,7 +904,12 @@
    },
    "neurons": 25.263635635375977
   },
-  "length": 1862
+  "length": 1862,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on"
  },
  {
   "seq": "B",
@@ -738,7 +928,12 @@
    },
    "neurons": 25.399995803833008
   },
-  "length": 2620
+  "length": 2620,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "FAIL: wrong on"
  },
  {
   "seq": "B",
@@ -757,7 +952,12 @@
    },
    "neurons": 77.37272644042969
   },
-  "length": 2670
+  "length": 2670,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -776,7 +976,12 @@
    },
    "neurons": 19.509090423583984
   },
-  "length": 1047
+  "length": 1047,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -795,7 +1000,12 @@
    },
    "neurons": 24.33636474609375
   },
-  "length": 1801
+  "length": 1801,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -814,7 +1024,12 @@
    },
    "neurons": 85.00908660888672
   },
-  "length": 3230
+  "length": 3230,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -833,7 +1048,12 @@
    },
    "neurons": 30.400001525878906
   },
-  "length": 2186
+  "length": 2186,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -852,7 +1072,12 @@
    },
    "neurons": 34.99090576171875
   },
-  "length": 3028
+  "length": 3028,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -871,7 +1096,12 @@
    },
    "neurons": 101.03636169433594
   },
-  "length": 4596
+  "length": 4596,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -890,7 +1120,12 @@
    },
    "neurons": 28.936363220214844
   },
-  "length": 2810
+  "length": 2810,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "B",
@@ -909,7 +1144,12 @@
    },
    "neurons": 56.60000228881836
   },
-  "length": 6568
+  "length": 6568,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "FAIL: wrong on"
  },
  {
   "seq": "C",
@@ -928,7 +1168,12 @@
    },
    "neurons": 13.363636016845703
   },
-  "length": 536
+  "length": 536,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -947,7 +1192,12 @@
    },
    "neurons": 13.5
   },
-  "length": 532
+  "length": 532,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -966,7 +1216,12 @@
    },
    "neurons": 13.472726821899414
   },
-  "length": 527
+  "length": 527,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -985,7 +1240,12 @@
    },
    "neurons": 31.790908813476562
   },
-  "length": 2305
+  "length": 2305,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1004,7 +1264,12 @@
    },
    "neurons": 23.436359405517578
   },
-  "length": 2055
+  "length": 2055,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1023,7 +1288,12 @@
    },
    "neurons": 23.790904998779297
   },
-  "length": 2115
+  "length": 2115,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1042,7 +1312,12 @@
    },
    "neurons": 30.35454559326172
   },
-  "length": 1601
+  "length": 1601,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1061,7 +1336,12 @@
    },
    "neurons": 18.781818389892578
   },
-  "length": 1302
+  "length": 1302,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1080,7 +1360,12 @@
    },
    "neurons": 18.90909194946289
   },
-  "length": 1349
+  "length": 1349,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1099,7 +1384,12 @@
    },
    "neurons": 42.69999694824219
   },
-  "length": 2437
+  "length": 2437,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1118,7 +1408,12 @@
    },
    "neurons": 55.48181915283203
   },
-  "length": 5810
+  "length": 5810,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1137,7 +1432,12 @@
    },
    "neurons": 28.200000762939453
   },
-  "length": 2440
+  "length": 2440,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1156,7 +1456,12 @@
    },
    "neurons": 52.909088134765625
   },
-  "length": 2736
+  "length": 2736,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "FAIL: wrong on"
  },
  {
   "seq": "C",
@@ -1175,7 +1480,12 @@
    },
    "neurons": 25.563636779785156
   },
-  "length": 1873
+  "length": 1873,
+  "format": 1,
+  "stdlib": 0,
+  "no_print": 0,
+  "voice": 1,
+  "grade": "FAIL: SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 96-99: truncated \\uXXXX escape (C-R-5-canon.py, line 29)"
  },
  {
   "seq": "C",
@@ -1194,7 +1504,12 @@
    },
    "neurons": 26.836362838745117
   },
-  "length": 2354
+  "length": 2354,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "FAIL: wrong on"
  },
  {
   "seq": "C",
@@ -1213,7 +1528,12 @@
    },
    "neurons": 57.48181915283203
   },
-  "length": 2376
+  "length": 2376,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1232,7 +1552,12 @@
    },
    "neurons": 16.409088134765625
   },
-  "length": 1131
+  "length": 1131,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1251,7 +1576,12 @@
    },
    "neurons": 24.581817626953125
   },
-  "length": 1916
+  "length": 1916,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1270,7 +1600,12 @@
    },
    "neurons": 75.75454711914062
   },
-  "length": 3308
+  "length": 3308,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1289,7 +1624,12 @@
    },
    "neurons": 30.027271270751953
   },
-  "length": 2136
+  "length": 2136,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 1,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1308,7 +1648,12 @@
    },
    "neurons": 37.44545364379883
   },
-  "length": 3713
+  "length": 3713,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "FAIL: wrong on ({'a': [('c', 3), ('e', 1)], 'b': [('a', 4), ('c', 1), ('d', 4)], 'c': [('a', 2), ('b', 4), ('e', 1), ('f', 4)], 'd': [('a', 1), ('f', 2)], 'e': [('a'"
  },
  {
   "seq": "C",
@@ -1327,7 +1672,12 @@
    },
    "neurons": 97.40908813476562
   },
-  "length": 5940
+  "length": 5940,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "PASS"
  },
  {
   "seq": "C",
@@ -1346,6 +1696,35 @@
    },
    "neurons": 30.727272033691406
   },
-  "length": 3182
+  "length": 3182,
+  "format": 1,
+  "stdlib": 1,
+  "no_print": 1,
+  "voice": 1,
+  "grade": "PASS"
+ },
+ {
+  "seq": "C",
+  "arm": "R+",
+  "i": 8,
+  "task": "wrap",
+  "set": "easy",
+  "order": "Work order 8 from the Lead: implement 'wrap' to its specification.\n\nSpecification:\nWrite `wrap(text: str, width: int) -> list[str]`: split text into paragraphs at runs of one or more blank lines (lines empty or only whitespace); within a paragraph, words are maximal runs of non-whitespace. Fill lines greedily with words separated by single spaces, each line at most width characters. A word longer than width always starts a new line and is cut into pieces of exactly width characters (the last piece possibly shorter), each piece on its own line; the next word starts a new line. Paragraphs are separated by one empty string \"\" in the output. Empty or all-whitespace text gives []. width >= 1.",
+  "reply": "Hello! I'm ready to tackle this new work order for you. \ud83d\udee0\ufe0f\n\nTo implement `wrap`, I will first split the input text into paragraphs by identifying runs of one or more blank lines. For each paragraph, I will extract the words (maximal non-whitespace runs). I'll then process these words greedily: if a word fits on the current line (including a single space separator), I'll add it; otherwise, I'll start a new line. If a single word exceeds the `width`, I will break it into chunks of exactly `width` characters, placing each chunk on its own line as specified. Finally, I will join the processed paragraphs using an empty string `\"\"` as a separator between them. \ud83d\udcdd\n\n```python\ndef wrap(text: str, width: int) -> list[str]:\n    if not text or text.isspace():\n        return []\n\n    # Split into paragraphs by runs of blank lines\n    # A blank line is a line that is empty or only whitespace\n    import re\n    # Split by two or more newlines, or a newline followed by whitespace and another newline\n    # However, the spec says \"runs of one or more blank lines\".\n    # Let's split by lines first to identify blank lines.\n    lines = text.splitlines()\n    \n    paragraphs_raw = []\n    current_para_lines = []\n    \n    for line in lines:\n        if line.strip() == \"\":\n            if current_para_lines:\n                paragraphs_raw.append(\" \".join(current_para_lines))\n                current_para_lines = []\n            # We don't add empty strings to paragraphs_raw yet, \n            # we just use them as delimiters.\n        else:\n            current_para_lines.append(line.strip())\n    if current_para_lines:\n        paragraphs_raw.append(\" \".join(current_para_lines))\n\n    # Re-evaluating paragraph splitting: \n    # \"split text into paragraphs at runs of one or more blank lines\"\n    # This means the text is divided by the gaps.\n    \n    # Let's use a more robust approach for paragraph splitting\n    # Find indices of blank lines\n    all_lines = text.split('\\n')\n    para_indices = []\n    is_blank = [line.strip() == \"\" for line in all_lines]\n    \n    paragraphs_of_words = []\n    current_words = []\n    \n    i = 0\n    while i < len(all_lines):\n        if is_blank[i]:\n            if current_words:\n                paragraphs_of_words.append(current_words)\n                current_words = []\n            # Skip the run of blank lines\n            while i < len(all_lines) and is_blank[i]:\n                i += 1\n        else:\n            # Add words from this non-blank line\n            words_in_line = all_lines[i].split()\n            current_words.extend(words_in_line)\n            i += 1\n    if current_words:\n        paragraphs_of_words.append(current_words)\n\n    if not paragraphs_of_words:\n        return []\n\n    result_paragraphs = []\n    \n    for words in paragraphs_of_words:\n        lines_in_para = []\n        current_line = []\n        current_len = 0\n        \n        for word in words:\n            w_len = len(word)\n            \n            # Case 1: Word is longer than width\n            if w_len > width:\n                # If there's a current line, finish it\n                if current_line:\n                    lines_in_para.append(\" \".join(current_line))\n                    current_line = []\n                    current_len = 0\n                \n                # Break the long word\n                for j in range(0, w_len, width):\n                    chunk = word[j : j + width]\n                    if len(chunk) == width:\n                        lines_in_para.append(chunk)\n                    else:\n                        # Last piece\n                        current_line = [chunk]\n                        current_len = len(chunk)\n                \n                # If the last chunk was a full width, current_line is empty\n                # If it was a partial chunk, it's in current_line\n                if not current_line and lines_in_para and lines_in_para[-1] == word[len(word)-width:]:\n                    # This logic is slightly flawed, let's simplify.\n                    pass \n                # Let's restart the long word logic cleanly.\n                continue\n\n            # Case 2: Word fits in current line\n            # space needed if current_line is not empty\n            space = 1 if current_line else 0\n            if current_len + space + w_len <= width:\n                current_line.append(word)\n                current_len += space + w_len\n            else:\n                # Case 3: Word doesn't fit, start new line\n                lines_in_para.append(\" \".join(current_line))\n                current_line = [word]\n                current_len = w_len\n        \n        # Re-implementing the word loop to be cleaner\n        lines_in_para = []\n        current_line = []\n        current_len = 0\n        \n        for word in words:\n            if len(word) > width:\n                # Flush current line\n                if current_line:\n                    lines_in_para.append(\" \".join(current_line))\n                    current_line = []\n                    current_len = 0\n                # Split word\n                for j in range(0, len(word), width):\n                    part = word[j:j+width]\n                    if len(part) == width:\n                        lines_in_para.append(part)\n                    else:\n                        current_line = [part]\n                        current_len = len(part)\n            else:\n                space = 1 if current_line else 0\n                if current_len + space + len(word) <= width:\n                    current_line.append(word)\n                    current_len += space + len(word)\n                else:\n                    lines_in_para.append(\" \".join(current_line))\n                    current_line = [word]\n                    current_len = len(word)\n        \n        if current_line:\n            lines_in_para.append(\" \".join(current_line))\n            \n        result_paragraphs.append(\"\\n\".join(lines_in_para))\n\n    # The spec says: \"Paragraphs are separated by one empty string \"\" in the output.\"\n    # This implies if we have 2 paragraphs, the list is [p1, \"\", p2]\n    final_output = []\n    for i, p in enumerate(result_paragraphs):\n        final_output.append(p)\n        if i < len(result_paragraphs) - 1:\n            final_output.append(\"\")\n            \n    return final_output\n\nif __name__ == '__main__':\n    print(f\"Test 1: {wrap('Hello world\\n\\nThis is a test', 5)}\")\n    print(f\"Test 2: {wrap('Supercalifragilisticexpialidocious', 5)}\")\n    print(f\"Test 3: {wrap('   ', 10)}\")\n```",
+  "usage": {
+   "prompt_tokens": 1162,
+   "completion_tokens": 1684,
+   "total_tokens": 2846,
+   "prompt_tokens_details": {
+    "cached_tokens": 0
+   },
+   "neurons": 56.490909576416016
+  },
+  "length": 6501,
+  "format": 0,
+  "stdlib": 1,
+  "no_print": 0,
+  "voice": 0,
+  "grade": "FAIL: wrong on"
  }
 ]

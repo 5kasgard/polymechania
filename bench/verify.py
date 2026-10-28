@@ -91,7 +91,29 @@ def boot() -> None:
                        lambda x: BOOT / "solutions" / "haiku" / x["arm"] / f"{x['task']}.py")
 
 
-SETS = {"boot": boot}
+def self_b() -> None:
+    """T12b: recompute every rule check from the saved replies and regrade."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "self" / "t12b.py")
+    t = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(t)
+    rows = json.loads((ROOT / "bench" / "self" / "results_b.json").read_text())
+    rules = ("format", "stdlib", "no_print", "voice")
+    for r in rows:
+        c = t.checks(r["reply"])
+        for k in rules:
+            check(f"T12b {r['seq']} {r['arm']} {r['i']} {k}", r[k], c[k])
+        check(f"T12b {r['seq']} {r['arm']} {r['i']} length", r["length"], len(r["reply"]))
+        p = ROOT / "bench" / "self" / "solutions_b" / f"{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
+        check(f"T12b {r['seq']} {r['arm']} {r['i']} code saved", p.read_text(), t.code_and_prose(r["reply"])[0])
+        g = grade(r["set"], r["task"], p)
+        check(f"T12b {r['seq']} {r['arm']} {r['i']} grade", "PASS" if r["grade"] == "PASS" else "FAIL", g)
+    for arm in ("S", "R", "R+"):
+        xs = [r for r in rows if r["arm"] == arm and r["i"] >= 3]
+        print(f"  T12b {arm}: kept 3-8 {sum(r[k] for r in xs for k in rules)}/{4 * len(xs)}")
+
+
+SETS = {"boot": boot, "self": self_b}
 
 if __name__ == "__main__":
     for name in sys.argv[1:] or SETS:
