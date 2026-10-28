@@ -22,6 +22,11 @@ for (const bad of [
   { ...ok, output_config: { effort: "max" } }, { ...ok, output_config: { effort: "xhigh" } },
   { ...ok, output_config: { effort: "low", format: { type: "json_schema" } } }, { ...ok, output_config: [] },
   { ...ok, thinking: { type: "adaptive", display: "full" } }, { ...ok, thinking: { type: "turbo" } },
+  { ...ok, thinking: { type: "adaptive", budget_tokens: 99999 } }, { ...ok, thinking: { type: "disabled", budget_tokens: 1 } },
+  { ...ok, thinking: null }, { ...ok, thinking: [] }, { ...ok, output_config: null }, { ...ok, output_config: {} },
+  { ...ok, output_config: { effort: ["low"] } }, { ...ok, output_config: { effort: "low", task_budget: 10 } },
+  JSON.parse('{"model":"claude-haiku-5-5","max_tokens":100,"messages":[{"role":"user","content":"hi"}],"__proto__":{"tools":[]}}'),
+  { ...ok, output_config: JSON.parse('{"effort":"low","__proto__":{"format":1}}') },
 ]) assert.equal((await call("v1/messages", bad)).status, 400, JSON.stringify(bad));
 forwarded = null;
 r = await call("v1/messages", ok); assert.equal(r.status, 200);
@@ -32,6 +37,7 @@ for (const good of [
   { ...ok, output_config: { effort: "low" } }, { ...ok, output_config: { effort: "high" } },
   { ...ok, thinking: { type: "adaptive" }, output_config: { effort: "medium" } },
   { ...ok, thinking: { type: "disabled" } }, { ...ok, thinking: { type: "between_tools" } },
+  { ...ok, thinking: { type: "enabled", budget_tokens: 50 } },
 ]) { forwarded = null; assert.equal((await call("v1/messages", good)).status, 200, JSON.stringify(good));
      assert.deepEqual(JSON.parse(forwarded.init.body), good); }
 assert.equal((await call("ai", { model: "@cf/openai/gpt-oss-120b", messages: [{ role: "user", content: "x" }] })).status, 400);

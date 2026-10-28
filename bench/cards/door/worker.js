@@ -49,6 +49,7 @@ function checkClaude(body) {
     const t = body.thinking;
     if (!t || !["enabled", "disabled", "adaptive", "between_tools"].includes(t.type)) return "bad thinking";
     for (const k of Object.keys(t)) if (!["type", "budget_tokens"].includes(k)) return `thinking field not allowed: ${k}`;
+    if (t.type !== "enabled" && "budget_tokens" in t) return "budget_tokens only with enabled";
     if (t.type === "enabled" && !(Number.isInteger(t.budget_tokens) && t.budget_tokens < body.max_tokens))
       return "thinking budget must be below max_tokens";
   }

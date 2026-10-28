@@ -17,3 +17,18 @@ Worker's code is what enforces it.
 
 After E1: delete the Worker, the Access application and service token, and
 the API key.
+
+## Change of 2026-10-29: effort and adaptive thinking
+
+For T2c (`prereg/t2c-effort.md`): `output_config` is allowed with `effort`
+only, and only `low`, `medium` or `high` (`xhigh` and `max` need far more
+than the 4,096-token cap); thinking types `adaptive` and `between_tools`
+are allowed besides `enabled` and `disabled`; `budget_tokens` only with
+`enabled`; any other key inside `thinking` or `output_config` is refused.
+Reviewed before deploy by a separate agent (verdict: safe; it found that
+`budget_tokens` passed on other thinking types, now refused, and the
+missing tests, now added). Deployed by replacing the script content only,
+so bindings and secrets were kept; the live door then refused `effort`
+`max`, `output_config.format`, `budget_tokens` with `adaptive`, and
+`tools`. Deployed `worker.js` sha256
+`97d22c61bfe1937e5ecc1809b62c8a2c787147560745e4d92432206572d72963`.
