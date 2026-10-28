@@ -1,0 +1,69 @@
+# Hollow Acre: a farm where the work grows in rows.
+#
+# Included to show how far a world can go from the plain one and still be
+# the same organisation underneath.
+
+[world]
+id = "hollow-acre"
+name = "Hollow Acre"
+title = "A farm where the work grows in rows"
+region = "the Lowland Fields of Polymechania"
+tagline = "Plant cheap, harvest checked."
+
+[names]
+"org" = "Hollow Acre"
+"leader" = "the Farmer"
+"archive" = "the Almanac"
+"inspector" = "the County Assessor"
+"rules" = "the Lease"
+"merit" = "yield"
+"formation" = "planting plan"
+"task" = "job"
+"part" = "row"
+"tier.haiku" = "farmhand"
+"tier.sonnet" = "foreman"
+"tier.opus" = "farm manager"
+"tier.fable" = "agronomist"
+"worker.checker" = "the scales"
+"worker.calculator" = "the scales"
+"worker.prover" = "the surveyor"
+"worker.script" = "a tractor"
+"worker.swarm" = "the hive"
+"worker.model" = "the hands"
+"role.executive" = "planner"
+"role.manager" = "foremen"
+"role.staff" = "crew"
+"role.escalation" = "second pass"
+"role.reviewer" = "inspectors"
+"check.exact" = "weighed on the scales"
+"check.review" = "looked over"
+"check.none" = "unweighed"
+"word.then" = "then"
+"word.by" = "by the"
+"rank.d" = "weeding"
+"rank.c" = "planting"
+"rank.b" = "harvest"
+"rank.a" = "market day"
+"rank.s" = "the whole season"
+
+[say]
+mission = "🌱 New {task_name} on the board: {parts} {part_name}(s) of '{kind}' ({rank}, {stakes} riding on each), {check}."
+formation = "🗺 {formation_name}: {word}"
+post = "  {role}: {count} × {tier}"
+part = "  each {part_name}: {workers}, {checked}; {p_right} come up good."
+cost = "  seed and feed {spend}, spoilage {loss}{waiting}: {total} for the lot, done in {rounds} pass(es)."
+baseline = "  one {tier} working alone: {total}, about {rounds} pass(es)."
+note = "  · {text}"
+
+[precepts]
+"no-self-grading" = "No one weighs their own harvest."
+"honesty-free" = "Calling for a second pass is never docked."
+"plain-underneath" = "The Almanac keeps the plain numbers."
+
+[style]
+accent = "#bc6c25"
+ok = "#606c38"
+fail = "#9b2226"
+dim = "#a3a380"
+glyph = "🌾"
+spinner = ["tilling", "watering the rows", "checking the scales", "feeding the hens", "reading the almanac"]

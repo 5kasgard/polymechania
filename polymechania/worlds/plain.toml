@@ -1,0 +1,16 @@
+# Plain: everything called what it is. The default world, and the one every
+# other world can be switched back to.
+
+[world]
+id = "plain"
+name = "Plain"
+title = "Everything called what it is"
+region = "the Commons of Polymechania"
+
+[style]
+accent = "#d97757"
+ok = "#4f9d69"
+fail = "#c0504d"
+dim = "#888888"
+glyph = "μ"
+spinner = ["planning", "checking", "working"]

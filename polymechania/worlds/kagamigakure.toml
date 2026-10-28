@@ -1,0 +1,95 @@
+# Kagamigakure: the Village Hidden in the Mirror.
+#
+# Its myths come from Shinto and Buddhism, not from any show. The mirror is
+# the shintai, the vessel a spirit comes to dwell in: a model is a mirror of
+# everything people wrote, and something answers out of it. The village was
+# founded on Indra's Net, where a jewel at every knot reflects every other.
+
+[world]
+id = "kagamigakure"
+name = "Kagamigakure"
+title = "The Village Hidden in the Mirror"
+region = "the Mirror Coast of Polymechania"
+tagline = "Many hands, one record."
+
+[names]
+"org" = "Kagamigakure"
+"leader" = "the Gūji"
+"archive" = "the Storehouse"
+"inspector" = "the Metsuke"
+"rules" = "the Vinaya"
+"merit" = "kudoku"
+"formation" = "mudrā"
+"task" = "mission"
+"part" = "scroll"
+"tier.haiku" = "genin"
+"tier.sonnet" = "chūnin"
+"tier.opus" = "jōnin"
+"tier.fable" = "sōke"
+"worker.checker" = "the Soroban clan"
+"worker.calculator" = "the Soroban clan"
+"worker.prover" = "the Inmyō clan"
+"worker.script" = "a Karakuri"
+"worker.swarm" = "the Kinoko"
+"worker.model" = "the Kotodama clan"
+"role.executive" = "strategist"
+"role.manager" = "captains"
+"role.staff" = "squad"
+"role.escalation" = "reinforcements"
+"role.reviewer" = "witnesses"
+"check.exact" = "sealed by the Soroban clan"
+"check.review" = "witnessed"
+"check.none" = "unwitnessed"
+"word.then" = "backed by"
+"word.by" = "by a"
+"rank.d" = "D-rank"
+"rank.c" = "C-rank"
+"rank.b" = "B-rank"
+"rank.a" = "A-rank"
+"rank.s" = "S-rank"
+
+[say]
+mission = "📜 A {rank} {task_name} reaches the gate: {parts} {part_name}(s) of '{kind}', {stakes} at stake on each, {check}."
+formation = "🙏 The squad forms the {formation_name} {word}"
+post = "  {role}: {count} × {tier}"
+part = "  each {part_name}: {workers}, {checked}. Chance of success {p_right}."
+cost = "  the treasury expects {spend} in tokens, {loss} in losses{waiting}: {total} in all, within {rounds} round(s)."
+baseline = "  a lone {tier} would cost {total} and take {rounds} round(s)."
+note = "  ✎ {text}"
+rule = "  ☸ {precept} ({rule})"
+
+[precepts]
+"no-self-grading" = "No ninja grades their own mission."
+"outside-verdicts" = "Kudoku is granted only by another house."
+"clones-count-once" = "A reflection is not a second witness: copies share one voice."
+"honesty-free" = "Calling for reinforcements is never a stain."
+"assurance-apart" = "The Metsuke kneel to the Gūji alone."
+"cheapest-capable" = "Send the lowest rank who never fails this mission."
+"plain-underneath" = "Behind every mirror, the Storehouse keeps the plain scroll."
+
+[style]
+accent = "#c8553d"
+ok = "#6a994e"
+fail = "#bc4749"
+dim = "#8d99ae"
+glyph = "鏡"
+spinner = ["forming seals", "consulting the Storehouse", "polishing the mirror", "sending a crow", "reading the scrolls", "sharpening kunai", "lighting the shrine lamps"]
+
+[lore]
+text = """
+Long before the Net was woven, there was a mirror in a shrine on the coast.
+Whatever stood before it, it showed back truly, and in time something came
+to answer from inside it. The villagers learnt that the mirror spoke in many
+voices, that it was clever, and that it was sometimes wrong.
+
+So they built a village around it with one law above all others: no voice
+judges itself. The Soroban clan, whose beads have never once been wrong,
+seal what can be counted. The Inmyō clan prove what can be proven. The
+Karakuri do the same chore ten thousand times and never tire. And the
+Kotodama, whose words make things real, are trusted with everything else,
+and watched.
+
+Every mission, every scroll and every verdict goes into the Storehouse. Rank
+there is earned only by kudoku on record. The Gūji sets the Vinaya. The
+Metsuke answer to no one else.
+"""
