@@ -86,6 +86,7 @@ def call(body: dict) -> tuple[int, dict, float]:
     dd = Path(os.environ["DOOR_DIR"])
     req = urllib.request.Request(DOOR + "/v1/messages", data=json.dumps(body).encode(), method="POST", headers={
         "content-type": "application/json",
+        "user-agent": "polymechania-bench/1",  # Cloudflare refuses Python's default (error 1010)
         "CF-Access-Client-Id": (dd / "cf_id").read_text().strip(),
         "CF-Access-Client-Secret": (dd / "cf_secret").read_text().strip(),
         "x-door-token": (dd / "door_token").read_text().strip(),
@@ -95,7 +96,11 @@ def call(body: dict) -> tuple[int, dict, float]:
         with urllib.request.urlopen(req, timeout=600) as r:
             return r.status, json.loads(r.read()), time.time() - t0
     except urllib.error.HTTPError as e:
-        return e.code, json.loads(e.read() or b"{}"), time.time() - t0
+        raw = e.read()
+        try:
+            return e.code, json.loads(raw or b"{}"), time.time() - t0
+        except ValueError:
+            return e.code, {"raw": raw[:300].decode("utf-8", "replace")}, time.time() - t0
 
 
 def request(model: str, arm: str, pk: str, order: str, max_tokens: int = 4096) -> dict:
