@@ -128,7 +128,7 @@ Claims cannot do that.
 - **The clock can be poisoned:** a write stamped 2099 was accepted, after
   which every write by anyone failed `E_CLOCK`. One skewed or hostile
   engine can lock a whole world. Time must come from the gate, not
-  writers. New Gnomon issue needed.
+  writers. Gnomon #52.
 - **Handoff chains fork silently:** two runs that both follow one handoff
   are both accepted, and `resume` shows only the newer branch (#53).
 - **The gate is only on the MCP path:** `Memory.append(writer, ...)`
