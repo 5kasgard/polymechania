@@ -41,6 +41,40 @@ The guides are your world's first residents, with stat cards like anyone.
 draw and change; 2D first, possibly isometric, leaving room for 3D. The
 feel of a city builder: SimCity, Cities: Skylines.
 
+## Scene 2: the shape of a world
+
+**Each person has one world of their own**, the way an iOS game keeps your
+world on your device: private, yours, always there. "Single player" and
+"multiplayer" are game words; the plain labels might be **Your world** and
+**The commons** (the commons is Gnomon's word for the shared, public part).
+
+**A world holds as many regions as you like, in whatever layout.** Regions
+are places on the map: cities, districts, islands. Each is a workspace for
+a project, a team or a kind of work.
+
+**The map shows what can reach what.** Roads and bridges between regions
+are real connections: work and information can flow along them. A region
+with no road in or out is an island, and looks like one, because it is
+isolated. Some islands have a special way across (a ferry, a tunnel, a
+gate with a guard) when a task needs a controlled crossing. Some regions
+may talk to the outside world and the commons; others never can. It is up
+to you, and the map is honest about it.
+
+This means **the map is the security diagram.** Gnomon's compartments and
+the doors' permissions become geography: an experiment whose workers must
+not see the answers is an island; a region that may post to the commons
+has a road to the border. You see your permissions by looking at your
+world, instead of reading a settings page.
+
+**The commons is one shared world too**, the multiplayer one. It grows with
+its population, generated as people arrive, the way a Minecraft server's
+map extends as it is explored, rather than being a fixed size.
+
+**Each world has a capital**, and so does the commons. The guides live
+there, along with the town hall (the rules), the library, and the gates to
+the outside. You can walk up to a guide in the world, or talk to them from
+a panel, whichever suits the moment.
+
 ## Why a city builder fits
 
 City builders are simulations of flows, people and services, which is what
@@ -66,13 +100,25 @@ invents a number.
 - The menu, with these labels, makes sense to someone new without help.
 - Guides as characters teach faster than a document alone.
 - Isometric 2D pixel art is enough to reason with spatially; 3D can wait.
+- People understand what can reach what faster from the map (roads,
+  islands, gates) than from a permissions page, and make fewer mistakes.
+- Showing isolation as an island is enough for people to trust it, as
+  long as the island really is isolated underneath (the door enforces it;
+  the map only shows it).
 - The city mapping helps people see bottlenecks and risks sooner than a
   dashboard does.
 
 ## Open questions
 
-- Is a world one city, and a server a continent of cities?
-- What does a guide look like, and how do you talk to one: by walking up
-  to it, from a panel, or both?
+- ~~Is a world one city, and a server a continent of cities?~~ One world
+  per person, holding many regions; the commons is one shared world that
+  grows (scene 2).
+- ~~How do you talk to a guide?~~ Both: walk up, or a panel (scene 2).
+- What is in the capital, beyond the guides, the town hall, the library
+  and the gates?
+- How do you travel: walking, roads, fast travel between regions?
+- When your agent visits the commons, is it still a resident of your
+  world, a visitor there, or both?
+- What does a guide look like?
 - What resolution and palette for the pixel art?
 - What is in a brand-new world before you build anything?
