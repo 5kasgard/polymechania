@@ -77,7 +77,7 @@ def _world(args) -> World:
         return get("plain")
     wid = args.world or os.environ.get("MEKH_WORLD")
     if not wid and (CONFIG / "world").exists():
-        wid = (CONFIG / "world").read_text().strip()
+        wid = (CONFIG / "world").read_text(encoding="utf-8").strip()
     return get(wid)
 
 
@@ -181,13 +181,13 @@ def cmd_world(args) -> int:
             print(f"✗ {target} already exists", file=sys.stderr)
             return 1
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(scaffold(args.id))
+        target.write_text(scaffold(args.id), encoding="utf-8")
         print(f"✓ wrote {target}: fill in what you like, then `mekh world check {target}`")
         return 0
     if args.action == "use":
         get(args.id)  # refuses a world that cannot be found
         CONFIG.mkdir(parents=True, exist_ok=True)
-        (CONFIG / "world").write_text(args.id + "\n")
+        (CONFIG / "world").write_text(args.id + "\n", encoding="utf-8")
         print(f"✓ default world: {args.id}")
         return 0
     return 2

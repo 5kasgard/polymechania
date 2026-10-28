@@ -175,8 +175,8 @@ class Mekh(unittest.TestCase):
         code, out, _ = self.run_cli("world", "new", "harbour", "--out", str(path))
         self.assertEqual(code, 0)
         self.assertEqual(self.run_cli("world", "check", str(path))[0], 0)
-        text = path.read_text().replace('# "tier.haiku" = "Haiku"', '"tier.haiku" = "deckhand"')
-        path.write_text(text)
+        text = path.read_text(encoding="utf-8").replace('# "tier.haiku" = "Haiku"', '"tier.haiku" = "deckhand"')
+        path.write_text(text, encoding="utf-8")
         self.assertIn("harbour", available())
         code, out, _ = self.run_cli("plan", "fish", "--parts", "3", "--check", "exact", "--stakes", "0.01",
                                     "--world", "harbour")
