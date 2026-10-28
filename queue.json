@@ -300,11 +300,11 @@
    "id": "q23",
    "title": "Choose a licence",
    "kind": "decision",
-   "status": "waiting-owner",
+   "status": "parked",
    "needs": "owner",
    "cost": 0,
    "value": "low",
-   "next": "Owner says one word (split, apache, fsl or agpl-dual); recommendation 'split' in docs/licensing.md (not legal advice)",
+   "next": "Parked by the owner 2026-10-29; options and a recommendation stay in docs/licensing.md for when it comes back",
    "refs": [
     "docs/licensing.md"
    ]

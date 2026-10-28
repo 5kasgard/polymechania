@@ -31,14 +31,13 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
 
-## Needs the owner (5)
+## Needs the owner (4)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q22 | Legal check of the business model | high | owner | 0 | Before anyone pays: a lawyer on reselling and the commercial terms |
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Owner reviews and merges or closes |
 | q08 | Delete the merged branch door-effort | low | owner | 0 | Owner deletes it on GitHub (sessions cannot) |
-| q23 | Choose a licence | low | owner | 0 | Owner says one word (split, apache, fsl or agpl-dual); recommendation 'split' in docs/licensing.md (not legal advice) |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 
 ## Scheduled (2)
@@ -48,9 +47,10 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited |
 | q01 | T12c: Llama judge and audit | low | free | 0 | Runs itself at 10:10 Brisbane (scheduled task), after the Workers AI free allowance resets; fills the pending cells in RESULTS_C.md |
 
-## Parked (2)
+## Parked (3)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q14 | T1: run shapes on long multi-step work | medium | pro | 0 | Needs a set of longer tasks with hidden graders first; T12b-d already showed the start packet matters more than run length (after q15) |
 | q28 | T8, T9, T10 (resume adequacy, Free latency, cost per resident-month) | medium | free | 0 | Need a running world; T8 can use push_scale data meanwhile (after q17) |
+| q23 | Choose a licence | low | owner | 0 | Parked by the owner 2026-10-29; options and a recommendation stay in docs/licensing.md for when it comes back |
