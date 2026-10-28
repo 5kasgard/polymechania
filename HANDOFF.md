@@ -101,7 +101,10 @@ view like a city builder, plain underneath with any theme on top.
   a new session issues fresh ones through the Cloudflare connector (a new
   Access service token on the `polymechania-door` policy, and a new
   `DOOR_TOKEN` secret uploaded with `keep_bindings` so the owner's key is
-  kept), then revokes the old service token. Delete the Worker, Access app and token
+  kept), then revokes the old service token. (2026-10-28 evening: one
+  session rotated the existing service token's secret and set a new
+  `DOOR_TOKEN`; both live only in that session's scratch folder, so the
+  next session issues its own again.) Delete the Worker, Access app and token
   if the door is abandoned.
 - **Gnomon PR #47** (teams of models move out) is open, awaiting the owner.
 - **Gnomon issues #48-#51** (side channels, no revocation, plain-text log
