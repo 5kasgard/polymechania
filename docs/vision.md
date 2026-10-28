@@ -21,6 +21,11 @@ Polymechania is the canvas.
 - **Theme:** how a world looks, sounds and is named (what the code
   currently calls a "world" file; to be renamed).
 - **Pack:** themes, art and mechanics people share.
+- **The capital of the commons:** the operators' centre, where the commons
+  is run and the rules are kept. Most of it is closed to visitors, as an
+  operator's tools would be, but what concerns them is open: the guides,
+  the rules, the library, help. Its name is open; "Polymechania", the city
+  the world is named after, is one candidate.
 
 ## How it can run (decided after review 1)
 
