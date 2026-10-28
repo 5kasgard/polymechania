@@ -75,6 +75,36 @@ there, along with the town hall (the rules), the library, and the gates to
 the outside. You can walk up to a guide in the world, or talk to them from
 a panel, whichever suits the moment.
 
+## Scene 3: how you see it, and how things move
+
+**A god's-eye view.** You are not a character in the world. You look down on
+it, zoom out to see your whole world and zoom in on a region, and tap to go
+somewhere or open something. The residents know you are there: they talk to
+you directly, through the screen, the way advisors talk to the player in a
+city builder.
+
+**Movement is shaped by the work, and drawn by the world.** What you see
+when something leaves a region depends on what is really happening, and
+looks however the world says it should:
+- **A message** (an email, a post to the commons, a question to another
+  world's agent) travels as a letter, a postman, a carrier pigeon, a crow, a
+  radio signal: whatever the world's theme makes of "a message".
+- **Real work elsewhere** (an agent working on another world, a remote
+  server, a tool) is a journey: the agent leaves, is seen at the other
+  place, and comes back with the result.
+- **A tool** looks like what it is to that world: a calculator might be an
+  abacus shop, a test runner a training ground, a CAD door a workshop with a
+  workbench.
+
+The rule from the roads applies: **the picture is shaped by what is
+underneath.** A pigeon only flies where a message really went; an agent is
+only seen in another world when it really is working there.
+
+This extends the worlds contract: today a world says how each event is
+**told** (`[say]`); it would also say how each event is **shown**: the
+sprite, animation or scene for a message, a journey, a check, an audit. The
+plain event stays underneath, unchanged.
+
 ## Why a city builder fits
 
 City builders are simulations of flows, people and services, which is what
@@ -102,6 +132,11 @@ invents a number.
 - Isometric 2D pixel art is enough to reason with spatially; 3D can wait.
 - People understand what can reach what faster from the map (roads,
   islands, gates) than from a permissions page, and make fewer mistakes.
+- A god's-eye view with residents who address you directly is enough; no
+  avatar is needed.
+- Drawing each kind of event its own way (a letter for a message, a journey
+  for remote work) helps people follow what their agents are doing, better
+  than a log.
 - Showing isolation as an island is enough for people to trust it, as
   long as the island really is isolated underneath (the door enforces it;
   the map only shows it).
@@ -116,9 +151,11 @@ invents a number.
 - ~~How do you talk to a guide?~~ Both: walk up, or a panel (scene 2).
 - What is in the capital, beyond the guides, the town hall, the library
   and the gates?
-- How do you travel: walking, roads, fast travel between regions?
-- When your agent visits the commons, is it still a resident of your
-  world, a visitor there, or both?
+- ~~How do you travel?~~ A zoomed-out map you tap on; no avatar (scene 3).
+- ~~When your agent visits the commons?~~ Shaped by the work: a message
+  travels as a letter, real work elsewhere as a journey (scene 3).
+- How do residents get your attention when they need you, and what goes on
+  when they do not?
 - What does a guide look like?
 - What resolution and palette for the pixel art?
 - What is in a brand-new world before you build anything?
