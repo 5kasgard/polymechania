@@ -61,6 +61,17 @@ view like a city builder, plain underneath with any theme on top.
 - Vision reviewed independently: `docs/vision-review-1.md` (contradictions,
   first-week gaps, evidence, cheapest tests).
 
+## Budget (owner, 2026-10-29)
+
+About **$4.25 of API credit** is left (after about $0.72 spent on T2, T2b,
+T2c and T11). Spend it only on what only the API can measure (Claude's
+caching, Claude's own pass rates). Use first, in this order: published
+results; Cloudflare Workers AI through the door's `/ai` route (free
+allowance 10,000 neurons a day; Gemma 4 26B about 9k neurons per million
+input tokens, 27k per million output); sub-agents on the owner's Pro plan
+(usage, not dollars). Hugging Face is a free account: papers and datasets,
+not inference. Every pre-registration states its API cost bound.
+
 ## Open, in rough order
 
 1. **Architecture** (`docs/architecture.md`, revision 2, after
