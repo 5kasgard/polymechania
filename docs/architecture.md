@@ -80,9 +80,14 @@ frame plus the handoff, nothing else as instruction.
 
 **Why:** in T12b, fresh runs whose packet repeated the Lead's conflicting
 requests kept 51% of the self's rules; fresh runs whose packet did not
-kept 86%; one long session kept 65%. **To test:** T12c (a Claude
-resident), then a version where the owner *does* make one request
-standing, which should then be followed.
+kept 86%; one long session kept 65%. **Measured since:** T12c (Claude
+Haiku resident) gave the same pattern (92%, 71%, 58%; +33 points); T12d
+found that *labelling* a carried request ("the Lead's, does not change
+your page") helped only by a direction (+9), while keeping it out of the
+packet kept 89% against 68%, and an "owner's standing instruction" label
+was followed more (+15) but still only about half the time. So the rule
+belongs in the gate (Gnomon #55), and a real change to a resident belongs
+in its self, not in a carried note.
 
 **Evidence (before T12b).** In long chats, models drift from their given instructions
 and persona noticeably within eight rounds; attention to the system prompt

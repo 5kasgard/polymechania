@@ -124,7 +124,32 @@ def self_c() -> None:
     print(f"  T12c total ${sum(r['usd'] for r in rows):.4f}")
 
 
-SETS = {"boot": boot, "self": self_b, "self_c": self_c}
+def self_d() -> None:
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "self" / "t12b.py")
+    t = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(t)
+    rows = json.loads((ROOT / "bench" / "self" / "results_d.json").read_text())
+    rules = ("format", "stdlib", "no_print", "voice")
+    for r in rows:
+        tag = f"T12d {r['attempt']} {r['seq']} {r['arm']} {r['i']}"
+        c = t.checks(r["reply"])
+        for k in rules:
+            check(f"{tag} {k}", r[k], c[k])
+        p = ROOT / "bench" / "self" / "solutions_d" / f"{r['attempt']}-{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
+        check(f"{tag} grade", "PASS" if r["grade"] == "PASS" else "FAIL", grade(r["set"], r["task"], p))
+        check(f"{tag} usd", round(r["usd"], 6), round(usd("haiku", {
+            "input": r["usage"].get("input_tokens", 0), "output": r["usage"].get("output_tokens", 0),
+            "cache_read": r["usage"].get("cache_read_input_tokens", 0),
+            "cache_write": r["usage"].get("cache_creation_input_tokens", 0)}), 6), 2e-6)
+    for arm in ("R", "R+", "L", "O"):
+        xs = [r for r in rows if r["arm"] == arm and r["i"] >= 3]
+        print(f"  T12d {arm}: kept 3-8 {sum(r[k] for r in xs for k in rules)}/{4 * len(xs)}")
+    bug = json.loads((ROOT / "bench" / "self" / "results_d_attempt2_bug.json").read_text())
+    print(f"  T12d spend: kept ${sum(r['usd'] for r in rows):.4f} + set-aside attempt ${sum(r['usd'] for r in bug):.4f}")
+
+
+SETS = {"boot": boot, "self": self_b, "self_c": self_c, "self_d": self_d}
 
 if __name__ == "__main__":
     for name in sys.argv[1:] or SETS:

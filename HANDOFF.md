@@ -64,7 +64,7 @@ view like a city builder, plain underneath with any theme on top.
 ## Budget (owner, 2026-10-29)
 
 About **$4.25 of API credit** is left (after about $0.72 spent on T2, T2b,
-T2c and T11; nothing spent on the API since). Workers AI used about 7,700
+T2c and T11), then $0.03 on T12c and $0.08 on T12d: about **$4.14 left**. Workers AI used about 7,700
 neurons of the 10,000 free on 2026-10-28 UTC. Spend it only on what only the API can measure (Claude's
 caching, Claude's own pass rates). Use first, in this order: published
 results; Cloudflare Workers AI through the door's `/ai` route (free
@@ -79,7 +79,7 @@ Rules for every session: `CLAUDE.md` (routing, unbiased testing, budget).
 Owner's saved skills (any chat): route-and-test, taste-and-adjust,
 session-handoff, careful-live-changes.
 
-**Done 2026-10-28/29 (all audited, records in `bench/`):** T12c (`bench/self/RESULTS_C.md`: T12b holds with a Claude Haiku resident, +33 points, $0.03; Llama judge scheduled after the free reset); T2 thin boot
+**Done 2026-10-28/29 (all audited, records in `bench/`):** T12d (`bench/self/RESULTS_D.md`: labels barely protect, +9; keeping requests out of the packet does, 89% vs 68%; owner label followed more, +15; $0.08); a task-loader bug fixed (second call returned hard tasks as easy; earlier results checked clean); Gnomon #55 (start-packet authority) filed; T12c (`bench/self/RESULTS_C.md`: T12b holds with a Claude Haiku resident, +33 points, $0.03; Llama judge scheduled after the free reset); T2 thin boot
 (1,486 tokens; caching holds; cached Haiku-then-Sonnet cascade 24/24 at a
 quarter of Sonnet's price); T2b/T2c (set thinking explicitly; off for Haiku
 on this work); T11 runaway caps hold; T12b (`bench/self/RESULTS_B.md`: a
