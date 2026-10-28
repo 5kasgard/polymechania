@@ -70,6 +70,10 @@ view like a city builder, plain underneath with any theme on top.
    log thinking tokens per call; rerun Haiku's hard tasks with thinking
    off and with a capped budget; recover the pilot's real output tokens.
    Then T8, T9, T12, and T1 (shapes against each other, longer tasks).
+   **T2b done** (audited): thinking disabled gave Haiku 12/12 hard tasks
+   with no empty answers at half the cost; set thinking explicitly in
+   every run. Capped thinking needs the door to allow
+   `output_config.effort` (Haiku 5.5 refuses a fixed budget).
    Owner suggestion: the Batch API (half price, up to 24 h) for the free
    clock's non-urgent work; the door passes only `/v1/messages` today. Owner ideas folded in: a standing self per
    resident, a free clock (Cloudflare cron) apart from the costed worker,
