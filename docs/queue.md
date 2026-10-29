@@ -2,13 +2,13 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-22 open items; API cost if all ran: about $1.05.
+23 open items; API cost if all ran: about $1.05.
 
-## Can run now (15)
+## Can run now (16)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 and #54 (#60); #51 (#61). #48 in progress: reproduced on main; pre-registered test with amendment 1 from a Haiku review, which found four more channels (write returns, leases, query 'through', clock), all confirmed (gnomon branch issue-48, bench/issue48). Sonnet building nine arms; then non-Claude review. #50 waits on the owner (q33) |
+| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 and #54 (#60); #51 (#61). #48: pre-registered test done (gnomon bench/issue48; review found 4 more channels). Chosen and rerun independently: S1, I2b, O1, V1, T1 with G, on branch arm48-combo2 (protocol 7; 0 test failures; old logs replay identically). Event-count gaps stay a documented limit; leases per compartment go to the owner (q35). Next: non-Claude review (owner pastes bench/issue48/review-prompt.md into Gemini), then a PR. #50 waits on the owner (q33) |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First owner verdict 2026-10-29: the questions asked nothing important; it looks rough, which is fine at alpha, and what matters now is what is under the hood. So: demos ask only questions whose answer would change a decision; visual polish waits until the plain core is right |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
@@ -19,6 +19,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q20 | Vision cheap tests: card sort, menu picture, notification volume | medium | people | 0 | Notification volume can run now from logs; card sort and menu need 5 people |
 | q32 | Record refused crossings in Gnomon (the watchtower) | medium | free | 0 | Gnomon refuses bad writes but keeps no record of them, so a live border cannot show alarms; propose a bounded refusal log (outside the hash chain, or as owner-only events) as a Gnomon issue |
 | q34 | Speed: measure, then cache the hot spots | medium | free | 0 | Owner's idea 2026-10-29: a cache-minded design, software and hardware (CPU caches, page cache, GPU and other accelerators). Rule: measure the first real end-to-end run (time, cost, cache misses with perf if available) and cache only the top one or two hot spots. Known candidates: Gnomon's append re-reads the whole log (store.rs line 495); recall re-reads all visible memory per query, over pointer-heavy maps (a contiguous layout or a GPU only if measured); prompt caching already proven (T2) |
+| q35 | Gnomon #48 channel L: leases on a frame name cross compartments | medium | owner | 0 | A hidden live lease on a frame name makes another compartment's lease on that name fail (E_LEASED). L1 closed only the existence half. Options: scope leases to a compartment (protocol change), or refuse every lease on such a frame (leaks one bit). Owner decides; see gnomon bench/issue48/RESULTS.md |
 | q12 | Cascade with visible checks only | medium | api | 0.05 | T2's cascade escalated on hidden graders; rerun escalating only on what a run can see (spec examples, empty or cut-off answers) |
 | q19 | Batch API through the door (half price, non-urgent work) | low | free | 0 | Allow /v1/messages/batches with the same checks per request; review before deploy |
 | q26 | Rename 'world' files to 'themes' in the code | low | free | 0 | worlds.py, cli and tests; keep old names working once |

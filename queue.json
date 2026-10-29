@@ -74,7 +74,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 and #54 (#60); #51 (#61). #48 in progress: reproduced on main; pre-registered test with amendment 1 from a Haiku review, which found four more channels (write returns, leases, query 'through', clock), all confirmed (gnomon branch issue-48, bench/issue48). Sonnet building nine arms; then non-Claude review. #50 waits on the owner (q33)",
+   "next": "Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 and #54 (#60); #51 (#61). #48: pre-registered test done (gnomon bench/issue48; review found 4 more channels). Chosen and rerun independently: S1, I2b, O1, V1, T1 with G, on branch arm48-combo2 (protocol 7; 0 test failures; old logs replay identically). Event-count gaps stay a documented limit; leases per compartment go to the owner (q35). Next: non-Claude review (owner pastes bench/issue48/review-prompt.md into Gemini), then a PR. #50 waits on the owner (q33)",
    "refs": [
     "gnomon#52",
     "gnomon#53",
@@ -457,6 +457,19 @@
    "value": "medium",
    "next": "Owner's idea 2026-10-29: a cache-minded design, software and hardware (CPU caches, page cache, GPU and other accelerators). Rule: measure the first real end-to-end run (time, cost, cache misses with perf if available) and cache only the top one or two hot spots. Known candidates: Gnomon's append re-reads the whole log (store.rs line 495); recall re-reads all visible memory per query, over pointer-heavy maps (a contiguous layout or a GPU only if measured); prompt caching already proven (T2)",
    "refs": []
+  },
+  {
+   "id": "q35",
+   "title": "Gnomon #48 channel L: leases on a frame name cross compartments",
+   "kind": "decision",
+   "status": "open",
+   "needs": "owner",
+   "cost": 0,
+   "value": "medium",
+   "next": "A hidden live lease on a frame name makes another compartment's lease on that name fail (E_LEASED). L1 closed only the existence half. Options: scope leases to a compartment (protocol change), or refuse every lease on such a frame (leaks one bit). Owner decides; see gnomon bench/issue48/RESULTS.md",
+   "refs": [
+    "gnomon#48"
+   ]
   }
  ]
 }

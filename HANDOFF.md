@@ -46,7 +46,9 @@ taken; do not act on them unless the owner raises them again.
 
 | Item | State | Next |
 |---|---|---|
-| Gnomon main | #47, #57 (protocol 4), #60 (revocation, leases; protocol 6) and #61 merged 2026-10-29. #61 closes #51: an auto-mode session's writer holds only the compartment it is recorded in, and the MCP server takes `--require-attach`; chosen by a pre-registered test of four fixes on eight leak roads (gnomon `bench/issue51/`, branch `auto-one-compartment`; reviewed by Haiku and Gemini) | done | next blocker: #48 (four side channels in the core) |
+| Gnomon main | #47, #57 (protocol 4), #60 (revocation, leases; protocol 6) and #61 merged 2026-10-29. #61 closes #51: an auto-mode session's writer holds only the compartment it is recorded in, and the MCP server takes `--require-attach`; chosen by a pre-registered test of four fixes on eight leak roads (gnomon `bench/issue51/`, branch `auto-one-compartment`; reviewed by Haiku and Gemini) | done | |
+| Gnomon #48 (side channels) | pre-registered test on branch `issue-48` (`bench/issue48/`): a Haiku review found four more channels; nine arms, a combination and two follow-ups (I2b, G) built by Sonnet, every number rerun by Opus. Chosen: S1, I2b, O1, V1, T1 with G on `arm48-combo2` (protocol 7; 0 failures; old logs replay identically). Event-count gaps stay a documented limit | owner pastes `bench/issue48/review-prompt.md` into Gemini; then a PR from `arm48-combo2` |
+| Gnomon #48 leases (q35) | a hidden lease on a frame name blocks another compartment's lease on it | owner: scope leases per compartment (protocol change) or accept one bit |
 | Gnomon #50 (file access) | options in `docs/gnomon-50-options.md`; hash-chain tokens on existing SHA-256 recommended | owner decides, after the goal |
 | Gnomon append re-reads the whole log (`store.rs` line 495) | found, not measured | measure when it matters |
 | T1 (run shapes on long tasks) | tasks `bench/long`, runner `bench/long/run.py` (Sonnet-built), draft `prereg/t1-long.md` | owner sees the draft; paused |
@@ -67,6 +69,7 @@ acting as a rolling 24 h; found used up 29 Oct about 10:20 UTC (not by this work
   ones through the Cloudflare connector (`careful-live-changes` skill).
 - **Gnomon branches:** merged and deletable by the owner (sessions cannot delete remote branches):
   `start-packet-gate`, `revoke`, `leases`, `gate-time-and-forks`, `issue-51-one-compartment`. Kept as the
-  #51 evidence: `auto-one-compartment` (bench) and `arm-A`, `arm-B`, `arm-C`, `arm-C2`, `arm-D`, `arm-D1`, `arm-D2`.
+  #51 evidence: `auto-one-compartment` (bench) and `arm-A`, `arm-B`, `arm-C`, `arm-C2`, `arm-D`, `arm-D1`, `arm-D2`. #48: `issue-48` (bench), `arm48-*` (nine arms, `arm48-combo`, `arm48-combo2`); deletable once the PR merges, except `issue-48`.
+- Protocol numbers: #48's combination takes 7; #50's options doc also planned 7, so whichever lands second takes 8.
 - Before writing, check `git log` and `git status` for changes you did not make (a duplicate
   session once worked here at the same time).
