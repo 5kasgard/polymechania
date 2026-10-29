@@ -2,7 +2,7 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-25 open items; API cost if all ran: about $1.05.
+24 open items; API cost if all ran: about $1.05.
 
 ## Can run now (15)
 
@@ -16,7 +16,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q30 | The border: security as a world's edge | high | free | 0 | Border check built (bench/border/check.py): 4 of 14 hold on main, 7 with PR #56. Next: independent review of the probes (free, when neurons return); show the score on the demo |
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
-| q15 | Longer multi-step tasks with hidden graders | medium | free | 0 | Build 6-10 tasks of several dependent steps each, graded by tests |
+| q14 | T1: run shapes on long multi-step work | medium | pro | 0 | Tasks exist (bench/long). Next: pre-register T1 (persistent vs single-round vs fresh runs with handoffs) with EvoCode-Bench's 22-40 point gap as the prior; free models first (after q15) |
 | q20 | Vision cheap tests: card sort, menu picture, notification volume | medium | people | 0 | Notification volume can run now from logs; card sort and menu need 5 people |
 | q32 | Record refused crossings in Gnomon (the watchtower) | medium | free | 0 | Gnomon refuses bad writes but keeps no record of them, so a live border cannot show alarms; propose a bounded refusal log (outside the hash chain, or as owner-only events) as a Gnomon issue |
 | q12 | Cascade with visible checks only | medium | api | 0.05 | T2's cascade escalated on hidden graders; rerun escalating only on what a run can see (spec examples, empty or cut-off answers) |
@@ -46,10 +46,9 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited |
 
-## Parked (3)
+## Parked (2)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q14 | T1: run shapes on long multi-step work | medium | pro | 0 | Needs a set of longer tasks with hidden graders first; T12b-d already showed the start packet matters more than run length (after q15) |
 | q28 | T8, T9, T10 (resume adequacy, Free latency, cost per resident-month) | medium | free | 0 | Need a running world; T8 can use push_scale data meanwhile (after q17) |
 | q23 | Choose a licence | low | owner | 0 | Parked by the owner 2026-10-29; options and a recommendation stay in docs/licensing.md for when it comes back |

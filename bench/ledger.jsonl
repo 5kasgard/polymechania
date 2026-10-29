@@ -25,3 +25,4 @@
 {"date":"2026-10-29","part":"Border check (14 exact probes, main and PR #56)","worker":"script","layer":"script","api_usd":0.0,"verdict":"4/14 hold on main, 7/14 with PR #56"}
 {"date":"2026-10-29","part":"Neuron guard and allowance probe","worker":"script + Cloudflare GraphQL analytics","layer":"script","api_usd":0.0,"verdict":"refusal at 2,876 UTC-day neurons fits a rolling 24 h window, not the documented 00:00 UTC reset"}
 {"date":"2026-10-29","part":"q16 cost and speed on cards; T2 cards filled","worker":"script","layer":"script","api_usd":0.0,"verdict":"Haiku thinking-off cheapest per correct hard task"}
+{"date":"2026-10-29","part":"q15 long tasks (6 x 5 rounds, 67 tests) and exact grader validation","worker":"Opus (design and writing) + script (validation)","layer":"strong model + script","api_usd":0.0,"verdict":"validator caught 4 of my own mistakes; spec review by free judges pending"}
