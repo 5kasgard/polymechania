@@ -56,11 +56,11 @@
    "id": "q05",
    "title": "Start-packet authority as a Gnomon gate rule",
    "kind": "build",
-   "status": "waiting-owner",
-   "needs": "owner",
+   "status": "in-progress",
+   "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Design written (docs/start-packet-gate.md): reserved frames self/, standing/, run/ gated by writer, packet() builds the start packet; owner-only standing first. Owner decides whether to build (after #56)",
+   "next": "Owner said build it (2026-10-29), owner-only standing first; building on a Gnomon branch from main (protocol version 4)",
    "refs": [
     "docs/start-packet-gate.md"
    ]
@@ -92,7 +92,7 @@
    "needs": "owner",
    "cost": 0,
    "value": "medium",
-   "next": "Owner reviews and merges or closes",
+   "next": "Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides",
    "refs": [
     "gnomon#47"
    ]
@@ -101,11 +101,11 @@
    "id": "q08",
    "title": "Delete the merged branch door-effort",
    "kind": "infra",
-   "status": "waiting-owner",
+   "status": "done",
    "needs": "owner",
    "cost": 0,
    "value": "low",
-   "next": "Owner deletes it on GitHub (sessions cannot)",
+   "next": "Done by the owner 2026-10-29",
    "refs": []
   },
   {
@@ -143,7 +143,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "First demo published 2026-10-29 (the border: bench/demo/border.html, built from a real log by bench/demo/world.py; artifact claude.ai/artifact/CJiMroxXEK2QHunS7C2vkZ). Next: owner tries it; read feedback/ and the map-vs-table check answers as verdicts; then the next demo",
+   "next": "First owner verdict 2026-10-29: the questions asked nothing important; it looks rough, which is fine at alpha, and what matters now is what is under the hood. So: demos ask only questions whose answer would change a decision; visual polish waits until the plain core is right",
    "refs": [
     "docs/vision.md"
    ]
@@ -410,11 +410,11 @@
    "id": "q31",
    "title": "Merge Gnomon PR #56 (#52 future writes, #53 forks)",
    "kind": "decision",
-   "status": "waiting-owner",
+   "status": "done",
    "needs": "owner",
    "cost": 0,
    "value": "high",
-   "next": "Owner reviews and merges; CI and tests in the PR",
+   "next": "Done by the owner 2026-10-29",
    "refs": [
     "gnomon#56"
    ]

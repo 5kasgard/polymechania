@@ -2,14 +2,15 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-24 open items; API cost if all ran: about $1.05.
+22 open items; API cost if all ran: about $1.05.
 
-## Can run now (14)
+## Can run now (15)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
+| q05 | Start-packet authority as a Gnomon gate rule | high | free | 0 | Owner said build it (2026-10-29), owner-only standing first; building on a Gnomon branch from main (protocol version 4) |
 | q06 | Gnomon blockers before anything runs unattended | high | free | 0 | #52 and #53 fixed in Gnomon PR #56 (awaiting the owner's merge; tests and reviews in the PR). Next in order: #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51 |
-| q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First demo published 2026-10-29 (the border: bench/demo/border.html, built from a real log by bench/demo/world.py; artifact claude.ai/artifact/CJiMroxXEK2QHunS7C2vkZ). Next: owner tries it; read feedback/ and the map-vs-table check answers as verdicts; then the next demo |
+| q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First owner verdict 2026-10-29: the questions asked nothing important; it looks rough, which is fine at alpha, and what matters now is what is under the hood. So: demos ask only questions whose answer would change a decision; visual polish waits until the plain core is right |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
 | q30 | The border: security as a world's edge | high | free | 0 | Border check built (bench/border/check.py): 4 of 14 hold on main, 7 with PR #56. Next: independent review of the probes (free, when neurons return); show the score on the demo |
@@ -29,15 +30,12 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
 
-## Needs the owner (6)
+## Needs the owner (3)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q05 | Start-packet authority as a Gnomon gate rule | high | owner | 0 | Design written (docs/start-packet-gate.md): reserved frames self/, standing/, run/ gated by writer, packet() builds the start packet; owner-only standing first. Owner decides whether to build (after #56) |
 | q22 | Legal check of the business model | high | owner | 0 | Before anyone pays: a lawyer on reselling and the commercial terms |
-| q31 | Merge Gnomon PR #56 (#52 future writes, #53 forks) | high | owner | 0 | Owner reviews and merges; CI and tests in the PR |
-| q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Owner reviews and merges or closes |
-| q08 | Delete the merged branch door-effort | low | owner | 0 | Owner deletes it on GitHub (sessions cannot) |
+| q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 
 ## Scheduled (1)
