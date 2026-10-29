@@ -56,14 +56,13 @@
    "id": "q05",
    "title": "Start-packet authority as a Gnomon gate rule",
    "kind": "build",
-   "status": "open",
-   "needs": "free",
+   "status": "waiting-owner",
+   "needs": "owner",
    "cost": 0,
    "value": "high",
-   "next": "Design the standing/<resident> frame and resume change in Gnomon; owner decides whether to build",
+   "next": "Design written (docs/start-packet-gate.md): reserved frames self/, standing/, run/ gated by writer, packet() builds the start packet; owner-only standing first. Owner decides whether to build (after #56)",
    "refs": [
-    "gnomon#55",
-    "bench/self/RESULTS_D.md"
+    "docs/start-packet-gate.md"
    ]
   },
   {

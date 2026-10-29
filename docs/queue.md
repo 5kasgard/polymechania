@@ -4,11 +4,10 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 
 24 open items; API cost if all ran: about $1.05.
 
-## Can run now (15)
+## Can run now (14)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q05 | Start-packet authority as a Gnomon gate rule | high | free | 0 | Design the standing/<resident> frame and resume change in Gnomon; owner decides whether to build |
 | q06 | Gnomon blockers before anything runs unattended | high | free | 0 | #52 and #53 fixed in Gnomon PR #56 (awaiting the owner's merge; tests and reviews in the PR). Next in order: #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51 |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First demo published 2026-10-29 (the border: bench/demo/border.html, built from a real log by bench/demo/world.py; artifact claude.ai/artifact/CJiMroxXEK2QHunS7C2vkZ). Next: owner tries it; read feedback/ and the map-vs-table check answers as verdicts; then the next demo |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
@@ -30,10 +29,11 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
 
-## Needs the owner (5)
+## Needs the owner (6)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
+| q05 | Start-packet authority as a Gnomon gate rule | high | owner | 0 | Design written (docs/start-packet-gate.md): reserved frames self/, standing/, run/ gated by writer, packet() builds the start packet; owner-only standing first. Owner decides whether to build (after #56) |
 | q22 | Legal check of the business model | high | owner | 0 | Before anyone pays: a lawyer on reselling and the commercial terms |
 | q31 | Merge Gnomon PR #56 (#52 future writes, #53 forks) | high | owner | 0 | Owner reviews and merges; CI and tests in the PR |
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Owner reviews and merges or closes |

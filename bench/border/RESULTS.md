@@ -13,7 +13,7 @@ Llama reviews were refused by today's Workers AI allowance; queued for when it r
 | B2 | 1 | the owner can withdraw a writer's compartment (revocation) | breached | breached | gnomon#49 |
 | B3 | 1 | a grant ends at its deadline (leases) | no mechanism yet | no mechanism yet | gnomon#54 |
 | B4 | 1 | only the process holding W's key can append as W | breached | breached | gnomon#50 |
-| B5 | 2 | another writer's text never reaches a resident's next start as its latest handoff unmarked | breached | breached | gnomon#55 |
+| B5 | 2 | another writer's request does not reach a resident's next start packet (a label is not enough: T12d) | breached | breached | gnomon#55 |
 | B6 | 3 | a far-future write is refused | breached | holds | gnomon#52 |
 | B7 | 3 | after any one writer's write, everyone else can still write | breached | holds | gnomon#52 |
 | B8 | 3 | two runs cannot both follow the same handoff (no silent fork) | breached | holds | gnomon#53 |
@@ -25,6 +25,11 @@ Llama reviews were refused by today's Workers AI allowance; queued for when it r
 | B13 | 7 | an outside agent reaches a world only through a gate the owner opened | no mechanism yet | no mechanism yet |  |
 
 ## Notes
+
+- B5 was first worded "unmarked" and checked the Python result only; the text a model reads
+  (`render_resume`) does label everything as data. T12d measured that such a label barely
+  protects (+9 points, under the 15-point rule), so B5 now checks whether the request reaches
+  the rendered packet at all. Corrected 2026-10-29 before any review.
 
 - B10 (recall scores) holds on both, as the earlier map probe P22 found; the #48 leak
   is a different side channel, probed by B10b (sequence gaps), which is breached.
