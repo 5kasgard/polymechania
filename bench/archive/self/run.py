@@ -1,6 +1,6 @@
-"""T12: does a resident stay itself across runs? (prereg/t12-self.md)
+"""T12: does a resident stay itself across runs? (bench/archive/prereg/t12-self.md)
 
-    DOOR_DIR=... python bench/self/run.py [run|judge|report]
+    DOOR_DIR=... python bench/archive/self/run.py [run|judge|report]
 
 Zero API spend: the resident is Gemma 4 26B and the first judge Llama 3.3
 70B, both on Cloudflare Workers AI's free allowance through the door's
@@ -18,7 +18,7 @@ import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-BOOT = HERE.parent / "boot"
+BOOT = HERE.parent.parent / "boot"
 sys.path.insert(0, str(BOOT))
 import run as t2  # noqa: E402  (door call, graders, task list)
 
@@ -46,7 +46,7 @@ def sequences() -> dict:
 
 def ai(messages: list, model: str = RESIDENT, max_tokens: int = 1500) -> tuple[str, dict]:
     import os, urllib.error, urllib.request
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
     import neurons
     dd = Path(os.environ["DOOR_DIR"])
     req = urllib.request.Request(t2.DOOR + "/ai", method="POST",

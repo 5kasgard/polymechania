@@ -1,6 +1,6 @@
 # T12b results: does a resident stay itself across runs?
 
-Run 2026-10-29 under `prereg/t12b-self.md` (committed before any T12b
+Run 2026-10-29 under `bench/archive/prereg/t12b-self.md` (committed before any T12b
 run, after reviews by Haiku and Llama). Raw data: `results_b.json`; code:
 `solutions_b/`; blind judging: `blind/` (batch, `llama.json`,
 `haiku.json`). Numbers and grades recomputed by `python bench/verify.py

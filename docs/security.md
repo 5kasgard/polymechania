@@ -58,7 +58,7 @@ is not a picture of security; it *is* the security, drawn:
 
 - People judge what can reach their world faster and more correctly from
   the drawn border than from a permissions table (paper test, 5-8 people;
-  bench/map already showed the drawing must follow real grants).
+  bench/archive/map already showed the drawing must follow real grants).
 - Showing refused crossings (alarms) helps owners notice probing without
   raising notification fatigue (count from logs: what share needed action).
 - Every threat above has an automatic probe that fails today where a

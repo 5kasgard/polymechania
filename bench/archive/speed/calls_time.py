@@ -1,7 +1,7 @@
 """S1, J2: 24 short Gemma calls through the door, one at a time and 8 at once
-(prereg/s1-speed.md). Free (Workers AI allowance).
+(bench/archive/prereg/s1-speed.md). Free (Workers AI allowance).
 
-    DOOR_DIR=... python bench/speed/calls_time.py
+    DOOR_DIR=... python bench/archive/speed/calls_time.py
 """
 
 from __future__ import annotations
@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent
+ROOT = HERE.parent.parent.parent
 sys.path.insert(0, str(ROOT / "bench" / "boot"))
 import run as t2  # noqa: E402
 

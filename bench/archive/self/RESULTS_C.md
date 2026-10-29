@@ -2,7 +2,7 @@
 
 Audited: numbers by `bench/verify.py self_c`; wording by Gemma 4 26B (`AUDIT_C.md`), applied (gap stated exactly as 12.5).
 
-Run 2026-10-29 under `prereg/t12c-claude.md` (with amendments 1 and 2, all
+Run 2026-10-29 under `bench/archive/prereg/t12c-claude.md` (with amendments 1 and 2, all
 committed before any reply existed). Raw data: `results_c.json`; code:
 `solutions_c/`; blind judging: `blind_c/`. Numbers, grades and costs
 recomputed by `python bench/verify.py self_c` (all match).

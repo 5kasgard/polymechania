@@ -33,7 +33,7 @@ before building anything:**
 
 ## What stands (with evidence)
 
-- **Start-packet rule** (T12b-d, `bench/self/RESULTS_B.md`, `_C.md`, `_D.md`): keeping another
+- **Start-packet rule** (T12b-d, `bench/archive/self/RESULTS_B.md`, `_C.md`, `_D.md`): keeping another
   writer's request out of a resident's next packet kept 86-92% of its rules; carrying it 51-59%;
   labels added only 9 points. Built as Gnomon PR #57.
 - **Thin boot and settings** (T2, T2b, T2c in `bench/boot`): Haiku with thinking off is the

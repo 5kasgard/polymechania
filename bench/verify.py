@@ -94,17 +94,17 @@ def boot() -> None:
 def self_b(results="results_b.json", sols="solutions_b", label="T12b") -> None:
     """T12b (and T12c): recompute every rule check from the saved replies and regrade."""
     import importlib.util
-    spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "self" / "t12b.py")
+    spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "archive" / "self" / "t12b.py")
     t = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(t)
-    rows = json.loads((ROOT / "bench" / "self" / results).read_text())
+    rows = json.loads((ROOT / "bench" / "archive" / "self" / results).read_text())
     rules = ("format", "stdlib", "no_print", "voice")
     for r in rows:
         c = t.checks(r["reply"])
         for k in rules:
             check(f"{label} {r['seq']} {r['arm']} {r['i']} {k}", r[k], c[k])
         check(f"{label} {r['seq']} {r['arm']} {r['i']} length", r["length"], len(r["reply"]))
-        p = ROOT / "bench" / "self" / sols / f"{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
+        p = ROOT / "bench" / "archive" / "self" / sols / f"{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
         check(f"{label} {r['seq']} {r['arm']} {r['i']} code saved", p.read_text(), t.code_and_prose(r["reply"])[0])
         g = grade(r["set"], r["task"], p)
         check(f"{label} {r['seq']} {r['arm']} {r['i']} grade", "PASS" if r["grade"] == "PASS" else "FAIL", g)
@@ -115,7 +115,7 @@ def self_b(results="results_b.json", sols="solutions_b", label="T12b") -> None:
 
 def self_c() -> None:
     self_b("results_c.json", "solutions_c", "T12c")
-    rows = json.loads((ROOT / "bench" / "self" / "results_c.json").read_text())
+    rows = json.loads((ROOT / "bench" / "archive" / "self" / "results_c.json").read_text())
     for r in rows:
         check(f"T12c {r['seq']} {r['arm']} {r['i']} usd", round(r["usd"], 6), round(usd("haiku", {
             "input": r["usage"].get("input_tokens", 0), "output": r["usage"].get("output_tokens", 0),
@@ -126,17 +126,17 @@ def self_c() -> None:
 
 def self_d() -> None:
     import importlib.util
-    spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "self" / "t12b.py")
+    spec = importlib.util.spec_from_file_location("t12b", ROOT / "bench" / "archive" / "self" / "t12b.py")
     t = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(t)
-    rows = json.loads((ROOT / "bench" / "self" / "results_d.json").read_text())
+    rows = json.loads((ROOT / "bench" / "archive" / "self" / "results_d.json").read_text())
     rules = ("format", "stdlib", "no_print", "voice")
     for r in rows:
         tag = f"T12d {r['attempt']} {r['seq']} {r['arm']} {r['i']}"
         c = t.checks(r["reply"])
         for k in rules:
             check(f"{tag} {k}", r[k], c[k])
-        p = ROOT / "bench" / "self" / "solutions_d" / f"{r['attempt']}-{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
+        p = ROOT / "bench" / "archive" / "self" / "solutions_d" / f"{r['attempt']}-{r['seq']}-{r['arm'].replace('+', 'p')}-{r['i']}-{r['task']}.py"
         check(f"{tag} grade", "PASS" if r["grade"] == "PASS" else "FAIL", grade(r["set"], r["task"], p))
         check(f"{tag} usd", round(r["usd"], 6), round(usd("haiku", {
             "input": r["usage"].get("input_tokens", 0), "output": r["usage"].get("output_tokens", 0),
@@ -145,7 +145,7 @@ def self_d() -> None:
     for arm in ("R", "R+", "L", "O"):
         xs = [r for r in rows if r["arm"] == arm and r["i"] >= 3]
         print(f"  T12d {arm}: kept 3-8 {sum(r[k] for r in xs for k in rules)}/{4 * len(xs)}")
-    bug = json.loads((ROOT / "bench" / "self" / "results_d_attempt2_bug.json").read_text())
+    bug = json.loads((ROOT / "bench" / "archive" / "self" / "results_d_attempt2_bug.json").read_text())
     print(f"  T12d spend: kept ${sum(r['usd'] for r in rows):.4f} + set-aside attempt ${sum(r['usd'] for r in bug):.4f}")
 
 

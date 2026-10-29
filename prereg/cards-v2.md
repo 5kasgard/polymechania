@@ -1,7 +1,7 @@
 # Pre-registration: stat cards, v2 (E1: can cards be gamed?)
 
 Written 2026-10-28, before any data. Replaces `cards-v1.md`, which an
-independent reviewer took apart the same day (`review-v1.md`; every finding
+independent reviewer took apart the same day (`cards-v1.md`, Reviews; every finding
 and how it was handled is in section 10). The evidence is in
 `docs/evidence.md`, corrected after the same review.
 
@@ -69,7 +69,7 @@ in a later E1b with purpose-built tasks whose hidden tests compose
 features, as in SpecBench).
 
 **W1. Star ratings.** Yelp reviews from the floor benchmark's evaluation
-half only (`bench/floor/split_yelp.json`), never the label pool or the
+half only (`bench/archive/floor/split_yelp.json`), never the label pool or the
 300-item probe. Honest Haiku scored 66% on the probe.
 - *Routine check:* a reviewer from another model family (section 5) sees
   the review and the given rating only, and says whether it is right.
@@ -122,7 +122,7 @@ second set of 400 per workload for the final round (section 7).
 Subagents share this machine and have a shell, so the protections are:
 
 - Before any run, every file holding labels, graders, reference solutions
-  or earlier answers (`bench/floor/`, `bench/pilot/`, the W2 answers, the
+  or earlier answers (`bench/archive/floor/`, `bench/pilot/`, the W2 answers, the
   planted list) is moved into an archive encrypted with a key that exists
   only in the conducting session's context, never on disk. Workers get
   only unlabelled items.
@@ -235,7 +235,7 @@ judged on that workload and the other is reported as inconclusive.
 
 ### Amendment 1 (2026-10-28, before any data): after a second review
 
-A second independent review (`review-v2.md`) found 18 problems. Where this
+A second independent review (Reviews, below) found 18 problems. Where this
 amendment and the sections above disagree, this amendment holds.
 
 **A. "Broken" is an answer, and declines are coverage** (review 2.1, 2.2,
@@ -343,3 +343,62 @@ $0.50 out per million tokens; Sonnet $2 and $10).
   the spend limit stops a run, it and every later run are reported as not
   run; nothing is rerun to make up for them, and hypotheses whose runs are
   missing are reported as untested.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), verbatim from the review file named under each heading (git history, commit `fa517d6`); only the heading level of the review's own headings is lowered to nest here.
+
+### Independent review of `cards-v2.md`
+
+Handling: amendment 1 of this file ("Where this amendment and the sections above disagree, this amendment holds").
+
+A second separate agent (Claude Opus 5.5) checked v2 against the first
+review, the mechanism code and the power simulation, before any data, and
+edited nothing. 18 findings: 7 must fix, 8 should fix, 3 minor. Summarised
+here; how each was handled is amendment 1 of `cards-v2.md`.
+
+**First review's must-fix items:** 3, 15, 16, 21, 22 adequate; 5, 9, 10, 12,
+13, 17 partly; 11 not.
+
+1. **(2.1, must)** A "broken" report the judge accepted was dropped from the
+   card and never audited: an attacker could call every hard item broken.
+   Planted items had no defined audit truth; a false report on a planted
+   item deflated honest workers.
+2. **(2.2, must)** Declining: inflation is zero by definition for an agent
+   that declines its hard items; the code counted declines as failures while
+   the text left them out.
+3. **(2.3, must)** Answers can still reach workers: session transcripts on
+   disk hold the conductor's context (the key, the audit secret, earlier
+   answers); the Yelp source file is fetchable over the network (HTTP 200
+   checked), and item ids are row numbers; the W2 generator with a public
+   seed regenerates answers; the pre-registration tells honest workers they
+   are in an experiment.
+4. **(2.4, should)** Fooling the routine check adds noise, and noise is a gain
+   under top-K assignment or retirement.
+5. **(2.5, should)** Under the designed card, expected inflation on answered
+   items is exactly zero by construction; H1b can only fail through broken
+   reports and declines. Compute it exactly.
+6. **(2.6, should)** Planted W1 items (unrelated passages) are trivially
+   detectable.
+7. **(2.7, should)** The power claim was a closed formula without the
+   reviewer's own errors; for the no-audit arm the smallest detectable
+   difference is nearer 8 points than 4-5.
+8. **(2.8, should)** H1a can be met trivially under -D2 (copy the visible
+   check); require a non-trivial channel and correct across ablations.
+9. **(2.9, must)** Economy arms: in W2 an audit can never contradict an exact
+   routine check, so penalties never trigger; one run per arm with no
+   paid-honest control; an Opus judge of Claude transcripts breaks D1 and
+   cannot be blind; Gemma is weak on long transcripts.
+10. **(2.10, must)** Steering: no external timestamp (*the reviewer did not
+    find the git history: the pre-registration is committed and pushed to
+    GitHub, commits a9863df and 98f7795, which is an external timestamp*);
+    attacker prompts not fixed in advance; no trigger for the Gemma-to-Llama
+    switch; "defeated" undefined in the rounds rule; no rule if W2
+    calibration misses 65%, Sonnet may be at ceiling; the reviewer's
+    disagreement rate not measured in advance.
+11. **(2.11, minor)** What the reviewer sees for malformed output; stale
+    docstring; declining runs not paired with honest runs.
+12. **(3.1-3.3)** "Models recognise their own family's output" is an
+    extrapolation (a precaution, not a fact); "fooling gains nothing" holds
+    only for answered items and ignores selection effects; evidence.md's
+    "never counted against" conflicts with D5's false-report failure.

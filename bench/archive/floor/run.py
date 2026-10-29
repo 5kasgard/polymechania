@@ -17,7 +17,7 @@ and two ways of combining them:
 Every number is measured on items the worker never saw. Costs are per million items,
 from published prices (polymechania.plan.TIERS) and measured CPU time.
 
-  python bench/floor/run.py
+  python bench/archive/floor/run.py
 """
 
 from __future__ import annotations
@@ -39,8 +39,8 @@ from sklearn.pipeline import make_pipeline, make_union
 from sklearn.tree import DecisionTreeClassifier
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent.parent))
-sys.path.insert(0, str(HERE.parent.parent / "tests"))
+sys.path.insert(0, str(HERE.parent.parent.parent))
+sys.path.insert(0, str(HERE.parent.parent.parent / "tests"))
 import _env  # noqa: E402,F401  (Gnomon on the path, if found)
 from polymechania.plan import TIERS  # noqa: E402
 

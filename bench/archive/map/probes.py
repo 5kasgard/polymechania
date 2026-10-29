@@ -1,4 +1,4 @@
-"""Live probes of Gnomon's compartment boundary (bench/map/PROTOCOL.md, C1-C7).
+"""Live probes of Gnomon's compartment boundary (bench/archive/map/PROTOCOL.md, C1-C7).
 
 Each probe builds a fresh log in a temp dir with the real Gnomon library
 (/home/claude/gnomon-full/python), tries one way for information to cross

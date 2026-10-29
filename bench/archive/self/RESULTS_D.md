@@ -2,7 +2,7 @@
 
 Audited: numbers by `bench/verify.py self_d`; wording by Gemma 4 26B (`AUDIT_D.md`), applied.
 
-Run 2026-10-29 under `prereg/t12d-labels.md` (with amendment 1, from a
+Run 2026-10-29 under `bench/archive/prereg/t12d-labels.md` (with amendment 1, from a
 non-Claude review, committed before any run; and a recorded deviation,
 below). Raw: `results_d.json`; code: `solutions_d/`. Numbers, grades and
 costs recomputed by `python bench/verify.py self_d` (all match).

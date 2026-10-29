@@ -12,8 +12,8 @@
    "value": "low",
    "next": "Done 2026-10-29: Llama agrees R+ is worst, does not separate S from R; Gemma audit applied",
    "refs": [
-    "bench/self/RESULTS_C.md",
-    "bench/self/AUDIT_C.md"
+    "bench/archive/self/RESULTS_C.md",
+    "bench/archive/self/AUDIT_C.md"
    ]
   },
   {

@@ -1,7 +1,7 @@
 # Map honesty test: protocol
 
 Written 2026-10-28, before looking for data and before auditing Gnomon's
-code paths. Inputs read so far: vision.md scene 2, vision-review-1.md item 4,
+code paths. Inputs read so far: vision.md scene 2, docs/vision.md Reviews, item 4,
 Gnomon README (compartment and session lines) and spec sections 2, 2a, 3, 4,
 5, 9 (facts), 10, 12, 13, 15. Nothing below may change after results are
 seen except by a dated amendment at the end saying why.

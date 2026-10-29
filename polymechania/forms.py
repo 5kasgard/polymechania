@@ -120,7 +120,7 @@ SOURCES = {
                  "a vote; every method where the model judged its own work lost (by 4-14 points). Eight samples "
                  "from a small model plus a good selector recovered 78-85% of the gap to the best-of-eight oracle; "
                  "a computer check (tests, a plan checker) matched a learned selector at 6x fewer tokens."),
-    "floor": ("Gnomon bench/floor (this repository, 2026-10-21; protocol in bench/floor/PROTOCOL.md)",
+    "floor": ("Gnomon bench/archive/floor (this repository, 2026-10-21; protocol in bench/archive/floor/PROTOCOL.md)",
               "On 5,574 real SMS messages a linear model on 1,000 human labels matched Claude Haiku on a 300-item "
               "probe (99.7% each) at about a cent per million items against $9.81; with the escalation share "
               "chosen on half the probe and scored on the other, it escalated nothing. On 10,000 Yelp reviews "

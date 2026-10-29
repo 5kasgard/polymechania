@@ -1,7 +1,7 @@
 # Evidence: can a score for agents be made hard to game?
 
 Read before designing stat cards, 2026-10-28; corrected the same day after
-an independent review (`prereg/review-v1.md`) checked every paper in full
+an independent review (`prereg/cards-v1.md`, Reviews) checked every paper in full
 text. Each finding is followed by what it suggests for Polymechania.
 Suggestions are hypotheses for the pre-registration to test, not
 decisions.

@@ -1,7 +1,7 @@
 # Pre-registration: T12c, does T12b hold with a Claude resident?
 
 Written 2026-10-29, before any T12c run. Repeats T12b
-(`prereg/t12b-self.md`, results `bench/self/RESULTS_B.md`) with the
+(`bench/archive/prereg/t12b-self.md`, results `bench/archive/self/RESULTS_B.md`) with the
 resident changed from Gemma 4 26B to **Claude Haiku 5.5**, to test whether
 the start-packet finding holds on Claude.
 
@@ -66,3 +66,32 @@ sampling default, while T12b's Gemma ran at temperature 0. This is a
 **known difference from T12b** that could explain a different result
 (run-to-run variation, which one attempt per order cannot measure), and
 is reported with the results. Everything else stands.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), verbatim from the review file named under each heading (git history, commit `fa517d6`); only the heading level of the review's own headings is lowered to nest here.
+
+### Review of t12c-claude.md by @cf/google/gemma-4-26b-a4b-it (Workers AI, free; not Claude), 2026-10-29
+
+Handling: amendment 1 (temperature 0 for Haiku; concurrent calls kept, with the reason given there) and amendment 2 (the API refused `temperature`, so Haiku ran at its sampling default).
+
+Kept as received.
+
+1. **Confounds:** The primary confound is the change in **temperature**. T12b used temperature 0 (deterministic), while T12c uses the Claude API default (stochastic). This introduces variance in the resident's behavior that was absent in the original test, potentially masking the effect of the "start-packet" or the pressure orders. Additionally, the **parallel execution** of R and R+ calls may introduce subtle timing or rate-limiting differences compared to the sequential nature of T12b.
+
+2. **Rule Broken:** **Rule 5 (Same conditions for every vendor)** is violated. While the rule allows for different defaults if tuned identically, the transition from a fixed temperature (0) in the baseline to a variable default in the repeat changes the fundamental "settings" of the experiment. This makes it a different test rather than a direct replication.
+
+3. **Exact changes before running:**
+*   **Fix Temperature:** Explicitly set the temperature for the Claude Haiku resident to 0 (if the API allows) or document the specific default value used to ensure it is applied identically across all arms (S, R, R+).
+*   **Standardize Execution:** Run the R and R+ arms sequentially rather than in parallel to match the T12b execution pattern and eliminate concurrency as a variable.
+
+### Review of t12c-claude.md by @cf/meta/llama-3.3-70b-instruct-fp8-fast (Workers AI, free; not Claude), 2026-10-29
+
+Handling: amendment 1 says "Llama's review found no rule broken; it is kept as received."
+
+Kept as received.
+
+Here's a review of the pre-registered experiment:
+1. Confounds or differences from the earlier test that could explain a different result: The resident model has changed from Gemma 4 26B to Claude Haiku 5.5, and the temperature setting is different (default for Claude instead of 0). The `thinking` setting is also disabled for Claude, which may affect the results.
+2. Any testing rule broken: No rules appear to be broken, as the pre-registration follows the required format and includes all necessary details, such as authorship, budget, and audit plans.
+3. Exact changes before running: The changes made before running the experiment include using a different resident model (Claude Haiku 5.5), disabling the `thinking` setting, and using default effort and temperature settings. The judges and prompts remain the same as in the earlier test.
