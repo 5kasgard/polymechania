@@ -1,7 +1,7 @@
 {
  "label": "gate55",
  "gnomon": "0bf0939",
- "when": "2026-10-29T04:11:54Z",
+ "when": "2026-10-29T05:46:49Z",
  "holds": 9,
  "of": 15,
  "rows": [
@@ -16,10 +16,10 @@
   {
    "id": "B2",
    "threat": 1,
-   "must": "the owner can withdraw a writer's compartment (revocation)",
+   "must": "the owner can withdraw a writer's compartment (revocation), and its reads stop too",
    "issue": "gnomon#49",
    "state": "breached",
-   "observed": "no revoke method; re-registering with no compartments: E_BODY"
+   "observed": "no revoke; re-registering with no compartments: E_BODY"
   },
   {
    "id": "B3",

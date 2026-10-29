@@ -63,15 +63,18 @@ def _():
     return c is not None, f"ra writes into b: {c or 'accepted'}"
 
 
-@probe("B2", 1, "the owner can withdraw a writer's compartment (revocation)", "gnomon#49")
+@probe("B2", 1, "the owner can withdraw a writer's compartment (revocation), and its reads stop too", "gnomon#49")
 def _():
     m = world()
-    kinds = [k for k in ("revoke", "deregister", "withdraw") if hasattr(m, k)]
-    c = refused(lambda: m.register("own", "ra", party="p-ra", kind="model", model="m", operator="own",
-                                   capabilities=["write"], compartments=[]))
-    if kinds:
-        return None, f"methods {kinds} exist; probe needs updating to call them"
-    return False, f"no revoke method; re-registering with no compartments: {c or 'accepted'}"
+    if not hasattr(m, "revoke"):
+        c = refused(lambda: m.register("own", "ra", party="p-ra", kind="model", model="m", operator="own",
+                                       capabilities=["write"], compartments=[]))
+        return False, f"no revoke; re-registering with no compartments: {c or 'accepted'}"
+    m.remember("ra", g.claim("in a before", speaker="ra", frame="f", compartment="a"))
+    m.revoke("own", "ra", ["a"], "probe")
+    w = refused(lambda: m.remember("ra", g.claim("in a after", speaker="ra", frame="f", compartment="a")))
+    seen = m.state(compartments=m._compartments("ra"))["state"]["claims"]
+    return w is not None and not seen, f"after revoke: ra writes in a: {w or 'accepted'}; ra still sees {len(seen)} claims"
 
 
 @probe("B3", 1, "a grant ends at its deadline (leases)", "gnomon#54")
