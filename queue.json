@@ -185,9 +185,10 @@
    "blocked_by": [
     "q15"
    ],
-   "next": "Tasks exist (bench/long). Next: pre-register T1 (persistent vs single-round vs fresh runs with handoffs) with EvoCode-Bench's 22-40 point gap as the prior; free models first",
+   "next": "Draft prereg/t1-long.md (arms C one session, B fresh runs, BV fresh runs with a regression check on the boundary, SR reference control; 3 free models; $0 API). Free reviews tonight, then the owner sees it before it is final; runs after E-ext",
    "refs": [
-    "docs/architecture.md"
+    "prereg/t1-long.md",
+    "bench/long/README.md"
    ]
   },
   {
