@@ -56,11 +56,11 @@
    "id": "q05",
    "title": "Start-packet authority as a Gnomon gate rule",
    "kind": "build",
-   "status": "waiting-owner",
+   "status": "done",
    "needs": "owner",
    "cost": 0,
    "value": "high",
-   "next": "Built: Gnomon PR #57 (protocol version 4; packet()); border 9 of 15 with it, 7 on main. Free non-Claude reviews run tonight, then the owner merges",
+   "next": "Merged by the owner 2026-10-29 (Gnomon PR #57)",
    "refs": [
     "docs/start-packet-gate.md",
     "bench/border/RESULTS.md"

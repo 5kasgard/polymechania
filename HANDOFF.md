@@ -47,7 +47,7 @@ taken; do not act on them unless the owner raises them again.
 | Item | State | Next |
 |---|---|---|
 | Gnomon PR #47 | green, checked | owner merges |
-| Gnomon PRs #57, #58, #59, stacked (protocol versions 4, 5, 6 on their branches; main is at 3) | CI green, no outside review yet | per the decision above |
+| Gnomon #57 **merged by the owner 2026-10-29** (main is now protocol 4); #58 (v5) and #59 (v6) still open, stacked | CI green, no outside review yet | per the decision above |
 | Gnomon #50 (file access) | options in `docs/gnomon-50-options.md`; hash-chain tokens on existing SHA-256 recommended | owner decides, after the goal |
 | Gnomon append re-reads the whole log (`store.rs` line 495) | found, not measured | measure when it matters |
 | T1 (run shapes on long tasks) | tasks `bench/long`, runner `bench/long/run.py` (Sonnet-built), draft `prereg/t1-long.md` | owner sees the draft; paused |
