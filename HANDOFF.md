@@ -28,7 +28,10 @@ taken; do not act on them unless the owner raises them again.
   everything itself, and the owner caught it.
 - iOS Safari: short, plain replies. Keep the owner's real name out of the repositories.
 - The owner may paste a prompt into another family's chat (e.g. Gemini) when free engines are
-  out: give them one self-contained file (as `docs/audit/prompt-outside.md`).
+  out: give them one self-contained file (as `docs/audit/prompt-outside.md`). Gemini Argon is
+  for reviews and small questions only: it disconnected three times on a long spec-writing
+  prompt. The owner's second chat also has GPT, GLM 5.2, Gemini 3 Flash, Kimi (sometimes) and
+  Haiku; GPT and GLM 5.2 each delivered a full #48 spec.
 
 ## What stands (with evidence)
 
