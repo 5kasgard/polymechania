@@ -246,7 +246,7 @@ def report(out: Path = HERE) -> None:
             m_t = mt(xs) if a != "SR" else None
             print(f"{short(m):34} {a:2} pass {p:2}/{len(xs):2} of 30  "
                   f"MT {'-' if m_t is None else format(m_t, '.2f'):>5}  "
-                  f"regressions {regressions(xs):2}  neurons {sum(r['neurons'] for r in xs):7.0f}")
+                  f"regressions {regressions(xs):2}  no code {sum(1 for r in xs if r.get('error') == 'no code block'):2}  neurons {sum(r['neurons'] for r in xs):7.0f}")
     print("\npooled over models (rounds passed / rounds done):")
     for a in ARMS:
         print(f"  {a:2} {pooled[a][0]}/{pooled[a][1]}")
