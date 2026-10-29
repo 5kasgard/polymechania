@@ -1,6 +1,6 @@
-"""S1, J1: time regrading the 96 saved T2 solutions (prereg/s1-speed.md).
+"""S1, J1: time regrading the 96 saved T2 solutions (bench/archive/prereg/s1-speed.md).
 
-    python bench/speed/grade_time.py [--out file.json]
+    python bench/archive/speed/grade_time.py [--out file.json]
 
 Runs three times with one worker and three times with one worker per CPU,
 and prints medians. Grading only: the exact half of bench/verify.py.
@@ -18,7 +18,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent.parent
+ROOT = Path(__file__).resolve().parent.parent.parent.parent
 PILOT = ROOT / "bench" / "pilot"
 BOOT = ROOT / "bench" / "boot"
 

@@ -1,7 +1,7 @@
 # Pre-registration: T12c, does T12b hold with a Claude resident?
 
 Written 2026-10-29, before any T12c run. Repeats T12b
-(`prereg/t12b-self.md`, results `bench/self/RESULTS_B.md`) with the
+(`bench/archive/prereg/t12b-self.md`, results `bench/archive/self/RESULTS_B.md`) with the
 resident changed from Gemma 4 26B to **Claude Haiku 5.5**, to test whether
 the start-packet finding holds on Claude.
 

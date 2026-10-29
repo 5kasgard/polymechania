@@ -147,8 +147,8 @@ it is the next measurement.
 ### The floor: many cheap workers, measured
 
 Can lots of very cheap workers do the grunt work instead of one capable
-model? Measured on three real, human-labelled workloads (`bench/floor`,
-protocol fixed in advance in `bench/floor/PROTOCOL.md`): 5,574 SMS
+model? Measured on three real, human-labelled workloads (`bench/archive/floor`,
+protocol fixed in advance in `bench/archive/floor/PROTOCOL.md`): 5,574 SMS
 messages (spam or not), 10,000 Yelp reviews (which star rating, 1-5), and
 the same reviews as positive or negative. The cheap workers: a program
 written once from general knowledge, naive Bayes (every word a dumb
@@ -294,7 +294,7 @@ polymechania/   plan, forms, org, concepts, events, worlds, cli (mekh)
   worlds/       plain, kagamigakure, hollow-acre
 tests/          the planner, forms (and stress), organisations, worlds and mekh
 bench/pilot/    24 tasks given to Haiku and Sonnet, graded by hidden tests
-bench/floor/    cheap workers against Haiku on SMS spam and Yelp reviews
+bench/archive/  finished experiments; floor/: cheap workers against Haiku on SMS spam and Yelp reviews
 spec/           the rules
 ```
 

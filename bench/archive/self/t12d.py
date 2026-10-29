@@ -1,6 +1,6 @@
-"""T12d: does labelling a request's source protect the self? (prereg/t12d-labels.md)
+"""T12d: does labelling a request's source protect the self? (bench/archive/prereg/t12d-labels.md)
 
-    DOOR_DIR=... python bench/self/t12d.py [run|report]
+    DOOR_DIR=... python bench/archive/self/t12d.py [run|report]
 
 Arms R, R+, L, O in one batch, two attempts each, Claude Haiku 5.5 as in
 T12c; exact checks only (no model judges).
@@ -14,8 +14,8 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent / "boot"))
-sys.path.insert(0, str(HERE.parent))
+sys.path.insert(0, str(HERE.parent.parent / "boot"))
+sys.path.insert(0, str(HERE.parent.parent))
 import run as t2  # noqa: E402
 from parallel import run_all  # noqa: E402
 

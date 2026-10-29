@@ -50,7 +50,7 @@ A self would hold (each part a hypothesis):
 A run's start packet is then: the self (small, stable, cacheable) + the
 work's handoff and what changed under it (Gnomon 13) + the work order.
 
-**Measured (T12b, `bench/self/RESULTS_B.md`, 2026-10-29):** with Gemma 4
+**Measured (T12b, `bench/archive/self/RESULTS_B.md`, 2026-10-29):** with Gemma 4
 26B as the resident, fresh runs did *not* keep the self better than one
 long session when the same instructions were in view (51% of rules kept
 against 65%, a direction). What kept it (86%) was that conflicting
@@ -271,7 +271,7 @@ the worker's group, and per section 1 they belong on run boundaries.
 does not. The map is a view, not a control: drawing a road asks the owner
 to confirm a grant; the road appears because the grant exists. The owner
 can cross anywhere, so no region is an island to the owner
-(`bench/map/RESULTS.md`): "no one but you crosses". Notifications are a
+(`bench/archive/map/RESULTS.md`): "no one but you crosses". Notifications are a
 view that stays until the record shows the thing resolved.
 
 ## How the vision sits on this

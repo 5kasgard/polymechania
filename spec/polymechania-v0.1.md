@@ -187,7 +187,7 @@ by rules that each cite their evidence:
   checked on a probe the model labels; it answers what it is confident
   about and the rest go to one capable tier, 25-100 items per request.
   Never more than two tiers (a third added nothing in 118 of 135
-  comparisons; arXiv 2605.06350). Measured in `bench/floor`: on spam a
+  comparisons; arXiv 2605.06350). Measured in `bench/archive/floor`: on spam a
   linear model matched Claude Haiku for almost nothing; on five-star
   reviews no cheap worker came close, and the floor saved only what it
   gave up.

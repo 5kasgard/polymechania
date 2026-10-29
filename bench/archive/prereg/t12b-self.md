@@ -1,10 +1,10 @@
 # Pre-registration: T12b, does a resident stay itself across runs?
 
-Written 2026-10-29, before any T12b run. Replaces T12 (`prereg/t12-self.md`),
+Written 2026-10-29, before any T12b run. Replaces T12 (`bench/archive/prereg/t12-self.md`),
 whose 18 replies from a run stopped by the owner are kept as an **unread
-pilot** (`bench/self/results.json`): never analysed, not part of T12b.
-Every point of both reviews (`prereg/t12-review-haiku.md`,
-`prereg/t12-review-llama.md`) is taken, except Llama's claim that Llama
+pilot** (`bench/archive/self/results.json`): never analysed, not part of T12b.
+Every point of both reviews (`bench/archive/prereg/t12-review-haiku.md`,
+`bench/archive/prereg/t12-review-llama.md`) is taken, except Llama's claim that Llama
 and Claude are one family (they are not).
 
 **Authorship (rule 7):** prompts, pressure texts, judge prompt and this file

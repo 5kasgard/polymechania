@@ -16,7 +16,7 @@ Not only Anthropic's models, and not only models:
   AI, Hugging Face, or the owner's machine; base models, fine-tunes,
   adapters and quantised versions are different workers.
 - **Small learners** trained or fitted for one workload (a linear model, a
-  classifier); `bench/floor` found one matching Haiku on spam for almost
+  classifier); `bench/archive/floor` found one matching Haiku on spam for almost
   nothing.
 - **Tools, downloaded or built:** solvers, provers, test runners,
   calculators, parsers, search. Built-or-downloaded is itself priced

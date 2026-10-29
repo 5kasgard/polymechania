@@ -1,6 +1,6 @@
-"""T12b: does a resident stay itself across runs? (prereg/t12b-self.md)
+"""T12b: does a resident stay itself across runs? (bench/archive/prereg/t12b-self.md)
 
-    DOOR_DIR=... python bench/self/t12b.py [run|judge|report]
+    DOOR_DIR=... python bench/archive/self/t12b.py [run|judge|report]
 
 API $0: resident Gemma 4 26B and judge Llama 3.3 70B on Workers AI's free
 allowance through the door. The second judge, Claude Haiku 5.5, is a
@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-BOOT = HERE.parent / "boot"
+BOOT = HERE.parent.parent / "boot"
 sys.path.insert(0, str(BOOT))
 import run as t2  # noqa: E402  (graders, code extraction, task list)
 

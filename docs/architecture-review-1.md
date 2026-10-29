@@ -17,7 +17,7 @@ Line numbers refer to `docs/architecture.md` unless another file is named. Probe
 6. **The cache lifetime question at l.87-88 can be answered now.** The default lifetime is 5 minutes. An extended 1-hour lifetime costs 2x on write, and a hit refreshes it ([prompt caching docs](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)). A wake-up exactly every hour therefore misses even the 1-hour cache, so uncached is the realistic case at hourly cadence.
 7. **"The connector is how the Free version works at all" (l.138-139) skips a missing piece.** Claude app connectors are remote MCP servers. Gnomon's server is stdio only, and "HTTP transport" and "a hosted remote MCP endpoint with sign-in" are listed as not yet built (`gnomon/spec/claim-protocol-v0.1.md:1272-1276`).
 8. **"A misbehaving engine cannot write beyond its grant" (l.141-143) is true only on the MCP path.** `Memory.append(writer, ...)` takes the writer id as a plain argument (`gnomon/python/gnomon/__init__.py:118`). Any engine that can reach the file (our own API process, or Claude Code with Bash) can write as anyone. Issue #50 is noted at l.153, but the "why" paragraph still states the stronger claim.
-9. **The island row (l.205) conflicts with `bench/map/RESULTS.md:21-26`.** Even with revocation, "the owner is a bridge to everything", so there are no true islands.
+9. **The island row (l.205) conflicts with `bench/archive/map/RESULTS.md:21-26`.** Even with revocation, "the owner is a bridge to everything", so there are no true islands.
 10. **Issues #48-#51 could not be checked.** GitHub access was refused in this session. The issue numbers match `HANDOFF.md:87-88`.
 
 ## What probing showed

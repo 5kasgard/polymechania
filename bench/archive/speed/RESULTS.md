@@ -1,6 +1,6 @@
 # S1 results: speed by where a job runs
 
-Run 2026-10-29 under `prereg/s1-speed.md` (committed before running).
+Run 2026-10-29 under `bench/archive/prereg/s1-speed.md` (committed before running).
 API spend $0. Raw: `s1-here.json`, `s1-actions.json`, `s1-calls.json`.
 
 ## J1, grading the 96 saved T2 solutions (median of three)

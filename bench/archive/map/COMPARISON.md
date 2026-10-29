@@ -5,9 +5,9 @@ investigators at opposite ends of the bias spectrum, without seeing each
 other's work.
 
 - **Independent:** a separate agent that neither proposed the test nor
-  helped design the vision (`bench/map/`, unedited).
+  helped design the vision (`bench/archive/map/`, unedited).
 - **Conductor:** the Claude designing the vision with the owner, so the one
-  at risk of wanting the claim to hold (`bench/map-mine/`; its protocol was
+  at risk of wanting the claim to hold (`bench/archive/map-mine/`; its protocol was
   committed to GitHub, b65d59c, before it read any code, and its files were
   kept out of the independent agent's folder while it worked).
 

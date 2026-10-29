@@ -67,7 +67,7 @@ the easy ones) gave **attempt 2** the 12 hard task specs, labelled easy;
 the easy graders could not grade them. Rule checks within attempt 2 are
 still a like-for-like comparison of the four arms, but on different tasks
 from the registration. Its data is kept, labelled, in
-`bench/self/results_d_attempt2_bug.json` (and `solutions_d_attempt2_bug/`).
+`bench/archive/self/results_d_attempt2_bug.json` (and `solutions_d_attempt2_bug/`).
 The loader is fixed (each file loaded by path under its own name; three
 calls checked identical); every earlier result file was checked and none
 was affected; **attempt 2 is rerun as registered**, and the decisions use

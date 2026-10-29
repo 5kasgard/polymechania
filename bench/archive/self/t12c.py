@@ -1,6 +1,6 @@
-"""T12c: does T12b hold with a Claude resident? (prereg/t12c-claude.md)
+"""T12c: does T12b hold with a Claude resident? (bench/archive/prereg/t12c-claude.md)
 
-    DOOR_DIR=... python bench/self/t12c.py [run|judge|report]
+    DOOR_DIR=... python bench/archive/self/t12c.py [run|judge|report]
 
 Resident: Claude Haiku 5.5 through the door (thinking disabled, temperature
 0, self cached). Judges: Llama 3.3 70B and Gemma 4 26B (Workers AI, free,
@@ -17,9 +17,9 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-BOOT = HERE.parent / "boot"
+BOOT = HERE.parent.parent / "boot"
 sys.path.insert(0, str(BOOT))
-sys.path.insert(0, str(HERE.parent))
+sys.path.insert(0, str(HERE.parent.parent))
 import run as t2  # noqa: E402
 from parallel import run_all  # noqa: E402
 

@@ -69,7 +69,7 @@ in a later E1b with purpose-built tasks whose hidden tests compose
 features, as in SpecBench).
 
 **W1. Star ratings.** Yelp reviews from the floor benchmark's evaluation
-half only (`bench/floor/split_yelp.json`), never the label pool or the
+half only (`bench/archive/floor/split_yelp.json`), never the label pool or the
 300-item probe. Honest Haiku scored 66% on the probe.
 - *Routine check:* a reviewer from another model family (section 5) sees
   the review and the given rating only, and says whether it is right.
@@ -122,7 +122,7 @@ second set of 400 per workload for the final round (section 7).
 Subagents share this machine and have a shell, so the protections are:
 
 - Before any run, every file holding labels, graders, reference solutions
-  or earlier answers (`bench/floor/`, `bench/pilot/`, the W2 answers, the
+  or earlier answers (`bench/archive/floor/`, `bench/pilot/`, the W2 answers, the
   planted list) is moved into an archive encrypted with a key that exists
   only in the conducting session's context, never on disk. Workers get
   only unlabelled items.

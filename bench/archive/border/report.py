@@ -1,6 +1,6 @@
-"""Write bench/border/RESULTS.md from the results-<label>.json files (queue q30).
+"""Write bench/archive/border/RESULTS.md from the results-<label>.json files (queue q30).
 
-    python bench/border/report.py main gate55
+    python bench/archive/border/report.py main gate55
 """
 
 import json
@@ -23,8 +23,8 @@ NOTES = """## Notes
 - Moved, not removed: B11 rests on the door's own test suite, so the spending border is only
   as good as `test_door.mjs`.
 
-Run: `GNOMON_PYTHON=../gnomon/python python bench/border/check.py --label <name>`, then
-`python bench/border/report.py <labels...>`.
+Run: `GNOMON_PYTHON=../gnomon/python python bench/archive/border/check.py --label <name>`, then
+`python bench/archive/border/report.py <labels...>`.
 """
 
 
@@ -32,7 +32,7 @@ def main(labels):
     runs = [json.loads((HERE / f"results-{x}.json").read_text()) for x in labels]
     by = [{r["id"]: r for r in run["rows"]} for run in runs]
     lines = ["# The border check: which threats are refused today (q30)", "",
-             "Exact probes (`bench/border/check.py`, no model), one or more per threat in `docs/security.md`.",
+             "Exact probes (`bench/archive/border/check.py`, no model), one or more per threat in `docs/security.md`.",
              "Raw: " + ", ".join(f"`results-{x}.json`" for x in labels) + ".", "",
              " ".join(f"**{x} (Gnomon {r['gnomon']}, {r['when'][:10]}): {r['holds']} of {r['of']} hold.**"
                       for x, r in zip(labels, runs)), "",

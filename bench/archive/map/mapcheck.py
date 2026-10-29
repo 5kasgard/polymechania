@@ -1,5 +1,5 @@
 """Derive the Polymechania map from Gnomon registrations under several road
-rules and count where it lies (bench/map/PROTOCOL.md).
+rules and count where it lies (bench/archive/map/PROTOCOL.md).
 
 Flows come from the channels confirmed by probes.py against the real Gnomon
 code (probes.json). Scenarios are constructed (scenarios.py). Output:

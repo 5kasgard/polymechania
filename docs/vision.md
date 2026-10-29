@@ -155,7 +155,7 @@ there, along with the town hall (the rules), the library, and the gates to
 the outside. You can walk up to a guide in the world, or talk to them from
 a panel, whichever suits the moment.
 
-**Tested (bench/map, bench/map-mine, compared in bench/map/COMPARISON.md):**
+**Tested (bench/archive/map, bench/archive/map-mine, compared in bench/archive/map/COMPARISON.md):**
 "a region with no road is isolated" fails as written. It holds only if
 roads are drawn from real grants (never from intention), each road is
 labelled with who can cross it, the owner is shown as able to cross
