@@ -47,7 +47,7 @@ taken; do not act on them unless the owner raises them again.
 | Item | State | Next |
 |---|---|---|
 | Gnomon PR #47 | green, checked | owner merges |
-| Gnomon #57 merged into main (protocol 4). #58 and #59 were merged into their *stacked* branches, not main: revocation now sits on branch `start-packet-gate`, leases on branch `revoke` | no outside review yet | owner chooses: a PR from `start-packet-gate` to main brings revocation only (the audit's suggestion); one from `revoke` brings leases too |
+| Gnomon #57 and #47 merged into main (protocol 4). Revocation and leases (#58, #59) land via **PR #60** (`revoke` -> main, opened by another session) | merge #60 first; main is then protocol 6 | **Gnomon #51 is being worked on in another chat:** build it on main after #60, and if it needs a protocol bump, use 7 |
 | Gnomon #50 (file access) | options in `docs/gnomon-50-options.md`; hash-chain tokens on existing SHA-256 recommended | owner decides, after the goal |
 | Gnomon append re-reads the whole log (`store.rs` line 495) | found, not measured | measure when it matters |
 | T1 (run shapes on long tasks) | tasks `bench/long`, runner `bench/long/run.py` (Sonnet-built), draft `prereg/t1-long.md` | owner sees the draft; paused |
