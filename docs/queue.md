@@ -2,9 +2,9 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-22 open items; API cost if all ran: about $1.05.
+24 open items; API cost if all ran: about $1.05.
 
-## Can run now (14)
+## Can run now (15)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
@@ -18,6 +18,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q14 | T1: run shapes on long multi-step work | medium | pro | 0 | Draft prereg/t1-long.md (arms C one session, B fresh runs, BV fresh runs with a regression check on the boundary, SR reference control; 3 free models; $0 API). Free reviews tonight, then the owner sees it before it is final; runs after E-ext (after q15) |
 | q20 | Vision cheap tests: card sort, menu picture, notification volume | medium | people | 0 | Notification volume can run now from logs; card sort and menu need 5 people |
 | q32 | Record refused crossings in Gnomon (the watchtower) | medium | free | 0 | Gnomon refuses bad writes but keeps no record of them, so a live border cannot show alarms; propose a bounded refusal log (outside the hash chain, or as owner-only events) as a Gnomon issue |
+| q34 | Gnomon: append re-reads the whole log | medium | free | 0 | store::append reads the whole file under lock on every append (store.rs line 495); measure at 10k and 1M events, then file an issue with the numbers |
 | q12 | Cascade with visible checks only | medium | api | 0.05 | T2's cascade escalated on hidden graders; rerun escalating only on what a run can see (spec examples, empty or cut-off answers) |
 | q19 | Batch API through the door (half price, non-urgent work) | low | free | 0 | Allow /v1/messages/batches with the same checks per request; review before deploy |
 | q26 | Rename 'world' files to 'themes' in the code | low | free | 0 | worlds.py, cli and tests; keep old names working once |
@@ -29,12 +30,13 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Unblocked once #58 and #59 merge (revocation and leases exist): a cron Worker that reads open orders and leases runs (after q06) |
 
-## Needs the owner (4)
+## Needs the owner (5)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q05 | Start-packet authority as a Gnomon gate rule | high | owner | 0 | Built: Gnomon PR #57 (protocol version 4; packet()); border 9 of 15 with it, 7 on main. Free non-Claude reviews run tonight, then the owner merges |
 | q22 | Legal check of the business model | high | owner | 0 | Brief ready for the owner to take to a lawyer: https://claude.ai/artifact/1xLmnUpcqNrMQrhukPVNxj (option C ruled out by the consumer terms; the open line is A.1 product vs D.4(a) resale). Owner books the lawyer |
+| q33 | Gnomon #50: sign appends (protocol 7) | high | owner | 0 | Options in docs/gnomon-50-options.md (Sonnet plan, checked). Owner decides whether the core may take its first outside crypto crate (ed25519-dalek) |
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 

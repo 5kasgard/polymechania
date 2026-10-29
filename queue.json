@@ -433,6 +433,30 @@
     "docs/security.md",
     "bench/demo/world.json"
    ]
+  },
+  {
+   "id": "q33",
+   "title": "Gnomon #50: sign appends (protocol 7)",
+   "kind": "build",
+   "status": "waiting-owner",
+   "needs": "owner",
+   "cost": 0,
+   "value": "high",
+   "next": "Options in docs/gnomon-50-options.md (Sonnet plan, checked). Owner decides whether the core may take its first outside crypto crate (ed25519-dalek)",
+   "refs": [
+    "docs/gnomon-50-options.md"
+   ]
+  },
+  {
+   "id": "q34",
+   "title": "Gnomon: append re-reads the whole log",
+   "kind": "build",
+   "status": "open",
+   "needs": "free",
+   "cost": 0,
+   "value": "medium",
+   "next": "store::append reads the whole file under lock on every append (store.rs line 495); measure at 10k and 1M events, then file an issue with the numbers",
+   "refs": []
   }
  ]
 }
