@@ -75,3 +75,25 @@ order within a task; tasks and models in parallel within the allowance.
 
 Grades, passes and MT recomputed by `bench/verify.py` (extended to T1) from
 the saved modules; the write-up's wording audited by a non-Claude model.
+
+## Settled while building the runner (2026-10-29, before any run)
+
+The runner (`bench/long/run.py`, built by a Sonnet sub-agent from this draft) raised nine
+points the draft left open. Settled as follows; all apply to every arm and model alike.
+
+1. **Change titles** (B, BV, SR): the first sentence of each round's change text, without
+   "Change:", cut at 90 characters.
+2. **Round 1's full spec** is given once, in round 1; later rounds give the change text plus
+   the titles list, and B, BV and SR carry the module, not the spec.
+3. **BV's check** uses the tests active at the previous round minus any this round retires,
+   since a retired test would give away the rule that is changing.
+4. **Notes for next time** are asked for in every arm; the two non-empty lines after the last
+   "Notes for next time:" marker are carried (fewer, if fewer were written).
+5. **Thinking:** each model's default (as E-ext), with the door's 4,096-token cap. A reply with
+   no code block counts as a failed round and is also reported separately, so a model that
+   spends its budget thinking (as Haiku did in T2) is visible rather than hidden in the rate.
+6. **Thresholds are inclusive:** at least 15 points; between 15 and 45 points inclusive.
+7. **Pooled rates** are reported as incomplete until every round of every arm and model is done.
+8. **MT** is computed for C, B and BV; every round still runs after a first failure.
+9. **Parallelism:** every (model, arm, task) chain runs in parallel within the allowance;
+   rounds within a chain run in order.
