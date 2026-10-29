@@ -35,3 +35,8 @@ UTC day by our log, allowed or refused).
 
 - 00:23: refused (24 h 12,207; UTC day 2,876). Both readings allow this
   only if the counter lags, so it does not decide.
+- 03:01: **refused** (24 h 12,207; UTC day 2,876). Supports the rolling
+  24 h window: a calendar day reset at 00:00 UTC would have allowed it three
+  hours after midnight. Not yet ruled out: a daily reset at some other hour.
+  Next: the 21:15 UTC probe (rolling predicts allowed, with about 2,900 used
+  in the window).
