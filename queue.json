@@ -449,13 +449,13 @@
   },
   {
    "id": "q34",
-   "title": "Gnomon: append re-reads the whole log",
+   "title": "Speed: measure, then cache the hot spots",
    "kind": "build",
    "status": "open",
    "needs": "free",
    "cost": 0,
    "value": "medium",
-   "next": "store::append reads the whole file under lock on every append (store.rs line 495); measure at 10k and 1M events, then file an issue with the numbers",
+   "next": "Owner's idea 2026-10-29: a cache-minded design, software and hardware (CPU caches, page cache, GPU and other accelerators). Rule: measure the first real end-to-end run (time, cost, cache misses with perf if available) and cache only the top one or two hot spots. Known candidates: Gnomon's append re-reads the whole log (store.rs line 495); recall re-reads all visible memory per query, over pointer-heavy maps (a contiguous layout or a GPU only if measured); prompt caching already proven (T2)",
    "refs": []
   }
  ]
