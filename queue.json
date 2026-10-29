@@ -6,13 +6,14 @@
    "id": "q01",
    "title": "T12c: Llama judge and audit",
    "kind": "test",
-   "status": "scheduled",
+   "status": "done",
    "needs": "free",
    "cost": 0,
    "value": "low",
-   "next": "Runs itself at 10:10 Brisbane (scheduled task), after the Workers AI free allowance resets; fills the pending cells in RESULTS_C.md",
+   "next": "Done 2026-10-29: Llama agrees R+ is worst, does not separate S from R; Gemma audit applied",
    "refs": [
-    "bench/self/RESULTS_C.md"
+    "bench/self/RESULTS_C.md",
+    "bench/self/AUDIT_C.md"
    ]
   },
   {

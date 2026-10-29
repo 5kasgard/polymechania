@@ -2,7 +2,7 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-28 open items; API cost if all ran: about $1.05.
+27 open items; API cost if all ran: about $1.05.
 
 ## Can run now (17)
 
@@ -42,12 +42,11 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q08 | Delete the merged branch door-effort | low | owner | 0 | Owner deletes it on GitHub (sessions cannot) |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 
-## Scheduled (2)
+## Scheduled (1)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited |
-| q01 | T12c: Llama judge and audit | low | free | 0 | Runs itself at 10:10 Brisbane (scheduled task), after the Workers AI free allowance resets; fills the pending cells in RESULTS_C.md |
 
 ## Parked (3)
 
