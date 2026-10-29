@@ -121,16 +121,26 @@ session's own work becomes data for the cards.
 
 ## Reviews
 
-Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+Folded in on the cleanup pass (2026-10-29), verbatim from the review file named under each heading (git history, commit `fa517d6`); only the heading level of the review's own headings is lowered to nest here.
 
-Two separate reviews (Claude Haiku 5.5, a sub-agent on the Pro plan; Llama 3.3 70B, Workers AI, free), 2026-10-29. This document was revised the same day after both (see its status line); which points were applied is not itemised.
+### Review of routing.md by Claude Haiku 5.5 (sub-agent on the owner's Pro plan), 2026-10-29
 
-**Haiku.**
-1. Missing routing dimensions (section 2): the sample size behind each card value (an estimate from 3 verdicts should not route like one from 300), and version drift (re-test after a model revision or deprecation).
+Handling not itemised. The status line says this document was revised the same day after both reviews.
+
+Kept as received (lightly formatted).
+
+1. Missing routing dimensions (section 2): sample size behind each card value (an estimate from 3 verdicts should not route like one from 300); version drift (when a card is re-tested after a model revision or deprecation).
 2. Bias that still gets in (section 3): rule 7 only declares the author's bias, so prompts per arm should be drafted or reviewed by someone else; rule 3 requires a different family but not a comparable price tier, so a strong judge can favour expensive answers; rule 4 hides labels, not style, and has no length control though the padding finding is cited; rule 5 lets the author "state" each vendor's settings, which reopens tuning.
 3. Contradictions and vagueness: CLAUDE.md item 3 routes judging to Claude sub-agents while item 6 and rule 3 forbid a worker's own family judging alone; rule 8 "where possible" and rule 2 do not say when a model judge is allowed for open-ended work; "when the record shows a gain" has no threshold; rule 1 "amend before data" against section 1 "adjusted by the record" is unclear; rule 9 sets no ceiling or method for the cost bound.
 
-**Llama.**
-1. Missing dimension: worker utilisation or workload (a heavily used worker may not be the best choice even if strongest or cheapest).
-2. Rule 8 (state the author's bias) gives no mechanism for mitigating it.
-3. Unclear how the rules combine with "the decision stays the planner's", and how conflicts are resolved.
+### Review of routing.md by Llama 3.3 70B (Workers AI, free), 2026-10-29
+
+Handling not itemised. The status line says this document was revised the same day after both reviews.
+
+Kept as received.
+
+Here's a review of the document in under 250 words as a numbered list:
+
+1. **Missing routing dimension**: The document does not consider the dimension of "worker utilization" or "worker workload", which could impact the decision of which worker to assign a job to. For example, a worker that is already heavily utilized may not be the best choice for a new job, even if it is the strongest or cheapest option (Section 2, "What decides the route").
+2. **Testing rule that still lets bias in**: Rule 8 in Section 3, "Unbiased testing", states that the bias of the test's author should be stated, but it does not provide a clear mechanism for mitigating this bias. This could potentially allow bias towards the author's preferred vendor or model (Section 3, "Unbiased testing", rule 8).
+3. **Vague or contradictory rule**: The document states that "the decision stays the planner's" (Section 2, "The decision"), but it also provides a set of rules for routing work to workers. It is unclear how these rules are used in conjunction with the planner's decision, or how conflicts between the rules and the planner's decision are resolved (Section 2, "The decision" vs. Section 2, "What decides the route").

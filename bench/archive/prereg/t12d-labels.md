@@ -76,10 +76,32 @@ rerun; nothing else in the design changes.
 
 ## Reviews
 
-Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+Folded in on the cleanup pass (2026-10-29), verbatim from the review file named under each heading (git history, commit `fa517d6`); only the heading level of the review's own headings is lowered to nest here.
 
-**Gemma 4 26B (Workers AI, free; not Claude).**
-- Confound: comparing new arms (L, O) with T12c's earlier batch (R, R+) with one attempt each leaves sampling noise and API drift in the delta; rules 4 and 8 weakened by a single-run delta against history. Applied in amendment 1: all four arms in one batch, two attempts per arm pooled.
-- Suggested 5-10 attempts per arm: partly taken (two per arm, budget bound raised to $0.10).
+### Review of t12d-labels.md by @cf/google/gemma-4-26b-a4b-it (Workers AI, free; not Claude), 2026-10-29
 
-**Llama 3.3 70B (Workers AI, free).** Noted the author knew T12b and T12c; found no rule broken; suggested no change except watching the budget bound.
+Handling: amendment 1 ("From Gemma's review"): all four arms in one batch, two attempts per arm pooled, budget bound raised to $0.10.
+
+Kept as received.
+
+1. **Confounds?** Yes. The experiment compares a new run (L and O arms) against a previous run (R and R+ arms). Because the T12c arms were "run in another batch" with "sampling default, one attempt," any difference in results could be attributed to stochastic variance (sampling noise) or changes in the API environment rather than the labels themselves.
+
+2. **Any testing rule broken?** 
+   - **Rule 4 (Blind and Shuffled):** While the design mentions orders, it does not explicitly state that the comparison between the new batch and the old batch is blinded or that the "one attempt" per arm prevents bias in a single-sample comparison.
+   - **Rule 8 (Audit separately):** The comparison relies on a single-run delta against historical data rather than a controlled, simultaneous comparison, which weakens the auditability of the "15 point" threshold.
+
+3. **Exact changes before running:** 
+   - Increase the number of attempts per arm (e.g., run each arm 5-10 times) to ensure the 15-point threshold is statistically significant and not a result of sampling noise.
+   - Run L, O, R, and R+ in the same batch/session to ensure identical API conditions.
+
+### Review of t12d-labels.md by @cf/meta/llama-3.3-70b-instruct-fp8-fast (Workers AI, free; not Claude), 2026-10-29
+
+Handling: amendment 1 says "Llama suggested no change".
+
+Kept as received.
+
+Here's a review of the pre-registered experiment:
+
+1. **Confounds**: The experiment controls for several potential confounds, such as using the same prompt, budget, and settings for every vendor. However, the use of different models (Claude Haiku 5.5, Gemma 4 26B, and Llama 3.3 70B) and the fact that the author (Claude Opus 5.5) has knowledge of previous tasks (T12b and T12c) could introduce biases.
+2. **Testing rule broken**: The experiment appears to follow the testing rules, including pre-registering the question, arms, measures, decisions, and threshold, and using exact checks first.
+3. **Exact changes before running**: No changes are suggested, as the pre-registration seems thorough and well-designed. However, it's essential to ensure that the budget constraint ($0.05 API bound) is not exceeded during the experiment.
