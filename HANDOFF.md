@@ -5,20 +5,19 @@ Rewritten 2026-10-29 as a **reset**, after a long session drifted. Three indepen
 and the apparatus around it is large; no resident has done one real task end to end.
 Read this, then `docs/audit/SUMMARY.md`. Read anything else only when the task in hand needs it.
 
-## First thing: the owner's decision (not yet made)
+## The owner's decision (answered 2026-10-29)
 
-`docs/audit/SUMMARY.md` ends with a five-part proposal. **Ask the owner which parts to take
-before building anything:**
+Of the five-part proposal in `docs/audit/SUMMARY.md`, the owner took **part 3 only**: the
+cleanup pass. Parts 1 (one goal), 2 (Gnomon PRs), 4 (rules) and 5 (weekly numbers) were not
+taken; do not act on them unless the owner raises them again.
 
-1. One goal until it is met: one resident completes one real task end to end, through
-   Gnomon (packet, work, handoff, an outside check).
-2. Gnomon: merge #47; fold #58 into #57 as one change; close #59 for now, keeping the branch,
-   and reopen it when the free clock (queue q17) is built and needs leases.
-3. A cleanup pass, done by a sub-agent and reviewed: archive finished experiments, fold review
-   files into their pre-registrations, merge duplicate docs, prune the queue to the goal.
-4. Rules: one open PR and one experiment at a time; additions over 400 net lines need a
-   reason; no new docs or concepts unless the goal's run needs them; small tests, one file.
-5. Weekly numbers by `docs/audit/inventory.py` (baseline `inventory-2026-10-29.json`).
+- **Cleanup: done** (PR #2, merged). Finished experiments are under `bench/archive/` (one line
+  each in its README); review files are folded verbatim into their parents under "## Reviews"
+  (a condensed first try lost points, found by a Gemini review). `bench/border` stays, as q30 is
+  open. It cut files (74 to 60 Markdown), not words.
+- **Queue: left as is** by the owner. Two pruned copies were shown, not committed: **A**, what is
+  live now (open: q06, q30, q05, q22, q33, q07, q27; rest parked); **C**, the goal (open: a new
+  goal-run item and q05; rest parked). The owner has not picked one.
 
 ## How the owner works (apply always)
 
