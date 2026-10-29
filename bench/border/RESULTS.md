@@ -1,0 +1,38 @@
+# The border check: which threats are refused today (q30)
+
+Run 2026-10-29 by `bench/border/check.py` (exact probes, no model) against
+Gnomon main (fd4bab0) and PR #56 (0562a18). Raw: `results-main.json`, `results-pr56.json`.
+Threats are the list in `docs/security.md`. **Independent review: pending** (free Gemma and
+Llama reviews were refused by today's Workers AI allowance; queued for when it returns).
+
+**The border holds on 4 of 14 on main; 7 of 14 with PR #56.**
+
+| Probe | Threat | Must hold | Main | PR #56 | Fixed by |
+|---|---|---|---|---|---|
+| B1 | 1 | a writer cannot write into a compartment it does not hold | holds | holds |  |
+| B2 | 1 | the owner can withdraw a writer's compartment (revocation) | breached | breached | gnomon#49 |
+| B3 | 1 | a grant ends at its deadline (leases) | no mechanism yet | no mechanism yet | gnomon#54 |
+| B4 | 1 | only the process holding W's key can append as W | breached | breached | gnomon#50 |
+| B5 | 2 | another writer's text never reaches a resident's next start as its latest handoff unmarked | breached | breached | gnomon#55 |
+| B6 | 3 | a far-future write is refused | breached | holds | gnomon#52 |
+| B7 | 3 | after any one writer's write, everyone else can still write | breached | holds | gnomon#52 |
+| B8 | 3 | two runs cannot both follow the same handoff (no silent fork) | breached | holds | gnomon#53 |
+| B9 | 4 | compartment a's content is not readable from the raw log file | breached | breached | gnomon#50 |
+| B10 | 4 | a b-only reader's recall scores do not depend on a's content | holds | holds |  |
+| B10b | 4 | a b-only reader cannot tell that a writer in both acted in a (sequence gaps) | breached | breached | gnomon#48 |
+| B11 | 5 | the door refuses over-cap and off-list requests (its own test suite passes) | holds | holds |  |
+| B12 | 6 | no secret is in either repository's tracked files | holds | holds |  |
+| B13 | 7 | an outside agent reaches a world only through a gate the owner opened | no mechanism yet | no mechanism yet |  |
+
+## Notes
+
+- B10 (recall scores) holds on both, as the earlier map probe P22 found; the #48 leak
+  is a different side channel, probed by B10b (sequence gaps), which is breached.
+- B12 checks every tracked file in both repositories for key patterns and for the
+  live door credentials themselves (compared, never printed).
+- B3 (leases) and B13 (outside agents) have nothing to probe until those exist; they
+  count against the border, not for it.
+- Moved, not removed: B11 rests on the door's own test suite, so the spending border is
+  only as good as `test_door.mjs`.
+
+Run: `GNOMON_PYTHON=../gnomon/python python bench/border/check.py --label <name>`.

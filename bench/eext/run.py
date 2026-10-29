@@ -15,6 +15,7 @@ import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,6 +26,7 @@ sys.path.insert(0, str(ROOT / "bench" / "boot"))
 sys.path.insert(0, str(ROOT / "bench"))
 import run as t2  # noqa: E402  (tasks, graders, code extraction, door URL)
 from parallel import run_all  # noqa: E402
+import neurons  # noqa: E402  (rolling 24 h free-allowance guard)
 
 OUT = HERE / "results.json"
 DAILY = 9000
@@ -50,11 +52,23 @@ def ai(model: str, text: str) -> dict:
         "CF-Access-Client-Id": (dd / "cf_id").read_text().strip(),
         "CF-Access-Client-Secret": (dd / "cf_secret").read_text().strip(),
         "x-door-token": (dd / "door_token").read_text().strip()})
+    try:
+        neurons.check(1500)
+    except neurons.OutOfNeurons as e:
+        return {"error": str(e), "out_of_neurons": True}
     last = None
     for attempt in range(3):
         try:
             with urllib.request.urlopen(req, timeout=600) as r:
-                return json.loads(r.read())
+                out = json.loads(r.read())
+            neurons.log(model, out.get("usage", {}).get("neurons", 0), "bench/eext")
+            return out
+        except urllib.error.HTTPError as e:
+            body = e.read().decode(errors="ignore")
+            if neurons.refused_for_allowance(body):
+                return {"error": body[:200], "out_of_neurons": True}
+            last = e
+            time.sleep(10)
         except Exception as e:
             last = e
             time.sleep(10)
@@ -87,7 +101,8 @@ def run() -> None:
             return {"model": m, "served": out.get("model"), "set": s, "task": n, "day": today(),
                     "error": out.get("error"), "finish": (out.get("choices") or [{}])[0].get("finish_reason"),
                     "output_tokens": u.get("completion_tokens"), "input_tokens": u.get("prompt_tokens"),
-                    "neurons": u.get("neurons", 0) or 0, "length": len(text)}
+                    "neurons": u.get("neurons", 0) or 0, "length": len(text),
+                    "out_of_neurons": bool(out.get("out_of_neurons"))}
 
         res = run_all(one, batch, workers=8)
         for r in res:
@@ -97,7 +112,10 @@ def run() -> None:
         spent += sum(r["neurons"] for r in res)
         OUT.write_text(json.dumps(rows, indent=1) + "\n")
         print(f"  +{len(res)} ({sum(1 for r in res if r['error'])} errors), {spent:.0f} neurons today")
-    print("stopped:", "all done" if not todo else "daily budget reached; run again after 00:00 UTC")
+        if any(r.get("out_of_neurons") for r in res):
+            print(f"stopped: the free allowance is spent (room now {neurons.room():.0f}); run again later")
+            return
+    print("stopped:", "all done" if not todo else f"budget reached; room now {neurons.room():.0f} in the rolling 24 h")
 
 
 def ranks(xs: list) -> list:

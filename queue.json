@@ -314,13 +314,14 @@
    "id": "q24",
    "title": "Track Workers AI neurons per day",
    "kind": "infra",
-   "status": "open",
+   "status": "done",
    "needs": "free",
    "cost": 0,
    "value": "low",
-   "next": "Log neurons per call to the ledger and stop runs that would cross the free 10,000 a day",
+   "next": "Done 2026-10-29: bench/neurons.py guards every /ai call on a rolling 24 h (Cloudflare refused at 00:20 UTC with only 2,876 used that UTC day); probes in bench/neurons.md settle which rule holds",
    "refs": [
-    "bench/ledger.jsonl"
+    "bench/neurons.py",
+    "bench/neurons.md"
    ]
   },
   {
@@ -397,8 +398,9 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "docs/security.md (hypothesis) and the first border demo are done; next: turn each threat into a probe that must pass, and record refused crossings (q32)",
+   "next": "Border check built (bench/border/check.py): 4 of 14 hold on main, 7 with PR #56. Next: independent review of the probes (free, when neurons return); show the score on the demo",
    "refs": [
+    "bench/border/RESULTS.md",
     "docs/security.md"
    ]
   },

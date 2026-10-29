@@ -1,0 +1,4 @@
+{"time": "2026-10-28T08:59:59Z", "model": "(all)", "neurons": 2, "purpose": "seeded: 2 calls", "source": "Cloudflare GraphQL aiInferenceAdaptiveGroups, hourly total, stamped at the hour's end"}
+{"time": "2026-10-28T19:59:59Z", "model": "(all)", "neurons": 2972, "purpose": "seeded: 71 calls", "source": "Cloudflare GraphQL aiInferenceAdaptiveGroups, hourly total, stamped at the hour's end"}
+{"time": "2026-10-28T20:59:59Z", "model": "(all)", "neurons": 6357, "purpose": "seeded: 244 calls", "source": "Cloudflare GraphQL aiInferenceAdaptiveGroups, hourly total, stamped at the hour's end"}
+{"time": "2026-10-29T00:59:59Z", "model": "(all)", "neurons": 2876, "purpose": "seeded: 73 calls: T12c Llama judge 2,855 + Gemma audit 21", "source": "Cloudflare GraphQL aiInferenceAdaptiveGroups, hourly total, stamped at the hour's end"}

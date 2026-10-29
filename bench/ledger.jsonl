@@ -22,3 +22,5 @@
 {"date":"2026-10-29","part":"T12d: 288 Haiku calls (96 set aside by a loader bug)","worker":"claude-haiku-5-5 via door, 8 at once","layer":"api","subagent_tokens":null,"api_usd":0.081,"verdict":"labels barely protect; exclusion does","route_note":"exact checks only, no judges needed"}
 {"date":"2026-10-29","part":"T12d prereg review and audit","worker":"gemma-4-26b + llama-3.3-70b via door","layer":"free","subagent_tokens":null,"api_usd":0.0,"verdict":"Gemma: same-batch control and two attempts (applied); audit wording fixes (applied)","route_note":"Gemma again more useful than Llama"}
 {"date":"2026-10-29","part":"T12c Llama judge + Gemma wording audit","worker":"Workers AI llama-3.3-70b + gemma-4-26b","cost":"free, ~3,500 neurons"}
+{"date":"2026-10-29","part":"Border check (14 exact probes, main and PR #56)","worker":"script","layer":"script","api_usd":0.0,"verdict":"4/14 hold on main, 7/14 with PR #56"}
+{"date":"2026-10-29","part":"Neuron guard and allowance probe","worker":"script + Cloudflare GraphQL analytics","layer":"script","api_usd":0.0,"verdict":"refusal at 2,876 UTC-day neurons fits a rolling 24 h window, not the documented 00:00 UTC reset"}

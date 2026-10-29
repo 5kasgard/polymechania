@@ -2,9 +2,9 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-27 open items; API cost if all ran: about $1.05.
+26 open items; API cost if all ran: about $1.05.
 
-## Can run now (17)
+## Can run now (16)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
@@ -13,7 +13,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First demo published 2026-10-29 (the border: bench/demo/border.html, built from a real log by bench/demo/world.py; artifact claude.ai/artifact/CJiMroxXEK2QHunS7C2vkZ). Next: owner tries it; read feedback/ and the map-vs-table check answers as verdicts; then the next demo |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
-| q30 | The border: security as a world's edge | high | free | 0 | docs/security.md (hypothesis) and the first border demo are done; next: turn each threat into a probe that must pass, and record refused crossings (q32) |
+| q30 | The border: security as a world's edge | high | free | 0 | Border check built (bench/border/check.py): 4 of 14 hold on main, 7 with PR #56. Next: independent review of the probes (free, when neurons return); show the score on the demo |
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
 | q15 | Longer multi-step tasks with hidden graders | medium | free | 0 | Build 6-10 tasks of several dependent steps each, graded by tests |
@@ -22,7 +22,6 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q32 | Record refused crossings in Gnomon (the watchtower) | medium | free | 0 | Gnomon refuses bad writes but keeps no record of them, so a live border cannot show alarms; propose a bounded refusal log (outside the hash chain, or as owner-only events) as a Gnomon issue |
 | q12 | Cascade with visible checks only | medium | api | 0.05 | T2's cascade escalated on hidden graders; rerun escalating only on what a run can see (spec examples, empty or cut-off answers) |
 | q19 | Batch API through the door (half price, non-urgent work) | low | free | 0 | Allow /v1/messages/batches with the same checks per request; review before deploy |
-| q24 | Track Workers AI neurons per day | low | free | 0 | Log neurons per call to the ledger and stop runs that would cross the free 10,000 a day |
 | q26 | Rename 'world' files to 'themes' in the code | low | free | 0 | worlds.py, cli and tests; keep old names working once |
 | q29 | Door credentials live only in one session's scratch folder | low | free | 0 | Fine for now (re-issue per HANDOFF); revisit when a scheduler needs standing access |
 

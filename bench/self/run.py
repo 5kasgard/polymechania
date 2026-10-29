@@ -45,7 +45,9 @@ def sequences() -> dict:
 
 
 def ai(messages: list, model: str = RESIDENT, max_tokens: int = 1500) -> tuple[str, dict]:
-    import os, urllib.request
+    import os, urllib.error, urllib.request
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    import neurons
     dd = Path(os.environ["DOOR_DIR"])
     req = urllib.request.Request(t2.DOOR + "/ai", method="POST",
                                  data=json.dumps({"model": model, "max_tokens": max_tokens, "messages": messages}).encode(),
@@ -53,15 +55,24 @@ def ai(messages: list, model: str = RESIDENT, max_tokens: int = 1500) -> tuple[s
                                           "CF-Access-Client-Id": (dd / "cf_id").read_text().strip(),
                                           "CF-Access-Client-Secret": (dd / "cf_secret").read_text().strip(),
                                           "x-door-token": (dd / "door_token").read_text().strip()})
+    neurons.check(max_tokens * 0.3)
     for attempt in range(3):
         try:
             with urllib.request.urlopen(req, timeout=300) as r:
                 out = json.loads(r.read())
             break
-        except Exception as e:  # transient Workers AI errors: retry twice
+        except urllib.error.HTTPError as e:  # stop at once if the free allowance is spent
+            body = e.read().decode(errors="ignore")
+            if neurons.refused_for_allowance(body):
+                raise neurons.OutOfNeurons(body[:200])
             if attempt == 2:
                 raise
             time.sleep(5)
+        except Exception:  # transient Workers AI errors: retry twice
+            if attempt == 2:
+                raise
+            time.sleep(5)
+    neurons.log(model, out.get("usage", {}).get("neurons", 0), "bench/self")
     if "choices" in out:
         return out["choices"][0]["message"]["content"] or "", out.get("usage", {})
     return out.get("response", ""), out.get("usage", {})
