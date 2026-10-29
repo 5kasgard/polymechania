@@ -74,7 +74,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 revocation and #54 leases (#60); #51 auto-mode sessions hold one compartment (#61; test in gnomon bench/issue51, branch auto-one-compartment). Next: #48 (four side channels in the core); #50 waits on the owner (q33)",
+   "next": "Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 and #54 (#60); #51 (#61). #48 in progress: reproduced on main; pre-registered test with amendment 1 from a Haiku review, which found four more channels (write returns, leases, query 'through', clock), all confirmed (gnomon branch issue-48, bench/issue48). Sonnet building nine arms; then non-Claude review. #50 waits on the owner (q33)",
    "refs": [
     "gnomon#52",
     "gnomon#53",

@@ -8,7 +8,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 revocation and #54 leases (#60); #51 auto-mode sessions hold one compartment (#61; test in gnomon bench/issue51, branch auto-one-compartment). Next: #48 (four side channels in the core); #50 waits on the owner (q33) |
+| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 and #54 (#60); #51 (#61). #48 in progress: reproduced on main; pre-registered test with amendment 1 from a Haiku review, which found four more channels (write returns, leases, query 'through', clock), all confirmed (gnomon branch issue-48, bench/issue48). Sonnet building nine arms; then non-Claude review. #50 waits on the owner (q33) |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First owner verdict 2026-10-29: the questions asked nothing important; it looks rough, which is fine at alpha, and what matters now is what is under the hood. So: demos ask only questions whose answer would change a decision; visual polish waits until the plain core is right |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
