@@ -149,7 +149,23 @@ def self_d() -> None:
     print(f"  T12d spend: kept ${sum(r['usd'] for r in rows):.4f} + set-aside attempt ${sum(r['usd'] for r in bug):.4f}")
 
 
-SETS = {"boot": boot, "self": self_b, "self_c": self_c, "self_d": self_d}
+def cards() -> None:
+    """q16: the T2 stat cards rebuild exactly from the saved runs."""
+    import importlib.util
+    import io
+    import contextlib
+    saved = json.loads((ROOT / "bench" / "cards" / "t2_cards.json").read_text())
+    spec = importlib.util.spec_from_file_location("t2_cards", ROOT / "bench" / "cards" / "t2_cards.py")
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    with contextlib.redirect_stdout(io.StringIO()):
+        m.main()
+    again = json.loads((ROOT / "bench" / "cards" / "t2_cards.json").read_text())
+    check("T2 cards", saved, again)
+    print(f"  T2 cards: {len(again)} rebuilt")
+
+
+SETS = {"cards": cards, "boot": boot, "self": self_b, "self_c": self_c, "self_d": self_d}
 
 if __name__ == "__main__":
     for name in sys.argv[1:] or SETS:

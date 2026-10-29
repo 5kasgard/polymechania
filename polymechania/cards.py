@@ -67,6 +67,8 @@ class Result:
     tokens: int = 0
     cost_usd: float = 0.0
     ms: int = 0
+    neurons: float = 0.0  # free-quota units spent (Workers AI), separate from dollars
+    where: str = ""  # where it ran: "anthropic-api", "workers-ai", "pro-plan", "local", ...
 
     def __post_init__(self):
         if self.confidence is not None and not (0.0 <= self.confidence <= 1.0):
@@ -237,15 +239,22 @@ class Card:
     tokens: float = 0.0  # per result
     cost_usd: float = 0.0
     ms: float = 0.0
+    neurons: float = 0.0  # per result
+    ms_p50: Optional[float] = None
+    ms_p90: Optional[float] = None
+    cost_per_success: Optional[float] = None  # dollars per judged success: mean cost / success rate
+    where: str = ""  # every place its results ran, comma-separated
     estimate: Optional[float] = None  # audit-corrected success rate (unbiased; can stray outside 0-1)
     extra: dict = field(default_factory=dict)
 
     def as_dict(self) -> dict:
         d = {k: getattr(self, k) for k in ("worker", "kind", "rule", "judged", "successes", "broken_true",
                                             "broken_false", "declined", "results")}
-        for k in ("mean", "low", "high", "estimate", "coverage", "brier", "stated", "gap", "tokens", "cost_usd", "ms"):
+        for k in ("mean", "low", "high", "estimate", "coverage", "brier", "stated", "gap", "tokens", "cost_usd", "ms",
+                  "neurons", "ms_p50", "ms_p90", "cost_per_success"):
             v = getattr(self, k)
             d[k] = None if v is None else round(v, 6)
+        d["where"] = self.where
         return d
 
 
@@ -281,7 +290,34 @@ def card(results: Iterable[Result], worker: str, kind: str, rule: str = "designe
         c.tokens = sum(r.tokens for r in mine) / len(mine)
         c.cost_usd = sum(r.cost_usd for r in mine) / len(mine)
         c.ms = sum(r.ms for r in mine) / len(mine)
+        c.neurons = sum(r.neurons for r in mine) / len(mine)
+        times = sorted(r.ms for r in mine)
+        c.ms_p50, c.ms_p90 = _quantile(times, 0.5), _quantile(times, 0.9)
+        c.where = ", ".join(sorted({r.where for r in mine if r.where}))
+        rate = c.estimate if c.estimate is not None else c.mean
+        c.cost_per_success = c.cost_usd / rate if rate > 0 else None
     return c
+
+
+def _quantile(xs: list, q: float) -> float:
+    """Linear-interpolated quantile of sorted values."""
+    if len(xs) == 1:
+        return float(xs[0])
+    i = q * (len(xs) - 1)
+    lo = int(i)
+    hi = min(lo + 1, len(xs) - 1)
+    return xs[lo] + (xs[hi] - xs[lo]) * (i - lo)
+
+
+def expected_cost(c: Card, loss_if_wrong: float, fixed_usd: float = 0.0) -> float:
+    """What one call is expected to cost, wrong results included (docs/routing.md):
+    fixed cost per call (boot, setup spread over calls), plus the mean marginal
+    cost, plus the chance of a wrong result times what a wrong result costs
+    (redoing it, or the harm if it is not caught). Not used by `rank`, whose
+    rules are under test in prereg/cards-v2.md; this is for routing by value."""
+    p = c.estimate if c.estimate is not None else c.mean
+    p = min(max(p, 0.0), 1.0)
+    return fixed_usd + c.cost_usd + (1 - p) * loss_if_wrong
 
 
 def rank(cards: Iterable[Card], rule: str = "designed") -> list:

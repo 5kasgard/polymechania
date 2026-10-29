@@ -2,9 +2,9 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-26 open items; API cost if all ran: about $1.05.
+25 open items; API cost if all ran: about $1.05.
 
-## Can run now (16)
+## Can run now (15)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
@@ -17,7 +17,6 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
 | q15 | Longer multi-step tasks with hidden graders | medium | free | 0 | Build 6-10 tasks of several dependent steps each, graded by tests |
-| q16 | Cost and speed fields on stat cards | medium | free | 0 | Add fixed cost per call, marginal cost, setup, where it runs and measured speed to cards.py; fill from bench/ledger.jsonl and S1 |
 | q20 | Vision cheap tests: card sort, menu picture, notification volume | medium | people | 0 | Notification volume can run now from logs; card sort and menu need 5 people |
 | q32 | Record refused crossings in Gnomon (the watchtower) | medium | free | 0 | Gnomon refuses bad writes but keeps no record of them, so a live border cannot show alarms; propose a bounded refusal log (outside the hash chain, or as owner-only events) as a Gnomon issue |
 | q12 | Cascade with visible checks only | medium | api | 0.05 | T2's cascade escalated on hidden graders; rerun escalating only on what a run can see (spec examples, empty or cut-off answers) |

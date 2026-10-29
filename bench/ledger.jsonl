@@ -24,3 +24,4 @@
 {"date":"2026-10-29","part":"T12c Llama judge + Gemma wording audit","worker":"Workers AI llama-3.3-70b + gemma-4-26b","cost":"free, ~3,500 neurons"}
 {"date":"2026-10-29","part":"Border check (14 exact probes, main and PR #56)","worker":"script","layer":"script","api_usd":0.0,"verdict":"4/14 hold on main, 7/14 with PR #56"}
 {"date":"2026-10-29","part":"Neuron guard and allowance probe","worker":"script + Cloudflare GraphQL analytics","layer":"script","api_usd":0.0,"verdict":"refusal at 2,876 UTC-day neurons fits a rolling 24 h window, not the documented 00:00 UTC reset"}
+{"date":"2026-10-29","part":"q16 cost and speed on cards; T2 cards filled","worker":"script","layer":"script","api_usd":0.0,"verdict":"Haiku thinking-off cheapest per correct hard task"}

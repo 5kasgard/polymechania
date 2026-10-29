@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import _env  # noqa: E402,F401
 
 from polymechania.cards import (FAIL, PASS, Card, Result, Verdict, audited, beta_cdf, beta_quantile,  # noqa: E402
-                                brier, card, designed_outcome, estimate, naive_outcome, rank)
+                                brier, card, designed_outcome, estimate, expected_cost, naive_outcome,
+                                rank)
 
 OUT = "anthropic-reviewer"  # a judge outside the worker's group
 
@@ -189,6 +190,43 @@ class Audits(unittest.TestCase):
         self.assertGreater(differ, 400)  # another secret, another sample
         self.assertFalse(any(audited(f"r{i}", "s", 0.0) for i in range(100)))
         self.assertTrue(all(audited(f"r{i}", "s", 1.0) for i in range(100)))
+
+
+class CostAndSpeed(unittest.TestCase):
+    """q16: what a card says about cost and speed, measured from its results."""
+
+    def rows(self):
+        return [r(PASS, cost_usd=0.002, ms=1000, neurons=10, where="workers-ai"),
+                r(PASS, cost_usd=0.002, ms=2000, neurons=10, where="workers-ai"),
+                r(FAIL, cost_usd=0.002, ms=9000, neurons=40, where="anthropic-api")]
+
+    def test_percentiles_and_quota(self):
+        c = card(self.rows(), "w", "k")
+        self.assertEqual((c.ms_p50, round(c.ms_p90)), (2000, 7600))
+        self.assertAlmostEqual(c.neurons, 20)
+        self.assertEqual(c.where, "anthropic-api, workers-ai")
+
+    def test_cost_per_success_uses_the_judged_rate(self):
+        c = card(self.rows(), "w", "k")  # Beta(1+2, 1+1): mean 0.6
+        self.assertAlmostEqual(c.mean, 0.6)
+        self.assertAlmostEqual(c.cost_per_success, 0.002 / 0.6)
+
+    def test_expected_cost_charges_wrong_results(self):
+        c = card(self.rows(), "w", "k")
+        self.assertAlmostEqual(expected_cost(c, loss_if_wrong=0.0), 0.002)
+        self.assertAlmostEqual(expected_cost(c, loss_if_wrong=1.0, fixed_usd=0.01), 0.01 + 0.002 + 0.4)
+
+    def test_a_cheap_worker_that_is_often_wrong_can_cost_more(self):
+        cheap = card([r(PASS, cost_usd=0.001)] + [r(FAIL, cost_usd=0.001)] * 3, "w", "k")
+        dear = card([r(PASS, cost_usd=0.02)] * 4, "w", "k")
+        self.assertLess(cheap.cost_usd, dear.cost_usd)
+        self.assertGreater(expected_cost(cheap, 0.10), expected_cost(dear, 0.10))
+
+    def test_rank_is_unchanged(self):
+        # The pre-registered ranking (cards-v2) must not depend on the new fields.
+        a = card([r(PASS, worker="a", ms=1, neurons=99)], "a", "k")
+        b = card([r(PASS, worker="b", ms=9999)], "b", "k")
+        self.assertEqual([c.worker for c in rank([b, a])], ["a", "b"])
 
 
 if __name__ == "__main__":

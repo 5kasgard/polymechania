@@ -206,14 +206,14 @@
    "id": "q16",
    "title": "Cost and speed fields on stat cards",
    "kind": "build",
-   "status": "open",
+   "status": "done",
    "needs": "free",
    "cost": 0,
    "value": "medium",
-   "next": "Add fixed cost per call, marginal cost, setup, where it runs and measured speed to cards.py; fill from bench/ledger.jsonl and S1",
+   "next": "Done 2026-10-29: cards carry neurons, where it ran, p50/p90 time, $ per success and expected cost with a stated loss; T2 cards filled (bench/cards/T2_CARDS.md): Haiku thinking-off is cheapest per correct hard task even at 10c per wrong answer (12 tasks, a direction)",
    "refs": [
     "polymechania/cards.py",
-    "bench/speed/RESULTS.md"
+    "bench/cards/T2_CARDS.md"
    ]
   },
   {

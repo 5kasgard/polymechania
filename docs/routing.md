@@ -33,7 +33,7 @@ stated as an assumption where not.
 |---|---|---|
 | **Strength by kind of work** | How often does it get *this kind* right? | verdicts from outside its group, per frame (`cards.py`) |
 | **Reliability and calibration** | When it says it is sure, is it? Does it fail loudly (empty, refused) or quietly (wrong)? | Brier score; T2's empty answers are a loud failure |
-| **Cost** | fixed per call (boot), marginal per token, setup (building or downloading), upkeep | logged usage; `bench/boot` |
+| **Cost** | fixed per call (boot), marginal per token, setup (building or downloading), upkeep; on cards as $ per success and `expected_cost` (wrong results charged at a stated loss) | logged usage; `bench/boot`; `bench/cards/T2_CARDS.md` |
 | **Build or download** | Is a tool that exists cheaper over its lifetime than one built here? | setup + upkeep + licence against build cost |
 | **Speed** | time to a result, and rate limits | logged wall time; plan limits (`docs/engines.md`) |
 | **Context and modality** | Does the part fit its window? Text, code, images? | spec; refuse if not |
