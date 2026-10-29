@@ -63,7 +63,7 @@
    "next": "Built: Gnomon PR #57 (protocol version 4; packet()); border 9 of 15 with it, 7 on main. Free non-Claude reviews run tonight, then the owner merges",
    "refs": [
     "docs/start-packet-gate.md",
-    "bench/archive/border/RESULTS.md"
+    "bench/border/RESULTS.md"
    ]
   },
   {
@@ -403,7 +403,7 @@
    "value": "high",
    "next": "Border check: 7 of 15 hold on Gnomon main, 9 with #57, 10 with #58, 11 with #59. Next: free review of the probes; #50 (file access) is the biggest gap left",
    "refs": [
-    "bench/archive/border/RESULTS.md",
+    "bench/border/RESULTS.md",
     "docs/security.md"
    ]
   },

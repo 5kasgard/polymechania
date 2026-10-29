@@ -224,7 +224,7 @@ this, then `docs/vision.md`.
   like cooking, backed by numbers from this project and outside research.
 - Use separate agents to judge your own work. For tests of your own
   design, run an independent agent alongside your own attempt and compare
-  (see `bench/archive/map/COMPARISON.md`: the independent run caught the
+  (see `bench/map/COMPARISON.md`: the independent run caught the
   conductor's bias). Probe, don't only read.
 - The owner works from iOS Safari; keep replies short and plain.
 - Keep the owner's real name out of the repositories.

@@ -1,6 +1,6 @@
 # The border check: which threats are refused today (q30)
 
-Exact probes (`bench/archive/border/check.py`, no model), one or more per threat in `docs/security.md`.
+Exact probes (`bench/border/check.py`, no model), one or more per threat in `docs/security.md`.
 Raw: `results-main.json`, `results-gate55.json`, `results-revoke49.json`, `results-leases54.json`.
 
 **main (Gnomon 35716d0, 2026-10-29): 7 of 15 hold.** **gate55 (Gnomon 0bf0939, 2026-10-29): 9 of 15 hold.** **revoke49 (Gnomon a38ae8b, 2026-10-29): 10 of 15 hold.** **leases54 (Gnomon a38ae8b, 2026-10-29): 11 of 15 hold.**
@@ -38,5 +38,5 @@ Raw: `results-main.json`, `results-gate55.json`, `results-revoke49.json`, `resul
 - Moved, not removed: B11 rests on the door's own test suite, so the spending border is only
   as good as `test_door.mjs`.
 
-Run: `GNOMON_PYTHON=../gnomon/python python bench/archive/border/check.py --label <name>`, then
-`python bench/archive/border/report.py <labels...>`.
+Run: `GNOMON_PYTHON=../gnomon/python python bench/border/check.py --label <name>`, then
+`python bench/border/report.py <labels...>`.

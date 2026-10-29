@@ -1,13 +1,13 @@
 """The border check: is each threat in docs/security.md refused today? (queue q30)
 
-    GNOMON_PYTHON=../gnomon/python python bench/archive/border/check.py [--label main]
+    GNOMON_PYTHON=../gnomon/python python bench/border/check.py [--label main]
 
 One exact probe per threat. Each says what the border must do, tries it
 against a fresh log with the real Gnomon library (or the door's own tests,
 or the repositories' files), and records "holds", "breached" or "no
 mechanism yet", with the issue that would fix it. No model is involved.
 The border is "real" only when every probe holds (docs/security.md).
-Writes bench/archive/border/results-<label>.json and prints a table.
+Writes bench/border/results-<label>.json and prints a table.
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent.parent.parent
+ROOT = HERE.parent.parent
 GN = Path(os.environ.get("GNOMON_PYTHON", str(ROOT.parent / "gnomon" / "python"))).resolve()
 sys.path.insert(0, str(GN))
 import gnomon as g  # noqa: E402
