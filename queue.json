@@ -295,7 +295,7 @@
    "needs": "owner",
    "cost": 0,
    "value": "high",
-   "next": "Before anyone pays: a lawyer on reselling and the commercial terms",
+   "next": "Brief ready for the owner to take to a lawyer: https://claude.ai/artifact/1xLmnUpcqNrMQrhukPVNxj (option C ruled out by the consumer terms; the open line is A.1 product vs D.4(a) resale). Owner books the lawyer",
    "refs": [
     "docs/vision.md"
    ]
