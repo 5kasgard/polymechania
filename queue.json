@@ -12,8 +12,8 @@
    "value": "low",
    "next": "Done 2026-10-29: Llama agrees R+ is worst, does not separate S from R; Gemma audit applied",
    "refs": [
-    "bench/self/RESULTS_C.md",
-    "bench/self/AUDIT_C.md"
+    "bench/archive/self/RESULTS_C.md",
+    "bench/archive/self/AUDIT_C.md"
    ]
   },
   {
@@ -63,7 +63,7 @@
    "next": "Built: Gnomon PR #57 (protocol version 4; packet()); border 9 of 15 with it, 7 on main. Free non-Claude reviews run tonight, then the owner merges",
    "refs": [
     "docs/start-packet-gate.md",
-    "bench/border/RESULTS.md"
+    "bench/archive/border/RESULTS.md"
    ]
   },
   {
@@ -403,7 +403,7 @@
    "value": "high",
    "next": "Border check: 7 of 15 hold on Gnomon main, 9 with #57, 10 with #58, 11 with #59. Next: free review of the probes; #50 (file access) is the biggest gap left",
    "refs": [
-    "bench/border/RESULTS.md",
+    "bench/archive/border/RESULTS.md",
     "docs/security.md"
    ]
   },
