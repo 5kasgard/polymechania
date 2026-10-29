@@ -1,123 +1,73 @@
 # Handoff: start here
 
-Written 2026-10-28 at the end of the session that founded Polymechania, so
-the next session starts from the record instead of from a long chat. Read
-this, then `docs/vision.md`.
+Rewritten 2026-10-29 as a **reset**, after a long session drifted. Three independent audits
+(Claude Opus, a separate Claude Sonnet, Gemini) found the same thing: the product is small
+and the apparatus around it is large; no resident has done one real task end to end.
+Read this, then `docs/audit/SUMMARY.md`. Read anything else only when the task in hand needs it.
+
+## First thing: the owner's decision (not yet made)
+
+`docs/audit/SUMMARY.md` ends with a five-part proposal. **Ask the owner which parts to take
+before building anything:**
+
+1. One goal until it is met: one resident completes one real task end to end, through
+   Gnomon (packet, work, handoff, an outside check).
+2. Gnomon: merge #47; fold #58 into #57 as one change; close #59 for now, keeping the branch,
+   and reopen it when the free clock (queue q17) is built and needs leases.
+3. A cleanup pass, done by a sub-agent and reviewed: archive finished experiments, fold review
+   files into their pre-registrations, merge duplicate docs, prune the queue to the goal.
+4. Rules: one open PR and one experiment at a time; additions over 400 net lines need a
+   reason; no new docs or concepts unless the goal's run needs them; small tests, one file.
+5. Weekly numbers by `docs/audit/inventory.py` (baseline `inventory-2026-10-29.json`).
 
 ## How the owner works (apply always)
 
-- Never impose a design: every decision is a hypothesis; taste and adjust,
-  like cooking, backed by numbers from this project and outside research.
-- Use separate agents to judge your own work. For tests of your own
-  design, run an independent agent alongside your own attempt and compare
-  (see `bench/map/COMPARISON.md`: the independent run caught the
-  conductor's bias). Probe, don't only read.
-- The owner works from iOS Safari; keep replies short and plain.
-- Keep the owner's real name out of the repositories.
+- Never impose a design: hypothesise, taste and adjust, backed by numbers.
+- Separate agents judge Claude's work; at least one not Claude.
+- **Route the work:** Opus plans, writes briefs and reviews; Sonnet or Haiku sub-agents build
+  (`model` set); free open models (the door's `/ai`) review and judge. On 2026-10-29 Opus built
+  everything itself, and the owner caught it.
+- iOS Safari: short, plain replies. Keep the owner's real name out of the repositories.
+- The owner may paste a prompt into another family's chat (e.g. Gemini) when free engines are
+  out: give them one self-contained file (as `docs/audit/prompt-outside.md`).
 
-## What Polymechania is
+## What stands (with evidence)
 
-Split out of Gnomon on 2026-10-28: the right worker for every part of the
-work (models, tools, scripts, checks), organised by price and track record,
-with Gnomon (github.com/5kasgard/gnomon) as its record. The vision has grown
-into a world for people's AI that is not a chat: one private world per
-person with many regions, a shared commons, guides, a god's-eye pixel-art
-view like a city builder, plain underneath with any theme on top.
+- **Start-packet rule** (T12b-d, `bench/self/RESULTS_B.md`, `_C.md`, `_D.md`): keeping another
+  writer's request out of a resident's next packet kept 86-92% of its rules; carrying it 51-59%;
+  labels added only 9 points. Built as Gnomon PR #57.
+- **Thin boot and settings** (T2, T2b, T2c in `bench/boot`): Haiku with thinking off is the
+  cheapest per correct task here (`bench/cards/T2_CARDS.md`).
+- **Workers AI's free allowance** acted as a rolling 24 hours, not the documented midnight UTC
+  reset (`bench/neurons.md`); `bench/neurons.py` guards every call.
+- Hypotheses only: the vision, the architecture, the security border (`docs/security.md`; its
+  border score is self-scored, and anyone with file access bypasses Gnomon's gate, #50).
 
-## Decisions so far
+## Open (the one queue is `queue.json`; `docs/queue.md` is generated from it)
 
-- Name Polymechania; terminal command `mekh`; mark μ.
-- Plain core, themes on top: a theme may rename, retell and restyle, never
-  change a fact, number or rule (code: `concepts.py`, `events.py`,
-  `worlds.py`; themes Plain, Kagamigakure, Hollow Acre).
-- Words: world (your place), region (a project), commons (shared), theme
-  (the look; code still says "world", to be renamed), pack.
-- Two versions for people: Free (their own Claude while they talk) and Paid
-  (keeps working while away; we pay model use via our API account);
-  Advanced: own key or self-host. Untested.
-- Architecture hypothesis (not yet written up): no long-lived agents (short
-  bounded runs, state only in the record), one plain protocol any engine
-  can speak, everything else a worker or a view.
-- The map must be honest: roads drawn from real grants, labelled with who
-  can cross; "no one but you crosses", not "isolated"; plain table one tap
-  away.
-- Economy: earnings minted only from audited work, bounded, not tradable;
-  "cheat the method all you like, never the result".
+| Item | State | Next |
+|---|---|---|
+| Gnomon PR #47 | green, checked | owner merges |
+| Gnomon PRs #57, #58, #59, stacked (protocol versions 4, 5, 6 on their branches; main is at 3) | CI green, no outside review yet | per the decision above |
+| Gnomon #50 (file access) | options in `docs/gnomon-50-options.md`; hash-chain tokens on existing SHA-256 recommended | owner decides, after the goal |
+| Gnomon append re-reads the whole log (`store.rs` line 495) | found, not measured | measure when it matters |
+| T1 (run shapes on long tasks) | tasks `bench/long`, runner `bench/long/run.py` (Sonnet-built), draft `prereg/t1-long.md` | owner sees the draft; paused |
+| E-ext (public benchmarks vs ours) | registered, **0 results**; paused | resume only if the owner wants it |
+| Legal check | brief: https://claude.ai/artifact/1xLmnUpcqNrMQrhukPVNxj | owner books a lawyer |
+| Licence | parked by the owner | |
 
-## Evidence and tests done
+## Budget
 
-- Stat cards: research in `docs/evidence.md`; pre-registration
-  `prereg/cards-v2.md` with two amendments (after two independent reviews,
-  `prereg/review-v1.md`, `review-v2.md`). Mechanism in `polymechania/cards.py`
-  (audit-corrected estimate, tested). **E1 has not run.**
-- Map honesty: `bench/map` (independent), `bench/map-mine` (conductor),
-  `bench/map/COMPARISON.md`. Claim fails as written; holds with a rule.
-- Engines by plan: `docs/engines.md`. Free has no unattended option; Pro can
-  wake on Claude Code scheduled tasks (hourly at most, on its own usage);
-  Max and Team include API credits; subscription logins may not be used by
-  third-party apps.
-- Live test passed (issue #1): a scheduled task on the owner's Pro plan woke
-  unattended, read the repo and reported correctly.
-- Vision reviewed independently: `docs/vision-review-1.md` (contradictions,
-  first-week gaps, evidence, cheapest tests).
+About **$4.14 of API credit** left (none spent after T12d). Workers AI: free 10,000 neurons,
+acting as a rolling 24 h; last heavy use 28 Oct 19:00-21:00 UTC. Pro plan sub-agents: usage, not dollars.
 
-## Budget (owner, 2026-10-29)
+## Left running or pending
 
-About **$4.25 of API credit** is left (after about $0.72 spent on T2, T2b,
-T2c and T11), then $0.03 on T12c and $0.08 on T12d: about **$4.14 left**. Workers AI used about 7,700
-neurons of the 10,000 free on 2026-10-28 UTC. Spend it only on what only the API can measure (Claude's
-caching, Claude's own pass rates). Use first, in this order: published
-results; Cloudflare Workers AI through the door's `/ai` route (free
-allowance 10,000 neurons a day; Gemma 4 26B about 9k neurons per million
-input tokens, 27k per million output); sub-agents on the owner's Pro plan
-(usage, not dollars). Hugging Face is a free account: papers and datasets,
-not inference. Every pre-registration states its API cost bound.
-
-## Open, in rough order
-
-Rules for every session: `CLAUDE.md` (routing, unbiased testing, budget).
-Owner's saved skills (any chat): route-and-test, taste-and-adjust,
-session-handoff, careful-live-changes.
-
-**Done 2026-10-28/29 (all audited, records in `bench/`):** T12d (`bench/self/RESULTS_D.md`: labels barely protect, +9; keeping requests out of the packet does, 89% vs 68%; owner label followed more, +15; $0.08); a task-loader bug fixed (second call returned hard tasks as easy; earlier results checked clean); Gnomon #55 (start-packet authority) filed; T12c (`bench/self/RESULTS_C.md`: T12b holds with a Claude Haiku resident, +33 points, $0.03; Llama judge scheduled after the free reset); T2 thin boot
-(1,486 tokens; caching holds; cached Haiku-then-Sonnet cascade 24/24 at a
-quarter of Sonnet's price); T2b/T2c (set thinking explicitly; off for Haiku
-on this work); T11 runaway caps hold; T12b (`bench/self/RESULTS_B.md`: a
-fresh context did not keep the resident in character; *not writing a
-non-owner's conflicting requests into its next start packet* did, +35
-points); S1 (`bench/speed/RESULTS.md`: 8 model calls at once 8.9x faster for
-free; Actions has 4 CPUs but pays only for long jobs; Codespaces not
-reachable from these sessions); `docs/routing.md` (reviewed by Haiku and
-Llama); `bench/verify.py` (exact half of every audit, free); CI green again.
-
-**The open list now lives in one place: `queue.json`** (rendered as
-`docs/queue.md` by `python bench/workqueue.py`; CI checks it). Every open item,
-with its status, blocker, cost, who it needs and next step. Update it when
-you start or finish something; do not keep a second list here.
-
-**Note for sessions:** on 2026-10-29 a duplicate run of the same session
-worked in this folder at the same time (same session id; it committed
-work this session was about to do). Before writing, check `git log` and
-`git status` for changes you did not make.
-
-## Things left running or pending
-
-- **The door:** Cloudflare Worker `polymechania-door` (code in
-  `bench/cards/door/`), behind Cloudflare Access (app `polymechania-door`,
-  service token expiring in 90 days) and a door token. **The Anthropic key
-  IS set** (2026-10-28, by the owner, in a Console workspace
-  `polymechania-e1` with a monthly spend limit); checked: `/health` reports
-  it set, one Haiku message went through (26 tokens), and a request with
-  tools was refused (400). The door's own credentials are not in the repo:
-  a new session issues fresh ones through the Cloudflare connector (a new
-  Access service token on the `polymechania-door` policy, and a new
-  `DOOR_TOKEN` secret uploaded with `keep_bindings` so the owner's key is
-  kept), then revokes the old service token. (2026-10-28 evening: one
-  session rotated the existing service token's secret and set a new
-  `DOOR_TOKEN`; both live only in that session's scratch folder, so the
-  next session issues its own again.) Delete the Worker, Access app and token
-  if the door is abandoned.
-- **Gnomon PR #47** (teams of models move out) is open, awaiting the owner.
-- **Gnomon issues #48-#51** (side channels, no revocation, plain-text log
-  with unauthenticated appends, auto mode across compartments).
-- The scheduled heartbeat task ran once and is finished.
+- **Scheduled tasks: none** (all deleted 2026-10-29 in the pause).
+- **The door** (`bench/cards/door/`): Cloudflare Worker behind Access, Anthropic key set by the
+  owner. Its credentials live only in a session's scratch folder; a new session issues fresh
+  ones through the Cloudflare connector (`careful-live-changes` skill).
+- **Gnomon branches:** `start-packet-gate`, `revoke`, `leases` (the three PRs); `gate-time-and-forks`
+  is merged (#56) and can be deleted by the owner (sessions cannot delete remote branches).
+- Before writing, check `git log` and `git status` for changes you did not make (a duplicate
+  session once worked here at the same time).

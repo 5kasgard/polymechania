@@ -28,7 +28,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Unblocked once #58 and #59 merge (revocation and leases exist): a cron Worker that reads open orders and leases runs (after q06) |
+| q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Needs revocation (PR #58) and leases (PR #59, closed for now with its branch kept): reopen #59 when this is built (after q06) |
 
 ## Needs the owner (5)
 
@@ -40,15 +40,10 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 
-## Scheduled (1)
+## Parked (3)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited |
-
-## Parked (2)
-
-| | Item | Value | Needs | $ | Next step |
-|---|---|---|---|---|---|
+| q03 | E-ext: do public benchmarks predict our own results? | high | free | 0 | Paused 2026-10-29 in the complexity reset; 0 results so far. Resume only if the owner wants it (no scheduled task exists) |
 | q28 | T8, T9, T10 (resume adequacy, Free latency, cost per resident-month) | medium | free | 0 | Need a running world; T8 can use push_scale data meanwhile (after q17) |
 | q23 | Choose a licence | low | owner | 0 | Parked by the owner 2026-10-29; options and a recommendation stay in docs/licensing.md for when it comes back |

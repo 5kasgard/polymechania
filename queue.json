@@ -31,12 +31,12 @@
    "id": "q03",
    "title": "E-ext: do public benchmarks predict our own results?",
    "kind": "test",
-   "status": "scheduled",
+   "status": "parked",
    "needs": "free",
    "cost": 0,
    "value": "high",
    "blocked_by": [],
-   "next": "Pre-registered; runs itself daily from 00:30 UTC within 9,000 free neurons a day until all seven models are done, then writes up and is audited",
+   "next": "Paused 2026-10-29 in the complexity reset; 0 results so far. Resume only if the owner wants it (no scheduled task exists)",
    "refs": []
   },
   {
@@ -230,7 +230,7 @@
    "blocked_by": [
     "q06"
    ],
-   "next": "Unblocked once #58 and #59 merge (revocation and leases exist): a cron Worker that reads open orders and leases runs",
+   "next": "Needs revocation (PR #58) and leases (PR #59, closed for now with its branch kept): reopen #59 when this is built",
    "refs": [
     "docs/architecture.md"
    ]
