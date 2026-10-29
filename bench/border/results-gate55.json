@@ -1,9 +1,9 @@
 {
- "label": "pr56",
- "gnomon": "0562a18",
- "when": "2026-10-29T02:00:23Z",
- "holds": 7,
- "of": 14,
+ "label": "gate55",
+ "gnomon": "0bf0939",
+ "when": "2026-10-29T04:11:54Z",
+ "holds": 9,
+ "of": 15,
  "rows": [
   {
    "id": "B1",
@@ -42,8 +42,16 @@
    "threat": 2,
    "must": "another writer's request does not reach a resident's next start packet (a label is not enough: T12d measured +9 points for labels against +30 for keeping it out)",
    "issue": "gnomon#55",
-   "state": "breached",
-   "observed": "ra's rendered resume carries the lead's request: True; labelled as data: True"
+   "state": "holds",
+   "observed": "lead's handoff into run/ra/job: E_CAPABILITY; ra's packet carries the request: False"
+  },
+  {
+   "id": "B5b",
+   "threat": 2,
+   "must": "only the owner writes a resident's self and standing instructions",
+   "issue": "gnomon#55",
+   "state": "holds",
+   "observed": "lead writes {'self/ra': 'E_CAPABILITY', 'standing/ra': 'E_CAPABILITY'}; owner writes standing/ra: accepted"
   },
   {
    "id": "B6",

@@ -1,9 +1,9 @@
 {
  "label": "main",
- "gnomon": "fd4bab0",
- "when": "2026-10-29T02:00:22Z",
- "holds": 4,
- "of": 14,
+ "gnomon": "35716d0",
+ "when": "2026-10-29T04:11:53Z",
+ "holds": 7,
+ "of": 15,
  "rows": [
   {
    "id": "B1",
@@ -43,31 +43,39 @@
    "must": "another writer's request does not reach a resident's next start packet (a label is not enough: T12d measured +9 points for labels against +30 for keeping it out)",
    "issue": "gnomon#55",
    "state": "breached",
-   "observed": "ra's rendered resume carries the lead's request: True; labelled as data: True"
+   "observed": "no packet(); ra's rendered resume carries the lead's request: True; labelled as data: True"
+  },
+  {
+   "id": "B5b",
+   "threat": 2,
+   "must": "only the owner writes a resident's self and standing instructions",
+   "issue": "gnomon#55",
+   "state": "breached",
+   "observed": "lead writes {'self/ra': None, 'standing/ra': None}; owner writes standing/ra: accepted"
   },
   {
    "id": "B6",
    "threat": 3,
    "must": "a far-future write is refused",
    "issue": "gnomon#52",
-   "state": "breached",
-   "observed": "ra writes dated 2099: accepted"
+   "state": "holds",
+   "observed": "ra writes dated 2099: E_FUTURE"
   },
   {
    "id": "B7",
    "threat": 3,
    "must": "after any one writer's write, everyone else can still write",
    "issue": "gnomon#52",
-   "state": "breached",
-   "observed": "rb writes now: E_CLOCK"
+   "state": "holds",
+   "observed": "rb writes now: accepted"
   },
   {
    "id": "B8",
    "threat": 3,
    "must": "two runs cannot both follow the same handoff (no silent fork)",
    "issue": "gnomon#53",
-   "state": "breached",
-   "observed": "second successor of the same handoff: accepted"
+   "state": "holds",
+   "observed": "second successor of the same handoff: E_FORK"
   },
   {
    "id": "B9",

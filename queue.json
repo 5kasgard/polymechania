@@ -56,13 +56,14 @@
    "id": "q05",
    "title": "Start-packet authority as a Gnomon gate rule",
    "kind": "build",
-   "status": "in-progress",
-   "needs": "free",
+   "status": "waiting-owner",
+   "needs": "owner",
    "cost": 0,
    "value": "high",
-   "next": "Owner said build it (2026-10-29), owner-only standing first; building on a Gnomon branch from main (protocol version 4)",
+   "next": "Built: Gnomon PR #57 (protocol version 4; packet()); border 9 of 15 with it, 7 on main. Free non-Claude reviews run tonight, then the owner merges",
    "refs": [
-    "docs/start-packet-gate.md"
+    "docs/start-packet-gate.md",
+    "bench/border/RESULTS.md"
    ]
   },
   {
@@ -73,7 +74,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "#52 and #53 fixed in Gnomon PR #56 (awaiting the owner's merge; tests and reviews in the PR). Next in order: #49 (revocation), #54 (leases with fencing), #50 (gate only on MCP), #48, #51",
+   "next": "#52, #53 merged (PR #56). #55 in PR #57. Next: #49 revocation (after #57, both touch the schema version), then #54, #50, #48, #51",
    "refs": [
     "gnomon#52",
     "gnomon#53",
@@ -400,7 +401,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Border check built (bench/border/check.py): 4 of 14 hold on main, 7 with PR #56. Next: independent review of the probes (free, when neurons return); show the score on the demo",
+   "next": "Border check (bench/border): 7 of 15 hold on Gnomon main, 9 with PR #57. Next: the free review of the probes; Gnomon #49 revocation and #50 next",
    "refs": [
     "bench/border/RESULTS.md",
     "docs/security.md"
