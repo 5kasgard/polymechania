@@ -2,17 +2,17 @@
 
 Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not this file.
 
-23 open items; API cost if all ran: about $1.05.
+22 open items; API cost if all ran: about $1.05.
 
 ## Can run now (15)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | #52, #53 merged (#56). Open, stacked: #55 in PR #57, #49 in #58, #54 in #59. Next: #50 (file access), #48, #51 |
+| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 revocation and #54 leases (#60); #51 auto-mode sessions hold one compartment (#61; test in gnomon bench/issue51, branch auto-one-compartment). Next: #48 (four side channels in the core); #50 waits on the owner (q33) |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First owner verdict 2026-10-29: the questions asked nothing important; it looks rough, which is fine at alpha, and what matters now is what is under the hood. So: demos ask only questions whose answer would change a decision; visual polish waits until the plain core is right |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
-| q30 | The border: security as a world's edge | high | free | 0 | Border check: 7 of 15 hold on Gnomon main, 9 with #57, 10 with #58, 11 with #59. Next: free review of the probes; #50 (file access) is the biggest gap left |
+| q30 | The border: security as a world's edge | high | free | 0 | Border scores predate the #60 and #61 merges: rerun bench/border on Gnomon main. Then a free review of the probes; #50 (file access) is the biggest gap left |
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
 | q14 | T1: run shapes on long multi-step work | medium | pro | 0 | Draft prereg/t1-long.md (arms C one session, B fresh runs, BV fresh runs with a regression check on the boundary, SR reference control; 3 free models; $0 API). Free reviews tonight, then the owner sees it before it is final; runs after E-ext (after q15) |
@@ -28,15 +28,14 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Needs revocation (PR #58) and leases (PR #59, closed for now with its branch kept): reopen #59 when this is built (after q06) |
+| q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Revocation and leases are on Gnomon main (#60); still waits on q06 (#48, #50) (after q06) |
 
-## Needs the owner (4)
+## Needs the owner (3)
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
 | q22 | Legal check of the business model | high | owner | 0 | Brief ready for the owner to take to a lawyer: https://claude.ai/artifact/1xLmnUpcqNrMQrhukPVNxj (option C ruled out by the consumer terms; the open line is A.1 product vs D.4(a) resale). Owner books the lawyer |
 | q33 | Gnomon #50: sign appends (protocol 7) | high | owner | 0 | Options in docs/gnomon-50-options.md. Session recommends F (hash-chain tokens on existing SHA-256, no new dependency) over B (ed25519-dalek). Owner decides; a Sonnet sub-agent builds it from the session's spec |
-| q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 
 ## Parked (3)

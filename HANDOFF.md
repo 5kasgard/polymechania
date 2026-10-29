@@ -46,8 +46,7 @@ taken; do not act on them unless the owner raises them again.
 
 | Item | State | Next |
 |---|---|---|
-| Gnomon PR #47 | green, checked | owner merges |
-| Gnomon #57 and #47 merged into main (protocol 4). Revocation and leases (#58, #59) land via **PR #60** (`revoke` -> main, opened by another session) | merge #60 first; main is then protocol 6 | **Gnomon #51 is being worked on in another chat:** build it on main after #60, and if it needs a protocol bump, use 7 |
+| Gnomon main | #47, #57 (protocol 4), #60 (revocation, leases; protocol 6) and #61 merged 2026-10-29. #61 closes #51: an auto-mode session's writer holds only the compartment it is recorded in, and the MCP server takes `--require-attach`; chosen by a pre-registered test of four fixes on eight leak roads (gnomon `bench/issue51/`, branch `auto-one-compartment`; reviewed by Haiku and Gemini) | done | next blocker: #48 (four side channels in the core) |
 | Gnomon #50 (file access) | options in `docs/gnomon-50-options.md`; hash-chain tokens on existing SHA-256 recommended | owner decides, after the goal |
 | Gnomon append re-reads the whole log (`store.rs` line 495) | found, not measured | measure when it matters |
 | T1 (run shapes on long tasks) | tasks `bench/long`, runner `bench/long/run.py` (Sonnet-built), draft `prereg/t1-long.md` | owner sees the draft; paused |
@@ -58,7 +57,7 @@ taken; do not act on them unless the owner raises them again.
 ## Budget
 
 About **$4.14 of API credit** left (none spent after T12d). Workers AI: free 10,000 neurons,
-acting as a rolling 24 h; last heavy use 28 Oct 19:00-21:00 UTC. Pro plan sub-agents: usage, not dollars.
+acting as a rolling 24 h; found used up 29 Oct about 10:20 UTC (not by this work). Pro plan sub-agents: usage, not dollars.
 
 ## Left running or pending
 
@@ -66,7 +65,8 @@ acting as a rolling 24 h; last heavy use 28 Oct 19:00-21:00 UTC. Pro plan sub-ag
 - **The door** (`bench/cards/door/`): Cloudflare Worker behind Access, Anthropic key set by the
   owner. Its credentials live only in a session's scratch folder; a new session issues fresh
   ones through the Cloudflare connector (`careful-live-changes` skill).
-- **Gnomon branches:** `start-packet-gate`, `revoke`, `leases` (the three PRs); `gate-time-and-forks`
-  is merged (#56) and can be deleted by the owner (sessions cannot delete remote branches).
+- **Gnomon branches:** merged and deletable by the owner (sessions cannot delete remote branches):
+  `start-packet-gate`, `revoke`, `leases`, `gate-time-and-forks`, `issue-51-one-compartment`. Kept as the
+  #51 evidence: `auto-one-compartment` (bench) and `arm-A`, `arm-B`, `arm-C`, `arm-C2`, `arm-D`, `arm-D1`, `arm-D2`.
 - Before writing, check `git log` and `git status` for changes you did not make (a duplicate
   session once worked here at the same time).

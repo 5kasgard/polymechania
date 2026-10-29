@@ -74,7 +74,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "#52, #53 merged (#56). Open, stacked: #55 in PR #57, #49 in #58, #54 in #59. Next: #50 (file access), #48, #51",
+   "next": "Merged 2026-10-29: #52, #53 (#56); #55 (#57); #49 revocation and #54 leases (#60); #51 auto-mode sessions hold one compartment (#61; test in gnomon bench/issue51, branch auto-one-compartment). Next: #48 (four side channels in the core); #50 waits on the owner (q33)",
    "refs": [
     "gnomon#52",
     "gnomon#53",
@@ -89,11 +89,11 @@
    "id": "q07",
    "title": "Gnomon PR #47 (teams of models move to Polymechania)",
    "kind": "decision",
-   "status": "waiting-owner",
+   "status": "done",
    "needs": "owner",
    "cost": 0,
    "value": "medium",
-   "next": "Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides",
+   "next": "Merged by the owner 2026-10-29 (Gnomon PR #47)",
    "refs": [
     "gnomon#47"
    ]
@@ -230,7 +230,7 @@
    "blocked_by": [
     "q06"
    ],
-   "next": "Needs revocation (PR #58) and leases (PR #59, closed for now with its branch kept): reopen #59 when this is built",
+   "next": "Revocation and leases are on Gnomon main (#60); still waits on q06 (#48, #50)",
    "refs": [
     "docs/architecture.md"
    ]
@@ -401,7 +401,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Border check: 7 of 15 hold on Gnomon main, 9 with #57, 10 with #58, 11 with #59. Next: free review of the probes; #50 (file access) is the biggest gap left",
+   "next": "Border scores predate the #60 and #61 merges: rerun bench/border on Gnomon main. Then a free review of the probes; #50 (file access) is the biggest gap left",
    "refs": [
     "bench/border/RESULTS.md",
     "docs/security.md"
