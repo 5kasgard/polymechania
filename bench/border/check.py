@@ -77,9 +77,24 @@ def _():
     return w is not None and not seen, f"after revoke: ra writes in a: {w or 'accepted'}; ra still sees {len(seen)} claims"
 
 
-@probe("B3", 1, "a grant ends at its deadline (leases)", "gnomon#54")
+@probe("B3", 1, "a grant ends at its deadline (leases), and a stale holder is fenced off", "gnomon#54")
 def _():
-    return "none", "grants have no deadline field in the core; nothing to probe yet"
+    m = world()
+    if not hasattr(m, "lease"):
+        return "none", "grants have no deadline in the core; nothing to probe yet"
+    from datetime import datetime, timedelta, timezone
+
+    def ts(s):
+        return (datetime.now(timezone.utc) + timedelta(seconds=s)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    l1 = m.lease("own", "ra", "job", ts(2))
+    late = dict(g.claim("late", speaker="ra", frame="job", compartment="a"), lease=l1)
+    expired = refused(lambda: m.remember("ra", late, record_time=ts(10)))
+    l2 = m.lease("own", "lead", "job", ts(600), record_time=ts(11))
+    stale = refused(lambda: m.remember("ra", dict(late, statement="stale"), record_time=ts(12)))
+    other = refused(lambda: m.remember("ra", g.claim("no token", speaker="ra", frame="job", compartment="a"),
+                                       record_time=ts(12)))
+    held = all((expired, stale, other))
+    return held, f"after expiry: {expired}; stale token under the new lease {l2}: {stale}; without a token: {other}"
 
 
 @probe("B4", 1, "only the process holding W's key can append as W", "gnomon#50")

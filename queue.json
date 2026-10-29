@@ -74,7 +74,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "#52, #53 merged (#56). #55 in PR #57; #49 revocation in PR #58 (stacked on #57). Next: #54 leases, then #50, #48, #51",
+   "next": "#52, #53 merged (#56). Open, stacked: #55 in PR #57, #49 in #58, #54 in #59. Next: #50 (file access), #48, #51",
    "refs": [
     "gnomon#52",
     "gnomon#53",
@@ -223,14 +223,14 @@
    "id": "q17",
    "title": "The free clock (Cloudflare cron) and the scheduler",
    "kind": "build",
-   "status": "blocked",
+   "status": "open",
    "needs": "free",
    "cost": 0,
    "value": "high",
    "blocked_by": [
     "q06"
    ],
-   "next": "Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs",
+   "next": "Unblocked once #58 and #59 merge (revocation and leases exist): a cron Worker that reads open orders and leases runs",
    "refs": [
     "docs/architecture.md"
    ]
@@ -401,7 +401,7 @@
    "needs": "free",
    "cost": 0,
    "value": "high",
-   "next": "Border check (bench/border): 7 of 15 hold on Gnomon main, 9 with PR #57, 10 with #58. Next: the free review of the probes; #54 leases and #50 next",
+   "next": "Border check: 7 of 15 hold on Gnomon main, 9 with #57, 10 with #58, 11 with #59. Next: free review of the probes; #50 (file access) is the biggest gap left",
    "refs": [
     "bench/border/RESULTS.md",
     "docs/security.md"

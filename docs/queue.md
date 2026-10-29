@@ -8,11 +8,11 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | #52, #53 merged (#56). #55 in PR #57; #49 revocation in PR #58 (stacked on #57). Next: #54 leases, then #50, #48, #51 |
+| q06 | Gnomon blockers before anything runs unattended | high | free | 0 | #52, #53 merged (#56). Open, stacked: #55 in PR #57, #49 in #58, #54 in #59. Next: #50 (file access), #48, #51 |
 | q11 | First Test Kitchen demo: one small web demo per hypothesis | high | free | 0 | First owner verdict 2026-10-29: the questions asked nothing important; it looks rough, which is fine at alpha, and what matters now is what is under the hood. So: demos ask only questions whose answer would change a decision; visual polish waits until the plain core is right |
 | q18 | Free version engine: remote MCP for Gnomon | high | free | 0 | Gnomon's MCP server is stdio only; the Claude app needs a remote server with sign-in |
 | q21 | Waitlist test for Free and Paid | high | owner | 0 | A one-page site with a button per version; owner decides when to share it |
-| q30 | The border: security as a world's edge | high | free | 0 | Border check (bench/border): 7 of 15 hold on Gnomon main, 9 with PR #57, 10 with #58. Next: the free review of the probes; #54 leases and #50 next |
+| q30 | The border: security as a world's edge | high | free | 0 | Border check: 7 of 15 hold on Gnomon main, 9 with #57, 10 with #58, 11 with #59. Next: free review of the probes; #50 (file access) is the biggest gap left |
 | q13 | E1: can stat cards be gamed? | high | api | 1 | Re-cost against the $4.14 left and the free engines; write amendment 3 (judges on Workers AI); owner decides whether to spend |
 | q10 | Language as a routing row; Rust against Python test | medium | free | 0 | Add the row to docs/routing.md; write Rust graders for the pilot tasks; Gemma writes each task in both languages |
 | q14 | T1: run shapes on long multi-step work | medium | pro | 0 | Draft prereg/t1-long.md (arms C one session, B fresh runs, BV fresh runs with a regression check on the boundary, SR reference control; 3 free models; $0 API). Free reviews tonight, then the owner sees it before it is final; runs after E-ext (after q15) |
@@ -27,7 +27,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 
 | | Item | Value | Needs | $ | Next step |
 |---|---|---|---|---|---|
-| q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Wait for leases and revocation in Gnomon; then a cron Worker that reads open orders and leases runs (after q06) |
+| q17 | The free clock (Cloudflare cron) and the scheduler | high | free | 0 | Unblocked once #58 and #59 merge (revocation and leases exist): a cron Worker that reads open orders and leases runs (after q06) |
 
 ## Needs the owner (4)
 
