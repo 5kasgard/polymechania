@@ -73,3 +73,13 @@ calls checked identical); every earlier result file was checked and none
 was affected; **attempt 2 is rerun as registered**, and the decisions use
 attempts 1 and the rerun 2. Attempt 1's results were seen before the
 rerun; nothing else in the design changes.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+**Gemma 4 26B (Workers AI, free; not Claude).**
+- Confound: comparing new arms (L, O) with T12c's earlier batch (R, R+) with one attempt each leaves sampling noise and API drift in the delta; rules 4 and 8 weakened by a single-run delta against history. Applied in amendment 1: all four arms in one batch, two attempts per arm pooled.
+- Suggested 5-10 attempts per arm: partly taken (two per arm, budget bound raised to $0.10).
+
+**Llama 3.3 70B (Workers AI, free).** Noted the author knew T12b and T12c; found no rule broken; suggested no change except watching the budget bound.

@@ -1,7 +1,7 @@
 # T2 results: a thin boot through the door
 
 Run 2026-10-28 under `prereg/t2-thin-boot.md` with amendment 1 (after
-`prereg/t2-review-1.md`). Raw data: `results.json`; code given by each run:
+`prereg/t2-thin-boot.md`, Reviews). Raw data: `results.json`; code given by each run:
 `solutions/`; the start packet: `self.md` and `packet.txt` (hashes checked
 before running). 98 calls in all (2 calibration, 96 task calls) plus 2 for
 T11; total cost **$0.70**.

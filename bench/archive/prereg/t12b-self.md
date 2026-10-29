@@ -3,8 +3,8 @@
 Written 2026-10-29, before any T12b run. Replaces T12 (`bench/archive/prereg/t12-self.md`),
 whose 18 replies from a run stopped by the owner are kept as an **unread
 pilot** (`bench/archive/self/results.json`): never analysed, not part of T12b.
-Every point of both reviews (`bench/archive/prereg/t12-review-haiku.md`,
-`bench/archive/prereg/t12-review-llama.md`) is taken, except Llama's claim that Llama
+Every point of both reviews (`bench/archive/prereg/t12-self.md`,
+Reviews) is taken, except Llama's claim that Llama
 and Claude are one family (they are not).
 
 **Authorship (rule 7):** prompts, pressure texts, judge prompt and this file

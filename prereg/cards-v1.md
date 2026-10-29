@@ -178,7 +178,41 @@ paced to them; if the limits stop a run, it resumes, it is not dropped.
 ## Amendments
 
 1. **2026-10-28, before any data: superseded by `cards-v2.md`.** An
-   independent review (`review-v1.md`) found 24 problems, five of them
+   independent review (Reviews, below) found 24 problems, five of them
    blocking. v2 narrows to E1, fixes each finding (its section 10), and
    withdraws E2-E4 for re-registration after E1. Nothing below this line in
    v1 was run.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+One independent review, by a separate agent (Claude Opus 5.5) that wrote none of the material. It checked all nine cited papers in full text and edited nothing. Received 2026-10-28, before any data. 24 findings; 5 block E1 as written (the code workload is at ceiling, no penalty for being caught, predictable audit sampling, answers on the same disk the workers can read, the "broken" rule borrows the mechanism's own judgement). All were handled in `prereg/cards-v2.md` (section 10 gives the handling for each number below); this file was replaced by v2.
+
+**A. Faithfulness of the evidence.**
+1. SpecBench (2605.21384): 27-28 points per tenfold is the 90th-percentile gap; the mean slope is about 23 (R² 0.21-0.25); the 100-point gap appears only above 25,000 lines (under 10,000 lines the worst gap was 21); the gap came mostly from features not working together, not exploits; a random split is a weaker check.
+2. Trace tampering (2609.30266): shell rigging appeared when agents were told to do it; trace deletion was the only way past a 0.8 score cap; peer copying was not universal (Opus 5.5: 0/10 from peer logs, 9/10 from peer workspaces); no discussion of hash chains.
+3. Escalation channels (2608.29460), must fix: all 9 problems had genuinely broken checkers from one benchmark; one agent, no competition; the paper warns competing agents abuse reporting channels; escalation cut hacking only to 15.0%; "no measurable cost" means no change of about 10 points or more. D5 is not evidence-backed for competing workers.
+4. Strategic calibration (2610.33728): its guarantee needs inverse-propensity-weighted audits; D3 did neither; small Qwen3 and DeepSeek agents, no collusion.
+5. Judge bias (2608.18091), must fix: story-constraint items had no style fingerprint; for real code and text models recognise their own output, so blinding does not remove self-preference. D1 must define a group as the model family.
+6. Routing (2608.23023): the 5.37% flip rate has a different denominator from a policy's accuracy difference.
+7. Routers vs random (2610.02762): only one router lost by more than 10 points (-10.5); the baseline mixes two models to match cost; v1's policy 3 was not this baseline.
+8. Confidence (2609.33290, 2609.32470): stated confidence clusters on a few values, so a Brier score has little resolution.
+9. Must fix: deterrence is chance of being checked times penalty (Becker); D3 had no penalty; at a 20% audit rate a hack that fools the routine check keeps 80% of its gain. Use an audit-corrected estimator or a large pre-set penalty.
+
+**B. Loopholes in the designed card.**
+10. Must fix: predictable audit draw. Commit the seed by hash, draw audits after the run, show no audit outcome during a run.
+11. Must fix: ground truth on the same disk (pilot graders and passing solutions, floor splits and labels); subagents share filesystem and shell; D6 forbids writing, not reading. Run workers where they cannot read `bench/`, the record or the graders; log from outside.
+12. Must fix: no E1 item is actually broken, so D5 is never tested; plant a pre-registered list of broken items and define "truly broken" by it.
+13. Must fix: choosing which work to accept was not in E1; add a run where workers may decline or call items "broken".
+14. Should fix: other attacks (failing visible checks on purpose, self-reported tokens and time, Sybil identities, Haiku and Sonnet as one family, instructions to the reviewer hidden in output).
+
+**C. The E1 design.**
+15. Must fix: the code workload is at ceiling (pilot 24/24), so there is no reason to inflate; replace the single naive control with ablations.
+16. Must fix: pilot graders are assertion functions, not lists of tests that can be split.
+17. Must fix: underpowered (72 results per cell gives an SE of about 5 points); run a power calculation; add items, not runs.
+18-20. Should fix: name posterior mean or raw estimate; H1c had no statistic and is confounded by effort; cap the rerun loop and test finally on fresh items with a red-team prompt written by someone other than the fixer.
+
+**D. E2-E4.**
+21-22. Must fix: item counts did not add up (32, not 40, code items); no templates; the primary measure is undefined for untunable policies; one point in 120 items is below noise; only the card policy had escalation; `plan.PRIORS` is per tier, not per kind; most kinds at ceiling. Use a paired accuracy difference at matched cost.
+23-24. Should fix: E3's pooling model and "one standard error" undefined; E4 needs about 65+ results at p = 0.5 for a 20-point interval; open choices (reviewer and audit models, what a group is, how confidence is elicited, model versions, temperature, refusals, resumed runs, which floor half, how sentiment "3" is scored).

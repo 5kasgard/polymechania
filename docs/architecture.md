@@ -1,7 +1,7 @@
 # Architecture: a hypothesis
 
 Status: **hypothesis, revision 2** (2026-10-28). Revision 1 was attacked by
-a separate agent (`docs/architecture-review-1.md`); this revision takes its
+a separate agent (Reviews, at the end of this file); this revision takes its
 corrections and adds three ideas from the owner (a standing self, a free
 clock, a thin boot). Nothing here is built beyond what exists in this repo
 and in Gnomon. Every claim says what supports it and how to test it; a
@@ -319,3 +319,45 @@ In Gnomon: revocation (#49), gate-assigned time (#52), lease and release
 as event kinds with fencing epochs (#54), a single-successor rule for
 handoff chains (#53), file-level write protection or all access via MCP
 (#50), and remote MCP for the Free version.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+One independent review of revision 1 by a separate agent that wrote none of this document (2026-10-28), with probe scripts run on throwaway logs against a copy of the Gnomon core; neither repo was modified. Revision 2 (this one) takes its corrections; handling is not itemised per point. Line numbers below refer to revision 1.
+
+**Wrong or unsupported claims.**
+1. "Nothing on a subscription can keep an agent alive" (l.64-67) is overstated: `docs/engines.md` lists Claude Code cloud sessions that keep running with the laptop closed, and desktop `/loop` down to a minute, both on Pro. What is real is narrower: the unattended scheduled path is hourly and starts fresh.
+2. The Anthropic harness is misread (l.50-56): "a new session declaring the job done" is a failure of fresh sessions, not long ones; the article says compaction "isn't sufficient", not that it fails; its sessions each build one feature end to end, nothing like an 80k-token micro-run.
+3. Gas Town (l.57-58) keeps "git worktree-based storage that persists agent state", which is per-agent state, the thing this design rules out.
+4. The push_scale citation (l.93-100) overstates cold-start risk: "1 in 12" was Gemma (Claude pulls, with good targeted queries); "0 to 3.5%" is an exploratory diagnosis, "not a result", of a push chosen without the question; a run always has a work order, and the question-dependent push holds the evidence for 54-96% of questions at 2,000 tokens.
+5. Pilot numbers are correct but under-specified (l.77-83): n=48, min 79,827, max 96,743, median 81,399, mean 82,563, all PASS; 80k tokens cost $0.008 on Haiku and $0.16 on Sonnet; cache reads are 1/10 (Haiku) and 1/20 (Sonnet). But `tokens` is one total, so the "uncached" price may not be the price paid; a regression gives an intercept of 79,431 (97.6% of the median), an inference not a measurement.
+6. Cache lifetime (l.87-88): default 5 minutes; 1 hour costs 2x on write; a hit refreshes. An exactly-hourly wake-up misses even the 1-hour cache, so uncached is the realistic case at hourly cadence.
+7. "The connector is how the Free version works at all" (l.138-139) skips that Claude app connectors are remote MCP servers; Gnomon's is stdio only and HTTP transport is not built.
+8. "A misbehaving engine cannot write beyond its grant" (l.141-143) holds only on the MCP path: `Memory.append(writer, ...)` takes the writer id as a plain argument, so any engine that reaches the file can write as anyone (issue #50, noted at l.153, but the "why" paragraph still claimed the stronger thing).
+9. The island row (l.205) conflicts with `bench/archive/map/RESULTS.md:21-26`: even with revocation "the owner is a bridge to everything", so no true islands.
+10. Issues #48-#51 could not be checked (GitHub access refused in that session).
+
+**What probing showed (real core).**
+- The compartment gate works: a write outside the compartment gave `E_COMPARTMENT`; spawning into a compartment the parent lacks gave `E_SPAWN`.
+- No revocation: event kind `revoke` gives `E_KIND`; re-registering narrower gives `E_DUPLICATE`; an empty compartment list gives `E_BODY`; a dismissed writer still wrote a claim and a handoff, both accepted.
+- No deadline, and the clock can be poisoned: the gate only checks `record_time` does not go backwards; one claim stamped 2099-01-01 was accepted, and every later write by anyone then failed with `E_CLOCK`.
+- One identity per run already exists for any engine that starts its own MCP process (two `--per-session` starts became `eng-4`, `eng-5`; `org.hire` already uses `instance_for`); the l.149-151 gap is about the Claude app's single connection.
+- Concurrency is safe for appends (four processes, 25 claims each, chain verified) but not for the work: two runs that both `follows` the same handoff were both accepted (silent fork; `resume` showed only the newer branch); two leases on one frame lose work with no error.
+- Scale is not a problem: after 2,000 per-run writers and handoffs (1.5 MB), `resume` took 0.05 s and an append about 1 ms.
+- The MCP tool list matches the table at l.121-128 (`resume`, `handoff`, `query`, `remember`, `give_verdict`; no `lease`, `release`, `deliver`); `org.deliver` is a wrapper over `remember` with no usage field.
+
+**Design weaknesses.**
+- Major: leases are a distributed lock and need fencing tokens ([Kleppmann 2016](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)); a `run/...` frame claim cannot do this, so the "undecided" question is decided: new event kinds; time cannot come from writers.
+- Major: the scheduler is the most privileged component and a single point of failure; "no judgement, so it can be tested exhaustively" ignores time, crashes, retries and duplicate delivery. If it is down the world stops; if compromised, everything is.
+- Major: partial results and idempotency are not handled (a run killed by a hard budget cannot write its handoff, so the scheduler must write "abandoned"; a run that delivered but died before its handoff will deliver twice; work outside the record is not rolled back). Work orders need idempotency keys.
+- Major: the Free version contradicts the principle (the chat is one long-lived context; nothing switches writers mid-connection; with remote MCP not built it has no engine at all).
+- Major: cost of the Paid version: start-up alone, hourly, at 80k tokens uncached is $3.84 a day, about $115 a month per Sonnet resident, about $5.76 on Haiku; on Pro about 1.9M tokens a day from the usage window. The doc never stated a cost per resident-month.
+- Moderate: contradicts vision scene 4 (residents "answer for themselves", "pause properly"); "end at the next safe point" is undefined and only a hard kill enforces it; splitting alone does not reduce errors under a constant-hazard model ([Ord 2025](https://arxiv.org/pdf/2505.05115)), so independent checks at run boundaries must be part of the claim; a resume packet carries other writers' text into a fresh context (cross-run injection), and a model-callable `lease` tool would let a run lease itself more (issue leases out of band).
+- Minor: pilot median wall time 15 s (max 75 s), no Free latency target; engines.md says Free gets one custom connector.
+
+**Missing alternatives.** A long-lived process per resident with durable checkpoints (Temporal/LangGraph-style durable execution; the cache stays warm); one long session per frame with compaction, recording at each compaction (Gnomon's PreCompact hook; `plan.py` already prices this as the baseline, which the architecture rejected without measuring); a hybrid with runs sized to a frame (hours), fresh starts only at frame boundaries or on failure.
+
+**Tests.** T1: right test, underpowered, missing arm (c) one session with compaction; compare dollars at actual cache use; fix tasks and runs ahead; justify the 1.5x threshold. T2: needs input, output, cache-read and cache-write tokens per run. T3: InterruptBench needs WebArena; inject mid-task changes into the pilot's multi-step tasks instead (InterruptBench found interruptions rarely turned success into failure). T4: good, but blocked for the Claude app until remote MCP exists; run with Claude Code over stdio first. T5: fails today by construction; extend to direct file appends, library calls and a future-dated `record_time`. Add T6 double lease (second must be refused), T7 scheduler crash mid-lease (no orphan, no double delivery), T8 resume adequacy, T9 Free latency and usage per run on Pro, T10 cost per resident-month, T11 runaway stopped by an engine-side hard cap.
+
+**Outside evidence.** [Chroma, context rot](https://www.trychroma.com/research/context-rot) (18 models; reliability falls with input length; focused ~300-token prompts beat full ~113k; argues for small contexts, does not choose between short runs and compaction). [Anthropic, long-running harnesses](https://anthropic.com/engineering/effective-harnesses-for-long-running-agents) (no metrics). [Gas Town intro](https://gastown.dev/docs/intro). Ord 2025 (constant hazard). [InterruptBench, arXiv 2604.00892](https://arxiv.org/html/2604.00892v1) (165 WebArena-Lite tasks; no handoff strategy tested). [Prompt caching docs](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) (5 min and 1 h, 2x write, refreshed on a hit, workspace-isolated). Kleppmann 2016. Weak and unverified: a measured 436k-token fixed overhead per Claude Code sub-agent (cached share not separated), indicative only.

@@ -73,3 +73,16 @@ door). The fp8 and settings mismatches with AA's runs remain and are the
 point of the test (the public number against our use). Llama's review: the
 Haiku and Sonnet comparison is reported only, as already stated; no more
 models have Coding Index entries.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+**Gemma 4 26B (Workers AI, free; not Claude).**
+- Confound: settings differ by vendor (the door fixed temperature 0 and thinking off for Gemma only, others at their defaults), so rule 5 (same conditions) is broken. Applied: amendment 1 (every model at its own default thinking, temperature 0 and `max_tokens` 4,096 for all; settings listed).
+- Confound: fp8 quantisation and the deployment against AA's maximum-reasoning runs. Not changed; it is the point of the test (the public number as published against our use).
+- Seven models is low power (Type II risk). Not changed; no other models have Coding Index entries. Already stated as a limit.
+
+**Llama 3.3 70B (Workers AI, free).**
+- Same confounds (settings, quantisation, seven models); no testing rule broken.
+- Suggested more models: not possible (see above). Suggested clarifying how Haiku 5.5 and Sonnet 5.5 Intelligence Index values are used, since they are not Coding Index values: they are reported only, as already stated. Suggested checking the settings are as registered: covered by amendment 1.

@@ -1,8 +1,7 @@
 # Routing: every part of the work to the worker that fits it best
 
 Status: **hypothesis**, written with the owner 2026-10-29; revised the same
-day after two separate reviews (`docs/routing-review-haiku.md`,
-`docs/routing-review-llama.md`). Applies to
+day after two separate reviews (Reviews, at the end of this file). Applies to
 Polymechania's planner *and* to how any session (any chat, any engine)
 does its own work: the session is an organisation too. Every rule here is
 to be tasted and adjusted by the record, never imposed.
@@ -119,3 +118,19 @@ cheapest Claude tier that passes for short judgement; the strongest
 model only for planning, design and integration. Each part done is
 logged (`bench/ledger.jsonl`: what, which worker, cost, verdict) so the
 session's own work becomes data for the cards.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+Two separate reviews (Claude Haiku 5.5, a sub-agent on the Pro plan; Llama 3.3 70B, Workers AI, free), 2026-10-29. This document was revised the same day after both (see its status line); which points were applied is not itemised.
+
+**Haiku.**
+1. Missing routing dimensions (section 2): the sample size behind each card value (an estimate from 3 verdicts should not route like one from 300), and version drift (re-test after a model revision or deprecation).
+2. Bias that still gets in (section 3): rule 7 only declares the author's bias, so prompts per arm should be drafted or reviewed by someone else; rule 3 requires a different family but not a comparable price tier, so a strong judge can favour expensive answers; rule 4 hides labels, not style, and has no length control though the padding finding is cited; rule 5 lets the author "state" each vendor's settings, which reopens tuning.
+3. Contradictions and vagueness: CLAUDE.md item 3 routes judging to Claude sub-agents while item 6 and rule 3 forbid a worker's own family judging alone; rule 8 "where possible" and rule 2 do not say when a model judge is allowed for open-ended work; "when the record shows a gain" has no threshold; rule 1 "amend before data" against section 1 "adjusted by the record" is unclear; rule 9 sets no ceiling or method for the cost bound.
+
+**Llama.**
+1. Missing dimension: worker utilisation or workload (a heavily used worker may not be the best choice even if strongest or cheapest).
+2. Rule 8 (state the author's bias) gives no mechanism for mitigating it.
+3. Unclear how the rules combine with "the decision stays the planner's", and how conflicts are resolved.

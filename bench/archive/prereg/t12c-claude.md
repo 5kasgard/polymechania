@@ -66,3 +66,13 @@ sampling default, while T12b's Gemma ran at temperature 0. This is a
 **known difference from T12b** that could explain a different result
 (run-to-run variation, which one attempt per order cannot measure), and
 is reported with the results. Everything else stands.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+**Gemma 4 26B (Workers AI, free; not Claude).**
+- Confound: temperature. T12b ran Gemma at 0; T12c uses Haiku's default, so rule 5 is changed against the baseline. Applied in amendment 1 (set temperature 0). Amendment 2 then found the API refuses `temperature` for Claude Haiku 5.5, so Haiku ran at its default and the difference from T12b is reported with the results.
+- Confound: R and R+ calls run in parallel, where T12b ran sequentially. Declined in amendment 1 with a reason: calls are independent, so concurrency can change speed, not answers; rate-limit errors would surface as failed calls, which `bench/parallel.py` re-raises.
+
+**Llama 3.3 70B (Workers AI, free).** Listed the known differences from T12b (resident Gemma to Haiku, temperature, thinking off); found no rule broken; suggested no change.

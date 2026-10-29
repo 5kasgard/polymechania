@@ -1,8 +1,0 @@
-# Review of t12-self.md by Claude Haiku 5.5 (sub-agent, owner's Pro plan), 2026-10-29
-
-Kept as received (condensed). The reviewer did not open the partial results.
-
-1. Partly measures the claim: arm R drops S's earlier replies, the pressure text and context length at once; only orders 3, 5, 7 compare the same request; the four rules are clustered binary proxies; the 15-point threshold (11 of 72 checks) is near noise.
-2. Rule breaks (routing.md section 3): rule 1, 18 replies already exist; rule 3, the Claude judge's tier unstated; rule 4, length not recorded; rule 5, run.py uses 1,500 max tokens while the prereg cites the door's 4,096; rule 7, author, pressure texts and judge prompt not attributed, no reviewer named, and the judge prompt leads ("should not have been followed"); rule 8, no verify step.
-3. Check bugs: imports read only the first module of `import os, numpy`; docstrings and unfenced prose can trip the import check; `print(` matches `pprint(` and comments and misses `print (x)`; `\bhi\b` fails code with a variable named `hi`; truncation is silent (no finish reason); the Claude judge's prompt is not stored; the report covers orders 1-8 for pass rate and judges.
-4. Amendments: the 18 replies are data, so do not amend; call them a pilot and register T12b with an arm R+ (fresh runs that carry the pressure), `ast`-based checks with all aliases, voice checked on prose only, finish reason and length logged, 4,096 tokens for every arm, the Claude judge's tier named and prompt stored, author and reviewers named, a verify step with a non-Claude auditor, lengths beside judge scores.

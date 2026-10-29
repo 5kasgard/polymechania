@@ -91,14 +91,14 @@ pilot's tasks are short and exactly specified; long, vague work (T1) is
 where boot share and tool loss could look different. The self here is
 written for the test, not grown by a resident.
 
-## Amendment 1 (2026-10-28, after `prereg/t2-review-1.md`, before any run)
+## Amendment 1 (2026-10-28, after the review (Reviews, below), before any run)
 
 All points of the independent review are taken. Where this amendment and
 the text above differ, this amendment rules.
 
 - **Thin boot holds** if boot is at most 4,000 tokens **and** at most 5%
   of the pilot's fixed start-up (about 79,000 tokens; regression intercept
-  in `docs/architecture-review-1.md`). Boot share is reported as
+  in `docs/architecture.md`, Reviews). Boot share is reported as
   description only: with a ~1,000-token boot and short tasks it is large
   by construction, so it cannot decide anything.
 - **The pilot is priced as a bracket**, API-equivalent (it ran on a
@@ -129,3 +129,21 @@ the text above differ, this amendment rules.
 - **T11:** if Haiku stops the long essay before 4,096 output tokens, the
   result is inconclusive and is repeated once with a firmer prompt.
 - **Order:** calibration; Haiku A, Haiku B; Sonnet A, Sonnet B; T11.
+
+## Reviews
+
+Folded in on the cleanup pass (2026-10-29), condensed to the points made; the full text of each review file is in git history at `fa517d6`.
+
+One independent review by a separate agent (Claude Opus 5.5), 2026-10-28, before any run. It read the prereg, `docs/architecture.md` section 4 and its tests, `bench/pilot/`, `bench/boot/`, the door's `worker.js`, the `plan.py` prices and the prompt-caching docs, and edited nothing. 11 findings (3 must, 5 should, 2 minor, 1 check that passes). Amendment 1 above took all of them.
+
+1. (must) The 20% boot-share threshold fails by construction: boot is about 2,400 tokens, a call adds a spec (~300) and a reply (~450), so the share is about 75%. The question is absolute (80k against 2-4k): use boot at most 4,000 tokens and at most 5% of the pilot's ~79,000; report share as description only.
+2. (must) The pilot price is not an upper bound: pricing all pilot tokens at the input rate understates output cost, while Claude Code's prefix is mostly cache reads, which overstates. Report a bracket (low: all non-output tokens at cache-read price; high: T-O at input plus O at output, O fixed now, e.g. 5,000) and say the pilot ran on a subscription (API-equivalent prices).
+3. (should) The quality comparison mixes three changes (no tools, one shot, a new prompt). The self's lessons were written knowing the 24 tasks and the packet says six were already "delivered, passed"; both bias the pass rate up. Disclose, and fix self.md and the packet by hash now.
+4. (should) Arms A and B are the same prompt (only `cache_control` differs), so they are two attempts per task: report per arm and pooled (48 per model), and count a task passing in one arm and failing in the other as such.
+5. (must) Thresholds named no arm: quality on each arm and pooled (threshold < 40/48); price headline on arm B (the deployed form), A alongside; the cascade pairs A with A and B with B.
+6. (should) "Calls 2 to 24 read at least 90%": say each call (with one breakpoint a hit is all or nothing).
+7. (minor) T11 has no outcome if Haiku stops early: inconclusive, then repeat with a prompt asking for a numbered list to 3,000 items.
+8. The door permits it: `FIELDS` checks only top-level keys; `textOnly` ignores other keys so a text block with `cache_control` passes (also `ttl: "1h"`); `max_tokens` 5,000 is refused by `checkClaude` with 400 before any upstream call (check the `x-door` header on the 400).
+9. (should) Cache minimum (512 tokens for Haiku 5.5 and Sonnet 5.5) and lifetime (5 minutes from request start, refreshed on a hit) are right, but self.md is ~850 tokens, not the stated 1,500-2,500; and `run()` grades each reply before the next call, so a slow hard grader can approach 5 minutes: grade after all 24 calls, or log gaps and exclude calls after a gap over 5 minutes.
+10. (should) `report()` divides reads by call 1's `cache_creation`; if call 1 reads, the divisor is 0. Use the calibration's system-block count, or call 1's write plus read.
+11. (minor) Optionally cache the packet too (second breakpoint, a user text block); define the caching criterion on both blocks if adopted.
