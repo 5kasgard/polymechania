@@ -36,7 +36,7 @@ Generated from `queue.json` by `python bench/workqueue.py`; edit the JSON, not t
 |---|---|---|---|---|---|
 | q05 | Start-packet authority as a Gnomon gate rule | high | owner | 0 | Built: Gnomon PR #57 (protocol version 4; packet()); border 9 of 15 with it, 7 on main. Free non-Claude reviews run tonight, then the owner merges |
 | q22 | Legal check of the business model | high | owner | 0 | Brief ready for the owner to take to a lawyer: https://claude.ai/artifact/1xLmnUpcqNrMQrhukPVNxj (option C ruled out by the consumer terms; the open line is A.1 product vs D.4(a) resale). Owner books the lawyer |
-| q33 | Gnomon #50: sign appends (protocol 7) | high | owner | 0 | Options in docs/gnomon-50-options.md (Sonnet plan, checked). Owner decides whether the core may take its first outside crypto crate (ed25519-dalek) |
+| q33 | Gnomon #50: sign appends (protocol 7) | high | owner | 0 | Options in docs/gnomon-50-options.md. Session recommends F (hash-chain tokens on existing SHA-256, no new dependency) over B (ed25519-dalek). Owner decides; a Sonnet sub-agent builds it from the session's spec |
 | q07 | Gnomon PR #47 (teams of models move to Polymechania) | medium | owner | 0 | Checked 2026-10-29: every removed file exists in Polymechania (firm.py is plan.py, company.py is org.py); merges cleanly on main after #56; all 251 Gnomon tests pass. Recommend merge; owner decides |
 | q27 | More skills from this work | low | owner | 0 | Proposed so far: route-and-test, taste-and-adjust, session-handoff, careful-live-changes, one-queue, weigh-the-evidence, honest-views. Next candidates: budgeted-free-runs (resumable runs inside free allowances), reproduce-before-filing (probe a finding before reporting it), plain-core-themes |
 

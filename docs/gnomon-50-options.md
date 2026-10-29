@@ -34,7 +34,25 @@ Main points:
 - **Rollback:** sign a (count, head) checkpoint, as Certificate Transparency (RFC 6962) and
   Sigstore Rekor (C2SP checkpoints) do.
 
-## Recommendation (the sub-agent's; the session agrees)
+## Options with no new dependency (added 2026-10-29, after the owner asked)
+
+The core already has SHA-256 and HMAC-SHA-256 (`sha256.rs`, tested against RFC 4231).
+
+| | E. HMAC per writer | F. Hash chain per writer (S/KEY, Lamport 1981, [RFC 2289](https://www.rfc-editor.org/rfc/rfc2289)) |
+|---|---|---|
+| How | each write carries HMAC(writer key, envelope hash) | registration publishes the top of a SHA-256 chain from a secret seed; each write reveals the next value down |
+| Who can check | only a holder of the writer's key (in practice the gate) | anyone, with SHA-256 alone |
+| Stops B4 | yes, for anyone without the key; the gate itself could forge | yes, for anyone without the seed, the gate included |
+| Limits | moves trust to the gate | a set number of writes per chain, then a re-key event; cutting off the newest event and rewriting it stays possible, as today (needs an outside checkpoint) |
+| New code | a few lines on existing HMAC | a few lines on existing SHA-256 |
+
+Also ruled out for now: calling the system's `ssh-keygen -Y sign` (real Ed25519 with no crate, but a program
+call per append and installation differences); file permissions alone (A).
+
+**Session's recommendation after this: F for version 7.** It is publicly checkable and needs nothing new.
+Reading (B9) still needs encryption, the one part that needs an outside library or new crypto code.
+
+## Recommendation (the sub-agent's, before options E and F)
 
 Version 7 = signatures only (B). It is the smallest step that makes B4 cryptographic and survives
 copies of the file. B9 stays open until version 8 (encryption), or meanwhile by running the gate

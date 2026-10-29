@@ -442,7 +442,7 @@
    "needs": "owner",
    "cost": 0,
    "value": "high",
-   "next": "Options in docs/gnomon-50-options.md (Sonnet plan, checked). Owner decides whether the core may take its first outside crypto crate (ed25519-dalek)",
+   "next": "Options in docs/gnomon-50-options.md. Session recommends F (hash-chain tokens on existing SHA-256, no new dependency) over B (ed25519-dalek). Owner decides; a Sonnet sub-agent builds it from the session's spec",
    "refs": [
     "docs/gnomon-50-options.md"
    ]
